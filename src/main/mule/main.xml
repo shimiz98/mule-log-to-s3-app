@@ -29,4 +29,9 @@ payload
 		</ee:transform>
 		<logger level="INFO" doc:name="http.response" doc:id="fb0f8a3b-f036-442f-a7d9-13465ab0ce00" category="myapp.debug.http.response" message="#[output application/csv --- payload]"/>
 	</flow>
+	<flow name="getLogsFlow" doc:id="2a618998-a68b-4740-8b10-4ca7c6b1a061" >
+		<http:listener doc:name="Listener" doc:id="05bb5cc0-c14e-4050-bb7d-95e7edc5d4a6" config-ref="HTTP_Listener_config" path="/logs/{fileName}" allowedMethods="GET"/>
+		<logger level="INFO" doc:name="http.request" doc:id="bdadf94b-3c9a-4c54-ba6d-6f05db02c37b" message="#[output application/json indent=false --- attributes]" category="myapp.debug.http.request" />
+		<file:read doc:name="Read" doc:id="52508b73-0816-4963-8153-cb5139108812" path='#[Mule::p("mule.home") ++ "/logs/" ++ attributes.uriParams["fileName"] as String]'/>
+	</flow>
 </mule>
