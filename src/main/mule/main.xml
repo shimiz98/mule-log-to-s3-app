@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:file="http://www.mulesoft.org/schema/mule/file"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="mainFlow" doc:id="6f88442e-9c2f-43b9-9753-9026ccdf9cfa" >
+		<http:listener doc:name="Listener" doc:id="06b3cf38-d68e-4f3e-8e4c-62c2bc536702" config-ref="HTTP_Listener_config" path="/*"/>
+		<logger level="INFO" doc:name="http.request" doc:id="f6de0dbf-821e-4814-a46c-e2ddb59659a7" message="#[output application/json indent=false --- attributes]" category="myapp.debug.http.request"/>
+		<file:list doc:name="List" doc:id="eeeb532b-19e2-4ae4-ab51-205dcbe45116" directoryPath="${mule.home}/logs"/>
+		<logger level="DEBUG" doc:name="Logger" doc:id="c74004fa-fe7b-4529-a1f8-a36417ff1590" message="#[output application/json --- payload map($.attributes)]" category="myapp.debug.file-list"/>
+		<ee:transform doc:name="Transform Message" doc:id="c798ca42-87c6-4f33-955f-6a4f4fb3a6ff" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+import dw::core::Strings
+output application/csv
+---
+payload
+	map($.attributes)
+	orderBy($.fileName)
+	map ({
+		lastModifiedTime: Strings::rightPad($.lastModifiedTime,29),
+		size: Strings::leftPad($.size, 8),
+		fileName: $.fileName,
+	})]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="http.response" doc:id="fb0f8a3b-f036-442f-a7d9-13465ab0ce00" category="myapp.debug.http.response" message="#[output application/csv --- payload]"/>
+	</flow>
+</mule>
