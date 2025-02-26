@@ -30,7 +30,7 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<!-- 2025/02/27 added by Deploy to CloudHub -->
-				<configuration> 
+				<configuration>
 					<classifier>---- select project type ----</classifier>
 				</configuration>
 			</plugin>
@@ -54,6 +54,12 @@
 			<groupId>org.mule.connectors</groupId>
 			<artifactId>mule-file-connector</artifactId>
 			<version>1.5.2</version>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>com.mulesoft.connectors</groupId>
+			<artifactId>mule-amazon-s3-connector</artifactId>
+			<version>7.0.1</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
 	</dependencies>
