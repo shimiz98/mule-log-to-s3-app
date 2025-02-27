@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="getRuntimeInfoFlow" doc:id="e3695eca-6425-47a6-81c4-272f7dcc552f" >
+		<http:listener doc:name="Listener" doc:id="c6af81c4-9ff1-40a7-b6c9-e62c38fd5475" config-ref="HTTP_Listener_config" path="/runtime-info"/>
+		<ee:transform doc:name="runtime info" doc:id="0c86c51c-d7e7-4ee4-87f2-3c176266983f" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+// key名で並び替える
+fun pretty(dict: Dictionary) = namesOf(dict) orderBy($) reduce((name, acc={}) -> acc ++ {(name): dict[(name)]})
+---
+{
+	env: pretty(dw::System::envVars()),
+	prop: pretty(dw::Runtime::props()),
+	jvm: java!myapp::DebugFunctions::getJvmInputArguments(),
+	mule: {
+		"app.name": app.name,
+		"app.standalone": app.standalone,
+		"mule.clusterId": mule.clusterId,
+		"mule.home": mule.home,
+		"mule.nodeId": mule.nodeId,
+		"mule.version": mule.version,
+		"server.host": server.host,
+		"server.ip": server.ip,
+	}
+}
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="payload" doc:id="63256fb6-7024-4fbc-81dd-e1f14fbf74a1" message="#[output application/json --- payload]" category="myapp.debug.props"/>
+	</flow>
+</mule>
