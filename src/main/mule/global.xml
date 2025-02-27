@@ -12,5 +12,4 @@ http://www.mulesoft.org/schema/mule/s3 http://www.mulesoft.org/schema/mule/s3/cu
 		<s3:connection accessKey="${myapp.aws.access-key}" secretKey="${myapp.aws.secret-key}" region="ap-northeast-1"/>
 	</s3:config>
 	<global-property doc:name="Global Property" doc:id="e0b32a9a-647e-4f9f-b2d4-c01d4d7321e7" name="myapp.loggins.s3-bucket-name" value="ysk-mule-log-to-s3" />
-	<global-property doc:name="Global Property" doc:id="7bef0aa1-6a90-4cfd-93e9-44c036e23eb7" name="mule.nodeId" value="dummy-for-local" />
 </mule>
