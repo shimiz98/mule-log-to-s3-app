@@ -11,13 +11,13 @@ http://www.mulesoft.org/schema/mule/s3 http://www.mulesoft.org/schema/mule/s3/cu
 			<scheduling-strategy >
 				<fixed-frequency frequency="5" timeUnit="SECONDS"/>
 			</scheduling-strategy>
-			<file:matcher filenamePattern="test-mule-log-to-s3-app_*.log" />
+			<file:matcher filenamePattern='${MULE_APP}_*.log' />
 		</file:listener>
 		<logger level="INFO" doc:name="Logger" doc:id="9e237d2d-b0dc-4629-b846-1bb98a3b4f5a" category="myapp.debug.file-polling" message="#[output application/json --- attributes]"/>
 		<set-variable value="#[attributes]" doc:name="targetLogFile" doc:id="b664a368-fd70-4d96-bd05-dc285f536013" variableName="targetLogFile"/>
 		<set-variable value='#[app.name ++ "/" ++ mule.nodeId ++ "/" ++ vars.targetLogFile.fileName]' doc:name="s3ObjectKey" doc:id="88569e6d-ded4-4116-aa3b-16af042cc8a5" variableName="s3ObjectKey"/>
 		<logger level="INFO" doc:name="s3ObjectKey" doc:id="335d5a94-4172-4b2e-882b-6c60f51c180d" message="#[output application/json --- {s3ObjectKey: vars.s3ObjectKey}]"/>
-		<s3:put-object doc:name="Put Object" doc:id="47ee87a5-9377-43ed-bf1c-6eada9ee28ae" config-ref="Amazon_S3_Config" key='#[vars.s3ObjectKey]' bucketName="${myapp.loggins.s3-bucket-name}"/>
+		<s3:put-object doc:name="Put Object" doc:id="47ee87a5-9377-43ed-bf1c-6eada9ee28ae" config-ref="Amazon_S3_Config" key='#[vars.s3ObjectKey]' bucketName="${myapp.loggins.s3-bucket-name}" contentLength="#[sizeOf(payload.^raw)]"/>
 		<file:delete doc:name="Delete" doc:id="84795fb1-e01a-407b-902a-6e9ed8622abc" path="#[vars.targetLogFile.path]"/>
 	</flow>
 </mule>
