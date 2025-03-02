@@ -78,6 +78,22 @@
 }
 ```
 
+## 問題と対処
+
+## 無限ループ発生した
+* 原因： 未調査。log4j2.xmlの末尾に余計なカンマがあったこと、または、File:removeがvarsの変数名間違いでnullだったのが原因かも。
+
+## MuleアプリをRolling Updateで再デプロイすると、複数レプリカから同一ファイル名になる(机上発見、未発生)
+* 原因: S3のKey名にてレプリカを区別する名前として Muleプロパティ`mule.nodeId` を使用しているため
+* 対処: 代わりにOSの環境変数`POD_NAME`からreplicaIdを切り出して使用する
+  * 公式doc[Example: Create a Log4j Configuration Using Splunk](https://docs.mulesoft.com/cloudhub-2/ch2-integrate-log-system#example-create-a-log4j-configuration-using-splunk)でも、MULE_APPを使用している。
+  * POD_NAMEの例: `test-mule-log-to-s3-app-fbf895f6f-dpd9c`
+
+## おそらく AWS Athena できないため、CSV形式などでログ出力する
+## S3容量節約のため、ログファイルをCompress圧縮してから、S3:PutObjectする
+## S3:PutObject操作でエラー発生時の挙動が未検証
+## [WARNING] ブートストラップ・クラスパスが-source 8と一緒に設定されていません
+
 ## (未使用) How to Send Logs via Log4j2.xml to AWS S3 in Mule 4
 https://help.salesforce.com/s/articleView?id=001115774&type=1
 
