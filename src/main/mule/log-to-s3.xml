@@ -13,7 +13,7 @@ http://www.mulesoft.org/schema/mule/s3 http://www.mulesoft.org/schema/mule/s3/cu
 			</scheduling-strategy>
 			<file:matcher filenamePattern='??_${MULE_APP}_*.log' />
 		</file:listener>
-		<logger level="INFO" doc:name="Logger" doc:id="9e237d2d-b0dc-4629-b846-1bb98a3b4f5a" category="myapp.debug.file-polling" message="#[output application/json --- attributes]"/>
+		<logger level="DEBUG" doc:name="Logger" doc:id="9e237d2d-b0dc-4629-b846-1bb98a3b4f5a" category="myapp.flow.log-to-s3" message="#[output application/json --- attributes]"/>
 		<set-variable value="#[attributes]" doc:name="logFileAttr" doc:id="b664a368-fd70-4d96-bd05-dc285f536013" variableName="logFileAttr"/>
 		<set-variable value='#[import dw::core::Strings&#10;var logFileType = Strings::first(vars.logFileAttr.fileName, 2) &#10;var logFileDate = vars.logFileAttr.fileName as String Strings::substringAfterLast("_") Strings::first(10)&#10;var replicaId =  dw::System::envVar("POD_NAME") default "-@@@@@" Strings::substringAfterLast("-") &#10;var logFileName = vars.logFileAttr.fileName as String replace /.log$/ with("_" ++ replicaId ++ ".log")&#10;---&#10;[logFileType, app.name as String, logFileDate, replicaId, logFileName] joinBy "/"]' doc:name="s3ObjectKey" doc:id="88569e6d-ded4-4116-aa3b-16af042cc8a5" variableName="s3ObjectKey"/>
 		<logger level="INFO" doc:name="s3ObjectKey" doc:id="335d5a94-4172-4b2e-882b-6c60f51c180d" message="#[output application/json --- {s3ObjectKey: vars.s3ObjectKey}]"/>
