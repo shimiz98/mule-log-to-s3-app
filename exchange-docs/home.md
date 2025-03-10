@@ -107,8 +107,12 @@
 
 ### おそらく AWS Athena できないため、CSV形式などでログ出力する
 ### S3容量節約のため、ログファイルをCompress圧縮してから、S3:PutObjectする
+* 対処: Compressコネクタを使用する。
+* 補足: log4j2.xmlのログファイル名の末尾に`.gz`を書けばlog4j2が圧縮してくれるが、圧縮途中のファイルがログテイン層の対象になる可能性ありそうなため、この`.gz`を付ける方法は避けて、確実な方法にした。
+
 ### S3:PutObject操作でエラー発生時の挙動が未検証
 ### [WARNING] ブートストラップ・クラスパスが-source 8と一緒に設定されていません
+### Fileコネクタの On New or Updated File は、該当ファイルが複数あると別スレッドで並行処理される可能性ある
 
 ### (未使用) 
 ### How to Send Logs via Log4j2.xml to AWS S3 in Mule 4
