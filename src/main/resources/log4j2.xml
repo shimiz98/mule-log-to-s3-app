@@ -13,21 +13,15 @@
         <RollingFile name="MG_file" fileName="${sys:mule.home}${sys:file.separator}logs${sys:file.separator}MG_${env:MULE_APP}.log"
                  filePattern="${sys:mule.home}${sys:file.separator}logs${sys:file.separator}MG_${env:MULE_APP}_%d{yyyy-MM-dd'T'HH-mm-ssXX}{UTC}.log">
             <PatternLayout pattern="%-5p %d [%t] [processor: %X{processorPath}; event: %X{correlationId}] %c: %m%n"/>
-            <!-- <SizeBasedTriggeringPolicy size="10 MB"/> -->
-            <!-- ファイル名の最小単位が「秒」なので、３秒毎にログローテート -->
-            <TimeBasedTriggeringPolicy interval="${sys:myapp.logger.interval:-3}"/>
-            <!-- 上記から、３秒毎にログローテートなので、３０秒間 -->
-            <DefaultRolloverStrategy max="${sys:myapp.logger.maxCount:-10}"/>
+            <!-- 3秒毎にログローテート -->
+            <CronTriggeringPolicy schedule="0/${sys:myapp.logging.rotate-interval:-3} * * * * ?"/>
         </RollingFile>
         <!-- 業務ログ(略号APまたはapp) -->
         <RollingFile name="AP_file" fileName="${sys:mule.home}${sys:file.separator}logs${sys:file.separator}AP_${env:MULE_APP}.log"
                  filePattern="${sys:mule.home}${sys:file.separator}logs${sys:file.separator}AP_${env:MULE_APP}_%d{yyyy-MM-dd'T'HH-mm-ssXX}{UTC}.log">
             <PatternLayout pattern="%-5p %d [%t] [processor: %X{processorPath}; event: %X{correlationId}] %c: %m%n"/>
-            <!-- <SizeBasedTriggeringPolicy size="10 MB"/> -->
-            <!-- ファイル名の最小単位が「秒」なので、３秒毎にログローテート -->
-            <TimeBasedTriggeringPolicy interval="${sys:myapp.logger.interval:-3}"/>
-            <!-- 上記から、３秒毎にログローテートなので、３０秒間 -->
-            <DefaultRolloverStrategy max="${sys:myapp.logger.maxCount:-10}"/>
+            <!-- 3秒毎にログローテート -->
+            <CronTriggeringPolicy schedule="0/${sys:myapp.logging.rotate-interval:-3} * * * * ?"/>
         </RollingFile>
     </Appenders>
 

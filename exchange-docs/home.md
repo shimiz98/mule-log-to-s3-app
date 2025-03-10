@@ -2,6 +2,15 @@
 
 このMuleアプリは、ログをFileコネクタとS3コネクタを用いてS3へログ転送するサンプル実装です。
 
+## 外部定義可能なプロパティ
+
+* myapp.aws.access-key
+* myapp.aws.secret-key
+* myapp.logging.ap.s3-bucket-name
+* myapp.logging.mg.s3-bucket-name
+* myapp.logging.rotate-interval
+  * Javaのシステムプロパティで設定する(理由:log4j2.xmlからはMuleのプロパティは参照不可能なため)
+
 ## 実装の補足説明
 
 ### ファイル「pom.xml」の補足説明
@@ -88,6 +97,13 @@
 * 対処: 代わりにOSの環境変数`POD_NAME`からreplicaIdを切り出して使用する
   * 公式doc[Example: Create a Log4j Configuration Using Splunk](https://docs.mulesoft.com/cloudhub-2/ch2-integrate-log-system#example-create-a-log4j-configuration-using-splunk)でも、MULE_APPを使用している。
   * POD_NAMEの例: `test-mule-log-to-s3-app-fbf895f6f-dpd9c`
+
+### 最新のログファイルがS3へログ転送されない問題を修正した。
+* 原因： TimeBasedTriggeringPolicy は、ログ出力しないと、ローテート判定されないため。
+* 対処: TimeBasedTriggeringPolicy から CronTriggeringPolicy に変更した。
+
+### DefaultRolloverStrategy の max は %i のみ有効で、%d では無効
+* 対処: maxを削除した。
 
 ### おそらく AWS Athena できないため、CSV形式などでログ出力する
 ### S3容量節約のため、ログファイルをCompress圧縮してから、S3:PutObjectする
