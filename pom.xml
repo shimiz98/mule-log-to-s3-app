@@ -56,6 +56,10 @@
 							<format>html</format>
 						</formats>
 					</coverage>
+					<runtimeVersion>4.9.0</runtimeVersion>
+					<systemPropertyVariables>
+						<env>munit</env>
+					</systemPropertyVariables>
 				</configuration>
 			</plugin>
 		</plugins>

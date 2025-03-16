@@ -16,4 +16,5 @@ http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/fil
 	<global-property doc:name="Global Property" doc:id="e0b32a9a-647e-4f9f-b2d4-c01d4d7321e7" name="myapp.logging.ap.s3-bucket-name" value="ysk-mule-log-to-s3" />
 	<global-property doc:name="Global Property" doc:id="419e4529-29a1-481e-9be2-2e17862eab90" name="myapp.logging.mg.s3-bucket-name" value="ysk-mule-log-to-s3" />
 	<global-property doc:name="Global Property" doc:id="0dfe613e-6c22-4832-a137-7139d1b4c2d1" name="myapp.logging.polling-interval" value="4" />
+	<configuration-properties doc:name="Configuration properties" doc:id="75dd29b1-1143-49d7-ad75-0295d93ada43" file="env/app-config_${env}.properties" />
 </mule>
