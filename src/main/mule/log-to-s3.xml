@@ -12,7 +12,7 @@ http://www.mulesoft.org/schema/mule/compression http://www.mulesoft.org/schema/m
 			<scheduling-strategy >
 				<fixed-frequency frequency="5" timeUnit="SECONDS"/>
 			</scheduling-strategy>
-			<file:matcher filenamePattern='??_${MULE_APP}_*.log' />
+			<file:matcher filenamePattern='??_${MULE_APP}_*.log' minSize="1"/>
 		</file:listener>
 		<logger level="DEBUG" doc:name="attributes" doc:id="9e237d2d-b0dc-4629-b846-1bb98a3b4f5a" category="myapp.flow.log-to-s3" message="#[output application/json --- attributes]"/>
 		<set-variable value="#[attributes]" doc:name="logFileAttr" doc:id="b664a368-fd70-4d96-bd05-dc285f536013" variableName="logFileAttr"/>
