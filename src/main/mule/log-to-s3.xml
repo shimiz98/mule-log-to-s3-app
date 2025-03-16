@@ -8,23 +8,23 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 http://www.mulesoft.org/schema/mule/s3 http://www.mulesoft.org/schema/mule/s3/current/mule-s3.xsd
 http://www.mulesoft.org/schema/mule/compression http://www.mulesoft.org/schema/mule/compression/current/mule-compression.xsd">
 	<flow name="log-to-s3Flow" doc:id="c5a75f58-eaa9-49e1-a7a4-2543df3e920f" >
-		<file:listener doc:name="On New or Updated File" doc:id="7ee3c0a4-c7ba-452a-8ef4-8a1941d199b8" recursive="false" directory="${mule.home}/logs">
+		<file:listener doc:name="On New or Updated File" doc:id="7ee3c0a4-c7ba-452a-8ef4-8a1941d199b8" recursive="false" directory="${mule.home}/logs" config-ref="File_Config">
 			<scheduling-strategy >
-				<fixed-frequency frequency="5" timeUnit="SECONDS"/>
+				<fixed-frequency frequency="${myapp.logging.polling-interval}" timeUnit="SECONDS"/>
 			</scheduling-strategy>
 			<file:matcher filenamePattern='??_${MULE_APP}_*.log' minSize="1"/>
 		</file:listener>
 		<logger level="DEBUG" doc:name="attributes" doc:id="9e237d2d-b0dc-4629-b846-1bb98a3b4f5a" category="myapp.flow.log-to-s3" message="#[output application/json --- attributes]"/>
 		<set-variable value="#[attributes]" doc:name="logFileAttr" doc:id="b664a368-fd70-4d96-bd05-dc285f536013" variableName="logFileAttr"/>
 		<set-variable value='#[dw::core::Strings::first(vars.logFileAttr.fileName, 2) match {&#10;	case "AP" -&gt; Mule::p("myapp.logging.ap.s3-bucket-name")&#10;	case "MG" -&gt; Mule::p("myapp.logging.mg.s3-bucket-name")&#10;	else -&gt; dw::Runtime::fail("S3バケット名が不明です。prefix=" ++ $ ++ " fileName=" ++ vars.logFileAttr.fileName)&#10;}]' doc:name="s3BucketName" doc:id="f8116059-4888-4337-819b-bf12c808a32b" variableName="s3BucketName"/>
-		<set-variable value='#[import dw::core::Strings&#10;var logFileDateTime = vars.logFileAttr.fileName as String Strings::substringAfterLast("_") Strings::first(17)&#10;// 以下、ディレクトリ階層の順序&#10;var logFileType = Strings::first(vars.logFileAttr.fileName, 2)&#10;var envName = Mule::p("env") default "@@@"&#10;var appName = app.name as String&#10;var logFileDate = Strings::first(logFileDateTime, 10)&#10;var logFileHour = Strings::substring(logFileDateTime, 11, 13)&#10;var replicaId =  dw::System::envVar("POD_NAME") default "-@@@@@" Strings::substringAfterLast("-")&#10;var logFileName = vars.logFileAttr.fileName as String replace /.log$/ with("_" ++ replicaId ++ ".log.gz")&#10;---&#10;[logFileType, envName, appName, logFileDate, logFileHour, replicaId, logFileName] joinBy "/"]' doc:name="s3ObjectKey" doc:id="88569e6d-ded4-4116-aa3b-16af042cc8a5" variableName="s3ObjectKey"/>
+		<set-variable value='#[import dw::core::Strings&#10;var logFileDateTime = vars.logFileAttr.fileName as String Strings::substringAfterLast("_") Strings::first(20)&#10;// 以下、ディレクトリ階層の順序&#10;var logFileType = Strings::first(vars.logFileAttr.fileName, 2)&#10;var envName = Mule::p("env") default "@@@"&#10;var appName = app.name as String&#10;var dateTimeKey = logFileDateTime Strings::first(13) replace /[-T]/ with ("/")&#10;var replicaId =  dw::System::envVar("POD_NAME") default "-@@@@@" Strings::substringAfterLast("-")&#10;var logFileName = vars.logFileAttr.fileName as String replace /.log$/ with("_" ++ replicaId ++ ".log.gz")&#10;---&#10;[logFileType, envName, appName, dateTimeKey, replicaId, logFileName] joinBy "/"]' doc:name="s3ObjectKey" doc:id="88569e6d-ded4-4116-aa3b-16af042cc8a5" variableName="s3ObjectKey"/>
 		<logger level="DEBUG" doc:name="s3 bucketName objectKey" doc:id="335d5a94-4172-4b2e-882b-6c60f51c180d" message="#[output application/json --- {logFileName: vars.logFileAttr.fileName, s3BucketName: vars.s3BucketName, s3ObjectKey: vars.s3ObjectKey}]" category="myapp.flow.log-to-s3"/>
 		<compression:compress doc:name="Compress" doc:id="76c229ef-8415-4e44-9024-ed39c9083273" >
 			<compression:compressor >
 				<compression:gzip-compressor />
 			</compression:compressor>
 		</compression:compress>
-		<s3:put-object doc:name="Put Object" doc:id="47ee87a5-9377-43ed-bf1c-6eada9ee28ae" config-ref="Amazon_S3_Config" key='#[vars.s3ObjectKey]' bucketName="#[vars.s3BucketName]" contentLength="#[sizeOf(payload.^raw)]"/>
-		<file:delete doc:name="Delete" doc:id="84795fb1-e01a-407b-902a-6e9ed8622abc" path="#[vars.logFileAttr.path]"/>
+		<s3:put-object doc:name="logFile" doc:id="47ee87a5-9377-43ed-bf1c-6eada9ee28ae" config-ref="Amazon_S3_Config" key='#[vars.s3ObjectKey]' bucketName="#[vars.s3BucketName]" contentLength="#[sizeOf(payload.^raw)]"/>
+		<file:delete doc:name="logFile" doc:id="84795fb1-e01a-407b-902a-6e9ed8622abc" path="#[vars.logFileAttr.path]" config-ref="File_Config"/>
 	</flow>
 </mule>

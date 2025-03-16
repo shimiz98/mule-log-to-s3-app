@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="log-to-s3-test-suite.xml" />
+	<munit:test name="log-to-s3-test-suite-log-to-s3FlowTest" doc:id="ce606153-b06a-406c-a115-f16db1ed0246" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="s3:put-object" doc:id="e4418f27-937c-4d2f-bfa8-9c8d4d80dff1" processor="s3:put-object">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="logFile" attributeName="doc:name" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+			<munit-tools:mock-when doc:name="file:delete" doc:id="d6516c9c-e7f8-4285-bcd7-467aa5b41791" processor="file:delete">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="logFile" attributeName="doc:name" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+			<munit-tools:spy doc:name="s3:put-object" doc:id="8ad6cf35-cf25-46f9-b511-d13a9dadc063" processor="s3:put-object">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Put Object" attributeName="doc:name" />
+				</munit-tools:with-attributes>
+				<munit-tools:before-call >
+					<munit-tools:assert-equals doc:name="s3ObjectKey" doc:id="2ac86dd4-ab0d-4b20-a9b6-0a5cd4471387" actual="#[vars.s3ObjectKey]" expected='AP/@@@/test-mule-log-to-s3-app/2001/02/03/04/@@@@@/AP_myapp-name_2001-02-03T04-05-06Z_@@@@@.log.gz'/>
+					<munit-tools:assert-equals doc:name="s3BucketName" doc:id="7c806de6-9655-4c8c-9e1c-65f2732387aa" actual="#[vars.s3BucketName]" expected="${myapp.logging.ap.s3-bucket-name}"/>
+				</munit-tools:before-call>
+			</munit-tools:spy>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="78dd485c-c59e-42d6-8576-ac1f8bc8375d" >
+				<munit:payload value='#[""]' />
+				<munit:attributes value='#[{fileName: "AP_myapp-name_2001-02-03T04-05-06Z.log", path: "/logs/AP_myapp-name_2021-02-03T04-05-06Z.log"}]' />
+			</munit:set-event>
+			<flow-ref doc:name="log-to-s3Flow" doc:id="43a05371-20ce-48f0-b9c0-16e2e44c9696" name="log-to-s3Flow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:verify-call doc:name="s3:put-object" doc:id="15adde19-9165-4a89-aa4b-712786b04cb0" processor="s3:put-object" times="1">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="logFile" attributeName="doc:name" />
+				</munit-tools:with-attributes>
+			</munit-tools:verify-call>
+			<munit-tools:verify-call doc:name="file:delete" doc:id="1be2caad-3fe1-47bc-beaf-e606d9badb39" processor="file:delete" times="1">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="logFile" attributeName="doc:name" />
+				</munit-tools:with-attributes>
+			</munit-tools:verify-call>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>

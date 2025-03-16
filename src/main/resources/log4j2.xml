@@ -14,14 +14,14 @@
                  filePattern="${sys:mule.home}${sys:file.separator}logs${sys:file.separator}MG_${env:MULE_APP}_%d{yyyy-MM-dd'T'HH-mm-ssXX}{UTC}.log">
             <PatternLayout pattern="%-5p %d [%t] [processor: %X{processorPath}; event: %X{correlationId}] %c: %m%n"/>
             <!-- 3秒毎にログローテート -->
-            <CronTriggeringPolicy schedule="0/${sys:myapp.logging.rotate-interval:-3} * * * * ?"/>
+            <CronTriggeringPolicy schedule="0/${sys:myapp.logging.rotate-interval:-5} * * * * ?"/>
         </RollingFile>
         <!-- 業務ログ(略号APまたはapp) -->
         <RollingFile name="AP_file" fileName="${sys:mule.home}${sys:file.separator}logs${sys:file.separator}AP_${env:MULE_APP}.log"
                  filePattern="${sys:mule.home}${sys:file.separator}logs${sys:file.separator}AP_${env:MULE_APP}_%d{yyyy-MM-dd'T'HH-mm-ssXX}{UTC}.log">
             <PatternLayout pattern="%-5p %d [%t] [processor: %X{processorPath}; event: %X{correlationId}] %c: %m%n"/>
             <!-- 3秒毎にログローテート -->
-            <CronTriggeringPolicy schedule="0/${sys:myapp.logging.rotate-interval:-3} * * * * ?"/>
+            <CronTriggeringPolicy schedule="0/${sys:myapp.logging.rotate-interval:-5} * * * * ?"/>
         </RollingFile>
     </Appenders>
 
