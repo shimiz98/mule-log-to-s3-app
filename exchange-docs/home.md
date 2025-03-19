@@ -87,6 +87,25 @@
 }
 ```
 
+### AWS Athena
+テーブル作成
+```
+CREATE EXTERNAL TABLE mule_logs_20250317b (
+    instant struct<epochSecond:int, nanoOfSecond:int>,
+    thread string,
+    level string,
+    loggerName string,
+    message string,
+    contextMap map<string,string>,
+    endOfBatch boolean,
+    loggerFqcn string,
+    threadId int,
+    threadPriority int,
+    POD_NAME string
+)   
+ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
+LOCATION 's3://ysk-mule-log-to-s3/AP/local/test-mule-log-to-s3-app/2025/03/17/';
+```
 ## 問題と対処
 
 ### 無限ループ発生した
