@@ -10,16 +10,20 @@
 
     <Appenders>
         <!-- 電文ログ(略号MGまたはmsg) -->
-        <RollingFile name="MG_file" fileName="${sys:mule.home}${sys:file.separator}logs${sys:file.separator}MG_${env:MULE_APP}.log"
-                 filePattern="${sys:mule.home}${sys:file.separator}logs${sys:file.separator}MG_${env:MULE_APP}_%d{yyyy-MM-dd'T'HH-mm-ssXX}{UTC}.log">
-            <PatternLayout pattern="%-5p %d [%t] [processor: %X{processorPath}; event: %X{correlationId}] %c: %m%n"/>
+        <RollingFile name="MG_file" fileName="${sys:mule.home}${sys:file.separator}logs${sys:file.separator}MG_${env:MULE_APP}.jsonl"
+                 filePattern="${sys:mule.home}${sys:file.separator}logs${sys:file.separator}MG_${env:MULE_APP}_%d{yyyy-MM-dd'T'HH-mm-ssXX}{UTC}.jsonl">
+            <JsonLayout properties="true" compact="true" eventEol="true">
+            	<KeyValuePair key="POD_NAME" value="${env:POD_NAME:@@@-@@@@@}"/>
+            </JsonLayout>
             <!-- 3秒毎にログローテート -->
             <CronTriggeringPolicy schedule="0/${sys:myapp.logging.rotate-interval:-5} * * * * ?"/>
         </RollingFile>
         <!-- 業務ログ(略号APまたはapp) -->
-        <RollingFile name="AP_file" fileName="${sys:mule.home}${sys:file.separator}logs${sys:file.separator}AP_${env:MULE_APP}.log"
-                 filePattern="${sys:mule.home}${sys:file.separator}logs${sys:file.separator}AP_${env:MULE_APP}_%d{yyyy-MM-dd'T'HH-mm-ssXX}{UTC}.log">
-            <PatternLayout pattern="%-5p %d [%t] [processor: %X{processorPath}; event: %X{correlationId}] %c: %m%n"/>
+        <RollingFile name="AP_file" fileName="${sys:mule.home}${sys:file.separator}logs${sys:file.separator}AP_${env:MULE_APP}.jsonl"
+                 filePattern="${sys:mule.home}${sys:file.separator}logs${sys:file.separator}AP_${env:MULE_APP}_%d{yyyy-MM-dd'T'HH-mm-ssXX}{UTC}.jsonl">
+            <JsonLayout properties="true" compact="true" eventEol="true">
+            	<KeyValuePair key="POD_NAME" value="${env:POD_NAME:@@@-@@@@@}"/>
+            </JsonLayout>
             <!-- 3秒毎にログローテート -->
             <CronTriggeringPolicy schedule="0/${sys:myapp.logging.rotate-interval:-5} * * * * ?"/>
         </RollingFile>
