@@ -34,4 +34,16 @@ fun pretty(dict: Dictionary) = namesOf(dict) orderBy($) reduce((name, acc={}) ->
 		</ee:transform>
 		<logger level="INFO" doc:name="payload" doc:id="63256fb6-7024-4fbc-81dd-e1f14fbf74a1" message="#[output application/json --- payload]" category="myapp.debug.props"/>
 	</flow>
+	<flow name="debugFlow" doc:id="3e7b4105-92cb-4487-a155-3d5e0a794b0e" >
+		<http:listener doc:name="getFileStore" doc:id="47352f35-526f-4031-b2bc-c942aaf48496" config-ref="HTTP_Listener_config" path="/file-store"/>
+		<ee:transform doc:name="Transform Message" doc:id="90ce5f3e-aa1e-47bb-acf6-9b5ab25ad0ef" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+java!myapp::DebugFunctions::getFileStore(Mule::p("mule.home") ++ "/logs")
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
 </mule>
