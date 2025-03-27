@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE form-validation PUBLIC
+     "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.4.0//EN"
+     "http://commons.apache.org/dtds/validator_1_4_0.dtd">
+
+<form-validation>
+	<global>
+		<validator name="required" classname="myapp.MyValidator"
+			method="validateRequired"
+			methodParams="java.lang.Object, org.apache.commons.validator.Field"
+			msg="errors.required" />
+	</global>
+	<formset>
+		<form name="myForm01">
+			<field property="jushoCode" depends="required">
+				<arg key="myForm01.jushoCode.displayname" />
+			</field>
+			<field property="banchi1" depends="required">
+				<arg key="myForm01.banchi1.displayname" />
+			</field>
+			<field property="banchi2" depends="required">
+				<arg key="myForm01.banchi2.displayname" />
+			</field>
+			<field property="banchi3" depends="required">
+				<arg key="myForm01.banchi3.displayname" />
+			</field>
+		</form>
+	</formset>
+</form-validation>
