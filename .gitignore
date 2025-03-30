@@ -1,2 +1,9 @@
 # temporary file
 tmp-*
+tmp_*
+
+# Anypoint Studio: workspace
+/.metadata
+/.mule
+/.tooling
+/.tooling-apps-cache
