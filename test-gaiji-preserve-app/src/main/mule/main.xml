@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="mainFlow" doc:id="3cef480e-27df-4a80-b0cb-ac0346c1c18a" >
+		<http:listener doc:name="Listener" doc:id="5d5d7cbf-6b29-4eb7-b26a-7a9d415fe2fb" config-ref="HTTP_Listener_config" path="/*"/>
+		<choice doc:name="Choice" doc:id="ea1ec557-808f-4b37-97c5-0bca245da78b" >
+			<when expression='#["/search" == attributes.relativePath]'>
+				<flow-ref doc:name="searchFlow" doc:id="95b3b60f-82de-4e46-83fc-0af0d179a380" name="searchFlow"/>
+			</when>
+			<when expression='#["/submit" == attributes.relativePath]'>
+				<flow-ref doc:name="submitFlow" doc:id="e9940e54-fd31-4650-9ba2-6f78c326c750" name="submitFlow"/>
+			</when>
+		</choice>
+	</flow>
+	<flow name="searchFlow" doc:id="b0061650-ba05-421e-ae9c-d88e319c1ea1" >
+		<flow-ref doc:name="検索" doc:id="fb40aa85-637a-48f9-a575-17fdb699b80e" name="search_searchFlow"/>
+		<flow-ref doc:name="外字変換" doc:id="dd8f66bd-02a5-4288-8aad-7fe18f837887" name="search_gaijiConvertFlow"/>
+	</flow>
+	<flow name="submitFlow" doc:id="15b48ec0-bcf1-4607-a9a8-1ba48f2fb380" >
+		<logger level="INFO" doc:name="Logger" doc:id="81a03b75-32cc-4ad1-9ad3-461157959d8a" />
+	</flow>
+	<flow name="search_searchFlow" doc:id="75df1486-96ae-4701-9408-17e87a43e066" >
+		<set-payload value='#[{&#10;	data: [&#10;		{&#10;			id: "111",&#10;			"番地1": "高島屋",&#10;			"番地2": "",&#10;			"番地3": "通常 U+9AD8",&#10;		},&#10;		{&#10;			id: "222",&#10;			"番地1": "髙島屋",&#10;			"番地2": "",&#10;			"番地3": "はしご高 U+9AD9",&#10;		},&#10;		{&#10;			id: "333",&#10;			"番地1": "\uE000島屋",&#10;			"番地2": "",&#10;			"番地3": "外字 U+E000",&#10;		},&#10;	]&#10;}]' doc:name="Set Payload" doc:id="d0afb9e7-ca93-404d-95f1-027b6d56d1d9" />
+	</flow>
+	<flow name="search_gaijiConvertFlow" doc:id="5b27cf47-ab92-46a6-b0f1-bec9cbf1a7dc" >
+		<set-payload value='#[payload update {&#10;	case data at .data -&gt; data map ((x) -&gt; x -- ["番地1","番地2","番地3"]&#10;		++ myapp::GaijiConvertor::convertSingleField("番地1", x."番地1")&#10;		++ myapp::GaijiConvertor::convertSingleField("番地2", x."番地2")&#10;		++ myapp::GaijiConvertor::convertSingleField("番地3", x."番地3")&#10;	)&#10;}]' doc:name="Set Payload" doc:id="5464a322-7e63-4bce-a83d-5ec0df64fe36" />
+	</flow>
+</mule>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="main-test-suite.xml" />
+	<munit:test name="main-test-suite-search_gaijiConvertFlowTest" doc:id="de5377ff-383b-4112-9c6a-65c50662f4ec" description="Test">
+		<munit:execution >
+			<set-payload value='#[{&#10;	data: [&#10;		{&#10;			"番地1": "あいうえお",&#10;			"番地2": "",&#10;			"番地3": "\uE000いうえお",&#10;		},&#10;	]&#10;}]' doc:name="Set Payload" doc:id="cda4fd66-ea2b-4b90-bbe0-6948572e80e5" />
+			<flow-ref doc:name="search_gaijiConvertFlow" doc:id="1ad433b1-1019-4a60-b08f-0cb47faf430f" name="search_gaijiConvertFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="8f922a45-ac13-40cb-aafb-141457c10202" expected='#[{&#10;	data: [&#10;		{&#10;			"番地1&lt;表示用&gt;": "あいうえお",&#10;			"番地1&lt;登録用&gt;": "44GC44GE44GG44GI44GK",&#10;			"番地2&lt;表示用&gt;": "",&#10;			"番地2&lt;登録用&gt;": "",&#10;			"番地3&lt;表示用&gt;": "髙いうえお",&#10;			"番地3&lt;登録用&gt;": "7oCA44GE44GG44GI44GK",&#10;		},&#10;	],&#10;}]' actual="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
