@@ -106,6 +106,11 @@ CREATE EXTERNAL TABLE mule_logs_20250317b (
 ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
 LOCATION 's3://ysk-mule-log-to-s3/AP/local/test-mule-log-to-s3-app/2025/03/17/';
 ```
+
+日時を変換
+```
+SELECT from_unixtime(instant.epochsecond + floor(instant.nanoofsecond/1000000) * 0.001) as dt, instant, level, message FROM "mydatabase"."mule_logs_20250317b" where message like '%File%'
+```
 ## 問題と対処
 
 ### 無限ループ発生した
