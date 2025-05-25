@@ -1,15 +1,17 @@
 # study-mule-payload-typed-value
 ## 目的
-
+javaメソッドで独自の入力チェックを行いたい。そのためにjson形式とxml形式のHTTPリクエストボディを無変換でjavaメソッドに渡したい。
 
 ## 概要
 
 1. InputStream
     * [Java SDK > Streaming > Binary Streaming in Operations](https://docs.mulesoft.com/mule-sdk/latest/binary-streaming#binary-streaming-in-operations)
     * 結果: エラー「You called the function 'acceptInputStream' with these arguments:～」詳細なエラーは口述。
+    * 補足: `content-type: application/octet-stream`ならば、InputStream型の引数でjavaメソッドが呼び出された。
 2. Object
     * 結果: ネストしたMap型になった。
 3. TypedValue<InputStream>
+    * [Java SDK > Advanced Parameter Handling > Special Parameters](https://docs.mulesoft.com/mule-sdk/latest/special-parameters#typedvaluetype)
     * 結果: 成功した。
 4. @InputJsonType
     * [Java SDK > Best Practices > Defining Parameters](https://docs.mulesoft.com/mule-sdk/latest/define-parameters)
@@ -176,3 +178,8 @@ https://docs.mulesoft.com/mule-sdk/latest/java-ee-libraries
 
 > Because Mule 4.6.x exposes Java EE libraries differently than earlier Mule versions, you must add the BOM dependency to your connector and, if applicable, exclude the provided conflicting library. 
 > You can also add the libraries in the BOM dependency separately.
+
+* [Mule Runtime > Class-loading Isolation](https://docs.mulesoft.com/mule-runtime/latest/about-classloading-isolation)
+* [Mule Runtime > Third-Party Software in Mule](https://docs.mulesoft.com/mule-runtime/latest/third-party-software-in-mule)
+* [Mule SDK > About Classloading Isolation](https://docs.mulesoft.com/mule-sdk/latest/isolation)
+* [Mule SDK > External Libraries](https://docs.mulesoft.com/mule-sdk/latest/external-libs)
