@@ -1,0 +1,40 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------< com.example.myapp:study-mule-java-typedvalue-inputstream >------
+[INFO] Building study-mule-java-typedValue-inputStream 1.0.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------[ mule-application ]--------------------------
+[INFO] 
+[INFO] --- dependency:3.7.0:tree (default-cli) @ study-mule-java-typedvalue-inputstream ---
+[INFO] com.example.myapp:study-mule-java-typedvalue-inputstream:mule-application:1.0.0-SNAPSHOT
+[INFO] +- org.mule.connectors:mule-http-connector:jar:mule-plugin:1.10.3:compile
+[INFO] |  +- org.mule.modules:mule-module-cors-kernel:jar:1.1.2:compile
+[INFO] |  +- com.sun.activation:jakarta.activation:jar:1.2.2:compile
+[INFO] |  +- org.apache.commons:commons-lang3:jar:3.12.0:compile
+[INFO] |  +- org.mule.sdk:mule-sdk-compatibility-api:jar:0.7.4:compile
+[INFO] |  \- org.mule.sdk:mule-sdk-api:jar:0.7.0:compile
+[INFO] +- org.mule.connectors:mule-sockets-connector:jar:mule-plugin:1.2.5:compile
+[INFO] |  \- commons-io:commons-io:jar:2.14.0:compile
+[INFO] +- org.slf4j:slf4j-api:jar:2.0.17:provided
+[INFO] \- org.mule.runtime:mule-api:jar:1.9.5:provided
+[INFO]    +- org.mule.runtime:mule-metadata-model-api:jar:1.9.5:provided
+[INFO]    +- org.mule.runtime:mule-message-metadata-model:jar:1.9.5:provided
+[INFO]    +- jakarta.inject:jakarta.inject-api:jar:1.0.5:provided
+[INFO]    +- com.google.guava:guava:jar:33.3.1-jre:provided
+[INFO]    |  +- com.google.guava:failureaccess:jar:1.0.2:provided
+[INFO]    |  +- com.google.guava:listenablefuture:jar:9999.0-empty-to-avoid-conflict-with-guava:provided
+[INFO]    |  +- org.checkerframework:checker-qual:jar:3.43.0:provided
+[INFO]    |  +- com.google.errorprone:error_prone_annotations:jar:2.28.0:provided
+[INFO]    |  \- com.google.j2objc:j2objc-annotations:jar:3.0.0:provided
+[INFO]    +- com.github.ben-manes.caffeine:caffeine:jar:2.9.3:provided
+[INFO]    +- com.vdurmont:semver4j:jar:3.1.0:provided
+[INFO]    +- org.mule.runtime:mule-artifact-declaration:jar:1.9.5:provided
+[INFO]    +- org.mule.runtime:mule-artifact-declaration-persistence:jar:1.9.5:provided
+[INFO]    |  \- com.google.code.gson:gson:jar:2.12.1:provided
+[INFO]    \- org.mule.runtime:api-annotations:jar:1.8.5:provided
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.652 s
+[INFO] Finished at: 2025-05-26T01:03:51+09:00
+[INFO] ------------------------------------------------------------------------

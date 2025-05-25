@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="mainFlow" doc:id="c7c98191-34bb-4ba1-b8c1-bae5d4532239" >
+		<http:listener doc:name="Listener" doc:id="f10e8000-fa00-4492-987b-42656c97e2f1" config-ref="HTTP_Listener_config" path="/"/>
+		<try doc:name="Try" doc:id="bb4216d3-7b40-40a2-8ab1-57e7e1ee93a4" >
+			<set-variable value="#[output application/java --- java!myapp::MyFunctions::acceptInputStream(payload)]" doc:name="as InputStream" doc:id="401eb5c5-94b1-4b7f-b46b-83e958edb102" variableName="dummy" />
+			<error-handler >
+				<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="aeb1b2cc-9214-41cb-9f0f-893778a8d7be" type="ANY"/>
+			</error-handler>
+		</try>
+		<try doc:name="Try" doc:id="1d311e92-b1ca-4ab7-acd9-c25f140c5dcb" >
+			<set-variable value="#[output application/java --- java!myapp::MyFunctions::acceptObject(payload)]" doc:name="as Object" doc:id="46d3d396-761e-45ee-89bc-f1a579704834" variableName="dummy" />
+			<error-handler >
+				<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="ebee81d0-a0da-4fff-a4bc-e47eb46a5ada" type="ANY"/>
+			</error-handler>
+		</try>
+		<try doc:name="Try" doc:id="9678f9dc-42f7-4b6c-9d7e-edd73778222e" >
+			<set-variable value="#[output application/java --- java!myapp::MyFunctions::acceptTypedValueObject(payload)]" doc:name="as TypedValue&lt;Object&gt;" doc:id="3c836f8f-4da2-4024-9054-5a9e1e71ccad" variableName="dummy" />
+			<error-handler >
+				<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="ebbffab7-03a8-458d-828d-d09f346a4fc4" type="ANY"/>
+			</error-handler>
+		</try>
+		<try doc:name="Try" doc:id="31ce72d6-7662-4d64-8e9d-59fdb1ba4f4e">
+			<logger level="INFO" doc:name="payload" doc:id="3b7d4833-a4b4-4f50-ac68-98b21ce78868" message="#[output application/dw --- payload]" category="myapp.debug.payload" />
+			<error-handler>
+				<on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="1760baad-d953-4445-8004-39c4db96cd8e" type="ANY" />
+			</error-handler>
+		</try>
+	
+</flow>
+</mule>
