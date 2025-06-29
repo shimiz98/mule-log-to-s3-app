@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="mainFlow" doc:id="daa8ff6c-ba23-469a-9369-f7d953010a0a" >
+		<http:listener doc:name="Listener" doc:id="a960552a-0bf0-4f3a-92aa-b4c5faf6d157" config-ref="HTTP_Listener_config" path="${myapp.basePath}/*"/>
+		<logger level="INFO" doc:name="Logger" doc:id="f138128a-fbe5-4e83-b3ba-12e8b41b8899" message="#[output application/json --- attributes]" category="myapp.flow.main"/>
+	</flow>
+	<flow name="lockFlow" doc:id="daa8ff6c-ba23-469a-9369-f7d953010a0a" >
+		<http:listener doc:name="Listener" doc:id="a960552a-0bf0-4f3a-92aa-b4c5faf6d157" config-ref="HTTP_Listener_config" path="${myapp.basePath}/lock"/>
+		<logger level="INFO" doc:name="Logger" doc:id="f138128a-fbe5-4e83-b3ba-12e8b41b8899" message="#[output application/json --- attributes]" category="myapp.flow.main"/>
+		<set-payload value="#[payload dw::Runtime::wait(10)]" doc:name="wait 10ms" doc:id="ff342dea-6a9d-4f04-a77d-f3c142c19372" />
+	</flow>
+	<flow name="updateFlow" doc:id="d3dd9391-4042-47e0-bec0-d7da50137250" >
+		<http:listener doc:name="Listener" doc:id="49ca1a20-9201-4ec7-92af-60a71bb0eab7" config-ref="HTTP_Listener_config" path="${myapp.basePath}/update"/>
+		<logger level="INFO" doc:name="Logger" doc:id="03359f0b-e7b9-45b7-97c1-78a7292b13b2" message="#[output application/json --- attributes]" category="myapp.flow.main"/>
+		<http:request method="GET" doc:name="sys3 getPrice" doc:id="7069371b-25d3-425a-8758-13aacfa96426" config-ref="HTTP_Request_config" url="http://localhost:8083/sys3/get-price"/>
+		<http:request method="POST" doc:name="sys3 reseration" doc:id="4a4944de-5707-418b-865a-b23ea74600ba" config-ref="HTTP_Request_config" url="http://localhost:8083/sys3/reseration"/>
+		<http:request method="GET" doc:name="sys4 sendMail" doc:id="fd45df6f-eb89-41f4-b420-0e43b3dd3ad5" config-ref="HTTP_Request_config" url="http://localhost:8084/sys4/send-mail"/>
+	</flow>
+	<flow name="unlockFlow" doc:id="f17080d0-29ae-41b4-a326-df271ac656bf" >
+		<http:listener doc:name="Listener" doc:id="3b7ed6ca-20be-4572-a96d-3464fb471a4f" config-ref="HTTP_Listener_config" path="${myapp.basePath}/unlock"/>
+		<logger level="INFO" doc:name="Logger" doc:id="49e3cabb-61de-48ad-a179-3d08228e5765" message="#[output application/json --- attributes]" category="myapp.flow.main"/>
+	</flow>
+</mule>

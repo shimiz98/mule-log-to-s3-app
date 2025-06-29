@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:opentelemetry="http://www.mulesoft.org/schema/mule/opentelemetry" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/opentelemetry http://www.mulesoft.org/schema/mule/opentelemetry/current/mule-opentelemetry.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="df85a279-d0b6-4da4-876b-5e8ace200089" >
+		<http:listener-connection host="0.0.0.0" port="${http.port}" />
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_config" doc:name="HTTP Request configuration" doc:id="a5ce1e9b-873f-44f7-bb3c-fd64c5385aaf">
+			<http:default-headers >
+			<http:default-header key="traceparent" value="#[vars.OTEL_TRACE_CONTEXT.traceparent default '' as String]" />
+			<http:default-header key="tracestate" value="#[vars.OTEL_TRACE_CONTEXT.tracestate default '' as String]" />
+		</http:default-headers>
+	</http:request-config>
+	<opentelemetry:config name="OpenTelemetry_Config" doc:name="OpenTelemetry Config" doc:id="035fc61e-3704-48d1-9921-f219163c547e" serviceName="${myapp.serviceName}" spanAllProcessors="${myapp.otel.spanAllProcessors}">
+		<opentelemetry:exporter >
+			<opentelemetry:otlp-exporter collectorEndpoint="https://otlp.nr-data.net" >
+				<opentelemetry:headers >
+					<opentelemetry:header key="api-key" value="${myapp.newrelic.apiKey}" />
+				</opentelemetry:headers>
+			</opentelemetry:otlp-exporter>
+		</opentelemetry:exporter>
+	</opentelemetry:config>
+	<configuration-properties doc:name="Configuration properties" doc:id="bd8b9874-f837-475a-a20f-bf99c0415898" file="myapp-common.properties" />
+	<configuration-properties doc:name="Configuration properties" doc:id="a71aca9e-9d93-4843-b1eb-9005119a100d" file="myapp-${myapp.name}.properties" />
+	<global-property doc:name="Global Property" doc:id="12dc7b8c-a0af-4849-a53e-057129d6fca6" name="myapp.name" value="prc2" />
+</mule>

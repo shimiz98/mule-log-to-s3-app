@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="mainFlow" doc:id="daa8ff6c-ba23-469a-9369-f7d953010a0a" >
+		<http:listener doc:name="Listener" doc:id="a960552a-0bf0-4f3a-92aa-b4c5faf6d157" config-ref="HTTP_Listener_config" path="${myapp.basePath}"/>
+		<logger level="INFO" doc:name="Logger" doc:id="f138128a-fbe5-4e83-b3ba-12e8b41b8899" message="#[output application/json --- attributes]" category="myapp.flow.main"/>
+		<http:request method="POST" doc:name="lock" doc:id="c0a0681f-063d-461f-a5af-339dd33360c1" config-ref="HTTP_Request_config" url="http://localhost:8082/prc2/lock"/>
+		<http:request method="POST" doc:name="update" doc:id="fbf2de17-a24f-4a74-a94c-d5d9c1992fd8" url="http://localhost:8082/prc2/update" config-ref="HTTP_Request_config"/>
+		<http:request method="POST" doc:name="unlock" doc:id="6a74e7e2-fd76-4a07-bd9d-99379f0ee00b" config-ref="HTTP_Request_config" url="http://localhost:8082/prc2/unlock"/>
+	</flow>
+</mule>

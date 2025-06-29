@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="mainFlow" doc:id="daa8ff6c-ba23-469a-9369-f7d953010a0a" >
+		<http:listener doc:name="Listener" doc:id="a960552a-0bf0-4f3a-92aa-b4c5faf6d157" config-ref="HTTP_Listener_config" path="${myapp.basePath}/*"/>
+		<logger level="INFO" doc:name="Logger" doc:id="f138128a-fbe5-4e83-b3ba-12e8b41b8899" message="#[output application/json --- attributes]" category="myapp.flow.main"/>
+	</flow>
+	<flow name="getPriceFlow" doc:id="8f9f1b89-ee7c-42d2-b4a4-29255e7cd56d" >
+		<http:listener doc:name="Listener" doc:id="ff5298f6-4e55-440c-8032-283a15e12723" config-ref="HTTP_Listener_config" path="${myapp.basePath}/get-price"/>
+		<logger level="INFO" doc:name="Logger" doc:id="7448a9a2-4241-40e0-b5cf-58ef7159344d" message="#[output application/json --- attributes]" category="myapp.flow.main"/>
+	</flow>
+	<flow name="reserationFlow" doc:id="f655290f-358f-4ef5-ae86-6f58c4174a9d" >
+		<http:listener doc:name="Listener" doc:id="e6e000ec-13a9-4825-9519-c92e712fbbd9" config-ref="HTTP_Listener_config" path="${myapp.basePath}/reseration"/>
+		<logger level="INFO" doc:name="Logger" doc:id="c42ad279-f98e-4e57-ad19-124f21f6456a" message="#[output application/json --- attributes]" category="myapp.flow.main"/>
+		<set-payload value="#[payload dw::Runtime::wait(100)]" doc:name="wait 100ms" doc:id="80e714dd-5df3-4e10-9f72-019f30b337a0" />
+	</flow>
+</mule>
