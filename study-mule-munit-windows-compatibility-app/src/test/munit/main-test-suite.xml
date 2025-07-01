@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="main-test-suite.xml" />
+	<munit:test name="main-test-suite-mainFlowTest" doc:id="21271dc0-3de0-43f6-8d74-18937779278d" description="Test">
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="9e4a32e9-1e34-446d-93f1-fdf072730a48" >
+				<munit:payload value='#["hello "]' />
+			</munit:set-event>
+			<flow-ref doc:name="mainFlow" doc:id="4ab10ee0-ca59-4bb9-9ef7-f49766882935" name="mainFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="661cfc23-0fa9-46a0-ae1a-c7f32b1eb7de" actual="#[payload]" expected='#["hello world"]'/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="main-test-cloudhub-timeZoneTest" doc:id="8ba72bf6-aeff-426e-a482-def0da226249" tags="cloudhub">
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="1d2ac178-00a8-4df2-be6c-f1f37bcdacc4" name="timeZoneFlow"/>
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="bf852e64-45c3-4fc2-b793-8579936e3274" actual="#[payload]" expected='#["+00:00"]' />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="main-test-local-timeZoneTest" doc:id="a1dfc5de-91d3-469c-8da1-9034612c0ee3" tags="local" >
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="c20b7692-6dc9-4a65-adcb-169806808b84" name="timeZoneFlow" />
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="46b2f232-e11b-4c83-b101-14316f9f4707" actual="#[payload]" expected='#["+09:00"]' />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="main-test-cloudhub-readLlineSeparatorTest" doc:id="d7c07662-1cce-4bae-89d7-88f009150e86" tags="cloudhub">
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="2a5dff82-396b-44b3-b5ac-fee7c1c5fa85" name="readLineSeparatorFlow"/>
+		</munit:execution>
+	</munit:test>
+	<munit:test name="main-test-cloudhub-writeLineSeparatorTest" doc:id="d7c07662-1cce-4bae-89d7-88f009150e86" tags="cloudhub">
+		<munit:execution >
+			<flow-ref doc:name="Flow Reference" doc:id="2a5dff82-396b-44b3-b5ac-fee7c1c5fa85" name="writeLineSeparatorFlow"/>
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="db8c5211-3e3e-4d32-82e5-736e6c2b4880" actual='#[(payload as Binary) dw::util::Coercions::toString "ASCII"]' expected='#["id,value\r\naaa,AAA\r\n"]'/>
+		</munit:validation>
+	
+</munit:test>
+	<munit:test name="main-test-userLanguageTest" doc:id="706b7614-9417-4894-9275-6ccd455b8f64" ignore="true">
+	</munit:test>
+	<munit:test name="main-test-lineSeparatorTest" doc:id="4e553227-1294-4d67-8573-4bc4d93575fe" ignore="true"/>
+	<munit:test name="main-test-fileSeparatorTest" doc:id="9d442f4c-73a9-47f5-ab97-c829a28b1eca" ignore="true"/>
+	<munit:test name="main-test-pathSeparatorTest" doc:id="f88cb3e2-4d5a-4b30-bdf5-22281751544d" ignore="true"/>
+
+
+</mule>

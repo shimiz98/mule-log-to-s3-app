@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:compression="http://www.mulesoft.org/schema/mule/compression" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/compression http://www.mulesoft.org/schema/mule/compression/current/mule-compression.xsd">
+	<flow name="mainFlow" doc:id="95a3b813-e5b5-4bd4-a8f6-20d4020621c1" >
+		<logger level="INFO" doc:name="before" doc:id="cd71a42e-ed41-4901-915f-34c8295657c2" message="#[output application/json indent=false --- payload]" category="myapp.flow.main"/>
+		<set-payload value="#[(payload as String) ++ 'world']" doc:name="add 'world'" doc:id="988ca300-8f18-49cd-921b-9232b849a78c" />
+		<logger level="INFO" doc:name="after" doc:id="0e9ade18-20dd-4dcb-9438-272b7921edad" message="#[output application/json indent=false --- payload]" category="myapp.flow.main" />
+	</flow>
+	<flow name="timeZoneFlow" doc:id="852d805c-9495-4ae0-9e1e-28380a517f91" >
+		<set-payload value="#[now() as String {format: 'xxx'}]" doc:name="timezone of now()" doc:id="4fc06410-ead5-4b1a-a878-10f89ccbf9fc" doc:description="https://docs.oracle.com/javase/jp/8/docs/api/java/time/format/DateTimeFormatter.html"/>
+	</flow>
+	<flow name="readLineSeparatorFlow" doc:id="4f3bddee-e97a-4895-8d5c-1c6ec076cfb3" >
+		<set-payload value="#[readUrl('classpath://myapp-test-data.zip', 'application/octet-stream')]" doc:name="zip file" doc:id="a07933f0-593d-41d5-ae62-2d64ba7d632e" />
+		<compression:extract doc:name="Extract" doc:id="15fe72a6-13d5-45a0-b422-8255acf94c8d" >
+			<compression:extractor >
+				<compression:zip-extractor />
+			</compression:extractor>
+		</compression:extract>
+		<logger level="INFO" doc:name="Logger" doc:id="deaab51b-5e1f-40c1-af7f-2945c74b529d" message="#[payload]"/>
+		<set-payload value="#[{&#10;	'test-crlf.csv': read(payload.'test-crlf.csv', 'application/csv')&#10;}]" doc:name="Set Payload" doc:id="c0bd3dc1-9256-4160-9d76-dd985acdf563" />
+		<logger level="INFO" doc:name="Logger" doc:id="caf2449b-d445-4065-8492-0df726f959ac" message="#[output application/dw --- payload]"/>
+	</flow>
+	<flow name="writeLineSeparatorFlow" doc:id="2935ebec-2b60-44be-adb5-ec5b32616625" >
+		<set-payload value='#[output application/java --- write({id:"aaa", value: "AAA"}, "applicatoin/csv")]' doc:name="Set Payload" doc:id="26a4db29-2a3e-4594-b9c8-5cadd0b04124" />
+	</flow>
+</mule>
