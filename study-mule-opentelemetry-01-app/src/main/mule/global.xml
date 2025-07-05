@@ -6,24 +6,23 @@
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/opentelemetry http://www.mulesoft.org/schema/mule/opentelemetry/current/mule-opentelemetry.xsd">
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="df85a279-d0b6-4da4-876b-5e8ace200089" >
-		<http:listener-connection host="0.0.0.0" port="8081" />
+		<http:listener-connection host="0.0.0.0" port="${http.port}" />
 	</http:listener-config>
-	<http:request-config name="HTTP_Request_config" doc:name="HTTP Request configuration" doc:id="a5ce1e9b-873f-44f7-bb3c-fd64c5385aaf" >
-		<http:default-headers >
+	<http:request-config name="HTTP_Request_config" doc:name="HTTP Request configuration" doc:id="a5ce1e9b-873f-44f7-bb3c-fd64c5385aaf">
+		<http:default-headers>
 			<http:default-header key="traceparent" value="#[vars.OTEL_TRACE_CONTEXT.traceparent default '' as String]" />
 			<http:default-header key="tracestate" value="#[vars.OTEL_TRACE_CONTEXT.tracestate default '' as String]" />
 		</http:default-headers>
 	</http:request-config>
 	<opentelemetry:config name="OpenTelemetry_Config" doc:name="OpenTelemetry Config" doc:id="035fc61e-3704-48d1-9921-f219163c547e" serviceName="${myapp.serviceName}" spanAllProcessors="true">
 		<opentelemetry:exporter >
-			<opentelemetry:otlp-exporter collectorEndpoint="https://otlp.nr-data.net" >
+			<opentelemetry:otlp-exporter collectorEndpoint="${myapp.opentelemetry.endpoint}" protocol="HTTP_PROTOBUF">
 				<opentelemetry:headers >
 					<opentelemetry:header key="api-key" value="${myapp.newrelic.apiKey}" />
 				</opentelemetry:headers>
 			</opentelemetry:otlp-exporter>
 		</opentelemetry:exporter>
 	</opentelemetry:config>
-	<global-property doc:name="Global Property" doc:id="9aa5cd65-618c-45ce-b210-a0aaf3142576" name="myapp.serviceName" value="my-mule-exp1-app" />
-	<global-property doc:name="Global Property" doc:id="3163e76c-3a74-4ab7-a5be-0e3526b4923d" name="myapp.basePath" value="/exp1" />
-	<global-property doc:name="Global Property" doc:id="0bf43b99-d3a1-455e-b0cd-bc3251ee91d9" name="http.port" value="8081" />
+	<configuration-properties doc:name="Configuration properties" doc:id="bd8b9874-f837-475a-a20f-bf99c0415898" file="myapp-common.properties" />
+	<configuration-properties doc:name="Configuration properties" doc:id="a71aca9e-9d93-4843-b1eb-9005119a100d" file="myapp-${myapp.env}.properties" />
 </mule>
