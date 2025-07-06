@@ -1,30 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:http="http://www.mulesoft.org/schema/mule/http"
-	xmlns="http://www.mulesoft.org/schema/mule/core"
-	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+<mule xmlns:vm="http://www.mulesoft.org/schema/mule/vm" xmlns:file="http://www.mulesoft.org/schema/mule/file"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
-http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd">
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd">
 	<flow name="mainFlow" doc:id="77f82ca2-6584-4aa0-8411-42ee092086f0" >
 		<http:listener doc:name="Listener" doc:id="dc65ce73-472e-4632-ab74-33ea744528ea" config-ref="HTTP_Listener_config" path="/*" outputMimeType="application/octet-stream"/>
+		<file:write doc:name="req body log file" doc:id="93eeff33-350d-4bd9-9094-509ffa981906" path="#[(dw::Runtime::prop('user.dir') as String ) ++ '/' ++ Mule::p('myapp.httpreq.logfile')]" mode="APPEND" createParentDirectories="false">
+			<file:content><![CDATA[#[output text/plain
+---
+write(attributes, 'application/json', {indent: false}) as String ++ '\n' ++  dw::core::Binaries::toBase64(payload as Binary) ++ '\n']]]></file:content>
+		</file:write>
 		<choice doc:name="Choice" doc:id="569c91b1-0f46-418d-a862-2419b2493558" >
+			<when expression="#[attributes.relativePath endsWith '/traces']">
+				<flow-ref doc:name="putTraceToVmQueueFlow" doc:id="78ff43ee-38f1-4918-911a-1ae6276addaa" name="putTraceToVmQueueFlow"/>
+			</when>
 			<when expression="#[attributes.relativePath startsWith '/.debug/']">
 				<flow-ref doc:name="debugFlow" doc:id="f1501ed4-3549-4325-9e9f-980230a6122f" name="debugFlow"/>
 			</when>
 			<otherwise >
-				<flow-ref doc:name="write HttpReqLogFile" doc:id="0c906409-a74a-40e0-8f5e-f055bcdd30ef" name="writeHttpReqLogFileFlow"/>
+				<flow-ref doc:name="otherRequestFlow" doc:id="0c906409-a74a-40e0-8f5e-f055bcdd30ef" name="otherRequestFlow"/>
 			</otherwise>
 		</choice>
 	</flow>
-	<flow name="writeHttpReqLogFileFlow" doc:id="81e40361-0f40-4a30-a2c8-7eaa0efc858d" maxConcurrency="1">
-		<logger level="INFO" doc:name="Logger" doc:id="d11ba71a-e750-4bd0-b37d-8b59083f60f7" message="#[output application/json indent=false --- {&quot;user.dir&quot;: dw::Runtime::prop('user.dir'), 'myapp.httpreq.logfile': Mule::p('myapp.httpreq.logfile')}]"/>
-		<file:write doc:name="Write" doc:id="93eeff33-350d-4bd9-9094-509ffa981906" path="#[(dw::Runtime::prop('user.dir') as String ) ++ '/' ++ Mule::p('myapp.httpreq.logfile')]" mode="APPEND">
-			<file:content ><![CDATA[#[output text/plain
----
-write(attributes, 'application/json', {indent: false}) as String ++ '\n' ++  dw::core::Binaries::toBase64(payload) ++ '\n']]]></file:content>
-		</file:write>
+	<flow name="putTraceToVmQueueFlow" doc:id="81e40361-0f40-4a30-a2c8-7eaa0efc858d">
+		<logger level="INFO" doc:name="flow begin" doc:id="d11ba71a-e750-4bd0-b37d-8b59083f60f7" category="myapp.flow.begin" message="#[{flowName: flow.name}]"/>
+		<set-payload value='#[write(payload, "application/octet-stream", {deferred:false})]' doc:name="InputStream to Binary" doc:id="fb85f6cf-8b55-45a8-9411-d1db0765640d" />
+		<logger level="INFO" doc:name="sizeOf(payload)" doc:id="adc6e353-6b18-47f4-96f0-e5f498611b89" message="#[output application/json indent=false --- {sizeOfPayload: sizeOf(payload as Binary)}]"/>
+		<vm:publish doc:name="Publish" doc:id="2a50db63-d8f1-4bdf-b72b-82cfd2212f2d" config-ref="VM_Config" sendCorrelationId="ALWAYS" queueName="opentelemetry-trace-data"/>
+		<logger level="INFO" doc:name="flow end" doc:id="aeef8777-84e0-49e7-8182-a54823cb79b4" category="myapp.flow.end" message="#[{flowName: flow.name}]"/>
+	</flow>
+	<flow name="sendTraceToAwsXrayFlow" doc:id="0d9baa62-a239-4d87-b61b-a8b3798ae256" >
+		<vm:listener doc:name="Listener" doc:id="97a007c5-379e-4e4a-b1c1-9091c36a43ad" config-ref="VM_Config" queueName="opentelemetry-trace-data" numberOfConsumers="1"/>
+		<logger level="INFO" doc:name="flow begin" doc:id="21094b17-9505-4c9a-a6fd-d145e33a1e88" message="#[{flowName: flow.name}]" category="myapp.flow.begin" />
+		<set-payload value='#[write(payload, "application/octet-stream", {deferred:false})]' doc:name="InputStream to Binary" doc:id="d9664340-6737-4b1f-b0fe-b653a4b8649a" />
+		<logger level="INFO" doc:name="sizeOf(payload)" doc:id="b7301a4a-185b-4e5e-aa02-41c37e2c520f" message="#[output application/json indent=false --- {sizeOfPayload: sizeOf(payload as Binary)}]" />
+		<set-payload value='#[java!myapp::MyFunctions::sendTraceToAwsXray(payload as Binary)]' doc:name="send trace" doc:id="9b3e4b9b-318a-42e4-9328-4b485a7c0e16" />
+		<logger level="INFO" doc:name="flow end" doc:id="be6034d7-d6d3-431a-b891-e9a9f20ef6e7" message="#[{flowName: flow.name}]" category="myapp.flow.end" />
 	</flow>
 	<flow name="debugFlow" doc:id="f3222813-0ff2-46b6-9725-1c60f3fec73b" >
+		<logger level="INFO" doc:name="flow begin" doc:id="fa2d381d-78b6-44fc-81b5-3d5c5656b8b0" message="#[{flowName: flow.name, requestPath: attributes.requestPath}]" category="myapp.flow.begin" />
 		<choice doc:name="Choice" doc:id="c84dc45f-ef8c-4cb2-821f-ca6beccb5f45" >
 			<when expression="#[attributes.relativePath == '/.debug/log']">
 				<file:read doc:name="Read" doc:id="0fa09ad0-23d1-45a9-8be0-f58e2e359915" path="${myapp.httpreq.logfile}"/>
@@ -34,5 +51,10 @@ write(attributes, 'application/json', {indent: false}) as String ++ '\n' ++  dw:
 				<set-payload value="#[output application/json indent=false --- payload map $.attributes]" doc:name="Set Payload" doc:id="30c0697c-beeb-4045-ad03-857e65090a3f" />
 			</otherwise>
 		</choice>
+		<logger level="INFO" doc:name="flow end" doc:id="59674d59-3f6c-4ceb-b0d2-78f5f8d067bf" message="#[{flowName: flow.name}]" category="myapp.flow.end" />
+	</flow>
+	<flow name="otherRequestFlow" doc:id="37d88fda-ffb8-4198-a76b-6fcd57a7a49a" >
+		<logger level="INFO" doc:name="flow begin" doc:id="6538613b-a782-4ac5-a40c-2e4c922255fc" message="#[{flowName: flow.name, requestPath: attributes.requestPath}]" category="myapp.flow.begin" />
+		<logger level="INFO" doc:name="flow end" doc:id="ec3bc4f4-bc0c-495b-92f6-152cf552a875" message="#[{flowName: flow.name}]" category="myapp.flow.end" />
 	</flow>
 </mule>

@@ -61,6 +61,12 @@
 		</dependency>
 		<dependency>
 			<groupId>org.mule.connectors</groupId>
+			<artifactId>mule-vm-connector</artifactId>
+			<version>2.0.1</version>
+			<classifier>mule-plugin</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.mule.connectors</groupId>
 			<artifactId>mule-file-connector</artifactId>
 			<version>1.5.2</version>
 			<classifier>mule-plugin</classifier>
@@ -84,6 +90,13 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<!-- JUnit実行時に出力されるWARNINGの対策 -->
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j2-impl</artifactId>
+			<version>2.25.0</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
