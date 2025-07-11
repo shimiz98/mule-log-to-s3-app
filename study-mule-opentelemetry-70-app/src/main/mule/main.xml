@@ -17,6 +17,9 @@ write(attributes, 'application/json', {indent: false}) as String ++ '\n' ++  dw:
 			<when expression="#[attributes.relativePath endsWith '/traces']">
 				<flow-ref doc:name="putTraceToVmQueueFlow" doc:id="78ff43ee-38f1-4918-911a-1ae6276addaa" name="putTraceToVmQueueFlow"/>
 			</when>
+			<when expression="#[attributes.relativePath endsWith '/logs']">
+				<flow-ref doc:name="putLogToVmQueueFlow" doc:id="2ba23003-5fdc-49c1-b86f-413a19aabcf7" name="putLogToVmQueueFlow"/>
+			</when>
 			<when expression="#[attributes.relativePath startsWith '/.debug/']">
 				<flow-ref doc:name="debugFlow" doc:id="f1501ed4-3549-4325-9e9f-980230a6122f" name="debugFlow"/>
 			</when>
@@ -24,21 +27,6 @@ write(attributes, 'application/json', {indent: false}) as String ++ '\n' ++  dw:
 				<flow-ref doc:name="otherRequestFlow" doc:id="0c906409-a74a-40e0-8f5e-f055bcdd30ef" name="otherRequestFlow"/>
 			</otherwise>
 		</choice>
-	</flow>
-	<flow name="putTraceToVmQueueFlow" doc:id="81e40361-0f40-4a30-a2c8-7eaa0efc858d">
-		<logger level="INFO" doc:name="flow begin" doc:id="d11ba71a-e750-4bd0-b37d-8b59083f60f7" category="myapp.flow.begin" message="#[{flowName: flow.name}]"/>
-		<set-payload value='#[write(payload, "application/octet-stream", {deferred:false})]' doc:name="InputStream to Binary" doc:id="fb85f6cf-8b55-45a8-9411-d1db0765640d" />
-		<logger level="INFO" doc:name="sizeOf(payload)" doc:id="adc6e353-6b18-47f4-96f0-e5f498611b89" message="#[output application/json indent=false --- {sizeOfPayload: sizeOf(payload as Binary)}]"/>
-		<vm:publish doc:name="Publish" doc:id="2a50db63-d8f1-4bdf-b72b-82cfd2212f2d" config-ref="VM_Config" sendCorrelationId="ALWAYS" queueName="opentelemetry-trace-data"/>
-		<logger level="INFO" doc:name="flow end" doc:id="aeef8777-84e0-49e7-8182-a54823cb79b4" category="myapp.flow.end" message="#[{flowName: flow.name}]"/>
-	</flow>
-	<flow name="sendTraceToAwsXrayFlow" doc:id="0d9baa62-a239-4d87-b61b-a8b3798ae256" >
-		<vm:listener doc:name="Listener" doc:id="97a007c5-379e-4e4a-b1c1-9091c36a43ad" config-ref="VM_Config" queueName="opentelemetry-trace-data" numberOfConsumers="1"/>
-		<logger level="INFO" doc:name="flow begin" doc:id="21094b17-9505-4c9a-a6fd-d145e33a1e88" message="#[{flowName: flow.name}]" category="myapp.flow.begin" />
-		<set-payload value='#[write(payload, "application/octet-stream", {deferred:false})]' doc:name="InputStream to Binary" doc:id="d9664340-6737-4b1f-b0fe-b653a4b8649a" />
-		<logger level="INFO" doc:name="sizeOf(payload)" doc:id="b7301a4a-185b-4e5e-aa02-41c37e2c520f" message="#[output application/json indent=false --- {sizeOfPayload: sizeOf(payload as Binary)}]" />
-		<set-payload value='#[java!myapp::MyFunctions::sendTraceToAwsXray(payload as Binary)]' doc:name="send trace" doc:id="9b3e4b9b-318a-42e4-9328-4b485a7c0e16" />
-		<logger level="INFO" doc:name="flow end" doc:id="be6034d7-d6d3-431a-b891-e9a9f20ef6e7" message="#[{flowName: flow.name}]" category="myapp.flow.end" />
 	</flow>
 	<flow name="debugFlow" doc:id="f3222813-0ff2-46b6-9725-1c60f3fec73b" >
 		<logger level="INFO" doc:name="flow begin" doc:id="fa2d381d-78b6-44fc-81b5-3d5c5656b8b0" message="#[{flowName: flow.name, requestPath: attributes.requestPath}]" category="myapp.flow.begin" />

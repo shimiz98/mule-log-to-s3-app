@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	<flow name="putTraceToVmQueueFlow" doc:id="d5a941c4-a1a4-4538-a99b-01d0fcbcac4a">
+		<logger level="INFO" doc:name="flow begin" doc:id="fe89bc25-b082-4048-bec4-5fe532b6c6fe" category="myapp.flow.begin" message="#[{flowName: flow.name}]"/>
+		<set-payload value='#[write(payload, "application/octet-stream", {deferred:false})]' doc:name="InputStream to Binary" doc:id="db3c2de7-a888-4778-8878-f82d461c75df" />
+		<logger level="INFO" doc:name="sizeOf(payload)" doc:id="075d2942-d8c1-47f0-a5bf-ec921a5e04eb" message="#[output application/json indent=false --- {sizeOfPayload: sizeOf(payload as Binary)}]"/>
+		<vm:publish doc:name="Publish" doc:id="09a5574f-2701-439b-9701-c4ee588bcb28" config-ref="VM_Config" sendCorrelationId="ALWAYS" queueName="opentelemetry-trace-data"/>
+		<logger level="INFO" doc:name="flow end" doc:id="b5b137fd-a425-44e5-bdff-1fd7e153a879" category="myapp.flow.end" message="#[{flowName: flow.name}]"/>
+	</flow>
+	<flow name="sendTraceToAwsXrayFlow" doc:id="4edc8215-9035-49a0-b3d1-e154a95acfbb" >
+		<vm:listener doc:name="Listener" doc:id="235e6098-74d8-4396-9909-6ba5f37277f2" config-ref="VM_Config" queueName="opentelemetry-trace-data" numberOfConsumers="1"/>
+		<logger level="INFO" doc:name="flow begin" doc:id="34cbc4b3-ed05-4e5e-a41f-850fc4d1c9ac" message="#[{flowName: flow.name}]" category="myapp.flow.begin" />
+		<set-payload value='#[write(payload, "application/octet-stream", {deferred:false})]' doc:name="InputStream to Binary" doc:id="e975afb9-2b70-4245-8e87-9e2975a301c1" />
+		<logger level="INFO" doc:name="sizeOf(payload)" doc:id="6f52ab49-8b96-4728-8985-a606978ac7a8" message="#[output application/json indent=false --- {sizeOfPayload: sizeOf(payload as Binary)}]" />
+		<set-payload value='#[java!myapp::MyFunctions::sendTraceToAwsXray(payload as Binary)]' doc:name="send trace" doc:id="cd9af2d5-290b-4091-bbc1-eab536375245" />
+		<logger level="INFO" doc:name="flow end" doc:id="a1210f69-37e9-4311-a350-a9fe1a6f9c08" message="#[{flowName: flow.name}]" category="myapp.flow.end" />
+	</flow>
+</mule>

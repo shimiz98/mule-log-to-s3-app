@@ -11,8 +11,9 @@ http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/cu
 	<vm:config name="VM_Config" doc:name="VM Config" doc:id="838ad9a8-f035-4c2f-ac6a-8a2e8a36390d">
 		<vm:queues >
 			<vm:queue queueName="opentelemetry-trace-data" />
+			<vm:queue queueName="opentelemetry-log-data" />
 		</vm:queues>
 	</vm:config>
-	<global-property doc:name="Global Property" doc:id="25883fc0-8374-4b95-83a2-cca08d717646" name="http.port" value="8070" />
-	<global-property doc:name="Global Property" doc:id="14ee7c29-53c7-4b21-a2cf-637a693a4250" name="myapp.httpreq.logfile" value="./myapp-httpreq.log" />
+	<global-property doc:name="Global Property" doc:id="25883fc0-8374-4b95-83a2-cca08d717646" name="http.port" value="4318" doc:description="OpenTelemetory over HTTP1.x default port"/>
+	<configuration-properties doc:name="Configuration properties" doc:id="386d4d3b-e248-4c4c-81bb-28adf4a55184" file="myapp-common.properties" />
 </mule>

@@ -2,6 +2,11 @@ package myapp;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,16 +26,31 @@ import software.amazon.awssdk.identity.spi.AwsCredentialsIdentity;
 
 public class MyFunctions {
 	private static final Logger LOG = LoggerFactory.getLogger("MyFunctions");
-	
+
+	public static byte[] sendLogToAwsCloudWatchLogs(byte[] data, String cwLogGroupName, String cwLogStreamName) {
+		return sendLogToAwsCloudWatchLogs("ap-northeast-1", data, cwLogGroupName, cwLogStreamName);
+	}
+
+	public static byte[] sendLogToAwsCloudWatchLogs(String awsRegion, byte[] data, String cwLogGroupName, String cwLogStreamName) {
+		return sendLogToAwsCloudWatchLogs("https://logs." + awsRegion + ".amazonaws.com/v1/logs", "ap-northeast-1", data, cwLogGroupName, cwLogStreamName);
+	}
+
+	public static byte[] sendLogToAwsCloudWatchLogs(String awsEndpoint, String awsRegion, byte[] data, String cwLogGroupName, String cwLogStreamName) {
+		Map<String, List<String>> headers = new HashMap<>();
+		headers.put("x-aws-log-group", Arrays.asList(cwLogGroupName));
+		headers.put("x-aws-log-stream", Arrays.asList(cwLogStreamName));
+		return sendOpenTelemetryToAws(awsEndpoint, awsRegion, "logs", data, headers);
+	}
+
 	public static byte[] sendTraceToAwsXray(byte[] data) {
 		return sendTraceToAwsXray("ap-northeast-1", data);
 	}
 
 	public static byte[] sendTraceToAwsXray(String awsRegion, byte[] data) {
-		return sendTraceToAwsXray("https://xray." + awsRegion + ".amazonaws.com/v1/traces", awsRegion, data);
+		return sendOpenTelemetryToAws("https://xray." + awsRegion + ".amazonaws.com/v1/traces", awsRegion, "xray", data, Collections.emptyMap());
 	}
 
-	public static byte[] sendTraceToAwsXray(String endpoint, String awsRegion, byte[] data) {
+	public static byte[] sendOpenTelemetryToAws(String endpoint, String awsRegion, String serviceSigningName, byte[] data, Map<String, List<String>> headers) {
 		// https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-OTLPEndpoint.html
 		// > The endpoint authenticates callers using Signature 4 authentication.
 		// https://qiita.com/cozima/items/84aabaa8f1b827e6b36b
@@ -54,6 +74,7 @@ public class MyFunctions {
 
 		// Create the HTTP request to be signed
 		SdkHttpRequest httpRequest = SdkHttpRequest.builder().uri(endpoint).method(SdkHttpMethod.POST)
+				.headers(headers)
 				.putHeader("Content-Type", "application/x-protobuf").build();
 		// TODO 1回のリクエスト当たりの最大個数と最大byte数を超えていたら、分割して送信する。
 
@@ -68,7 +89,7 @@ public class MyFunctions {
 		//   signing name can be hard-coded because it is guaranteed to not change.
 		SignedRequest signedRequest = signer
 				.sign(r -> r.identity(credentials).request(httpRequest).payload(requestPayload)
-						.putProperty(AwsV4HttpSigner.SERVICE_SIGNING_NAME, "xray" /* S3Client.SERVICE_NAME */)
+						.putProperty(AwsV4HttpSigner.SERVICE_SIGNING_NAME, serviceSigningName /* S3Client.SERVICE_NAME */)
 						.putProperty(AwsV4HttpSigner.REGION_NAME, awsRegion /* "us-west-2" */)); //
 		// .putProperty(AwsV4HttpSigner.DOUBLE_URL_ENCODE, false) // Required for S3 only
 		// .putProperty(AwsV4HttpSigner.NORMALIZE_PATH, false)); // Required for S3 only
