@@ -7,7 +7,7 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
-	<name>study-mule-InaccessibleObjectException-01-app</name>
+	<name>study-mule-inaccessible-object-exception-01-app</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
