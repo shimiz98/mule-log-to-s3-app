@@ -1,0 +1,63 @@
+19268:
++-- <bootstrap>
+      |     
+      +-- jdk.internal.reflect.DelegatingClassLoader (+ 29 more)
+      |           
+      +-- "platform", jdk.internal.loader.ClassLoaders$PlatformClassLoader
+            |     
+            +-- "app", jdk.internal.loader.ClassLoaders$AppClassLoader
+                  |     
+                  +-- jdk.internal.reflect.DelegatingClassLoader (+ 29 more)
+                  |           
+                  +-- sun.reflect.misc.MethodUtil
+                  |     |     
+                  |     +-- jdk.internal.reflect.DelegatingClassLoader
+                  |                 
+                  +-- java.lang.Module$2 (+ 5 more)
+                  |           
+                  +-- java.net.URLClassLoader
+                  |     |     
+                  |     +-- jdk.internal.loader.Loader
+                  |           |     
+                  |           +-- java.lang.Module$2 (+ 5 more)
+                  |           |           
+                  |           +-- jdk.internal.reflect.DelegatingClassLoader (+ 4 more)
+                  |           |           
+                  |           +-- net.bytebuddy.utility.dispatcher.JavaDispatcher$DynamicClassLoader
+                  |           |           
+                  |           +-- jdk.internal.loader.Loader
+                  |                 |     
+                  |                 +-- java.lang.Module$2 (+ 95 more)
+                  |                 |           
+                  |                 +-- jdk.internal.reflect.DelegatingClassLoader (+ 10 more)
+                  |                             
+                  +-- org.mule.runtime.container.internal.FilteringContainerClassLoader
+                        |     
+                        +-- org.mule.runtime.module.artifact.api.classloader.MuleArtifactClassLoader (+ 1 more)
+                        |           
+                        +-- jdk.internal.loader.Loader
+                        |     |     
+                        |     +-- java.lang.Module$2
+                        |     |           
+                        |     +-- org.mule.runtime.module.service.api.artifact.ServiceModuleLayerFactory$MuleServiceClassLoader
+                        |                 
+                        +-- jdk.internal.loader.Loader
+                        |     |     
+                        |     +-- jdk.internal.reflect.DelegatingClassLoader (+ 3 more)
+                        |                 
+                        +-- org.mule.runtime.module.artifact.api.classloader.RegionClassLoader
+                        |     |     
+                        |     +-- org.mule.runtime.module.artifact.activation.internal.classloader.MuleSharedDomainClassLoader
+                        |     |           
+                        |     +-- org.mule.runtime.module.artifact.api.classloader.RegionClassLoader
+                        |           |     
+                        |           +-- org.mule.runtime.module.artifact.activation.internal.classloader.MuleApplicationClassLoader
+                        |           |           
+                        |           +-- org.mule.runtime.module.artifact.internal.classloader.MulePluginClassLoader
+                        |                       
+                        +-- org.mule.runtime.module.artifact.api.classloader.MuleArtifactClassLoader
+                              |     
+                              +-- jdk.internal.reflect.DelegatingClassLoader (+ 26 more)
+                              |           
+                              +-- com.google.inject.internal.aop.ChildClassDefiner$ChildLoader
+                                          
