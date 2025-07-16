@@ -1,0 +1,18 @@
+*   Trying 127.0.0.1:8081...
+* Connected to localhost (127.0.0.1) port 8081 (#0)
+> POST /02-fixed-charset HTTP/1.1
+> Host: localhost:8081
+> User-Agent: curl/7.87.0
+> Accept: */*
+> content-type: application/json; charset=utf-8
+> Content-Length: 14
+> 
+} [14 bytes data]
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 
+< Content-Type: application/json; charset=UTF-8
+< Transfer-Encoding: chunked
+< Date: Wed, 16 Jul 2025 17:12:04 GMT
+< 
+{ [46 bytes data]
+* Connection #0 to host localhost left intact

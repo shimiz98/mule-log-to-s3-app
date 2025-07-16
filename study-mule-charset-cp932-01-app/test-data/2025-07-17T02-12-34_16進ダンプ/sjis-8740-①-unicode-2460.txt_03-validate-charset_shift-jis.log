@@ -1,0 +1,40 @@
+Warning: --trace overrides an earlier trace/verbose option
+== Info:   Trying 127.0.0.1:8081...
+== Info: Connected to localhost (127.0.0.1) port 8081 (#0)
+=> Send header, 169 bytes (0xa9)
+0000: 50 4f 53 54 20 2f 30 33 2d 76 61 6c 69 64 61 74 POST /03-validat
+0010: 65 2d 63 68 61 72 73 65 74 20 48 54 54 50 2f 31 e-charset HTTP/1
+0020: 2e 31 0d 0a 48 6f 73 74 3a 20 6c 6f 63 61 6c 68 .1..Host: localh
+0030: 6f 73 74 3a 38 30 38 31 0d 0a 55 73 65 72 2d 41 ost:8081..User-A
+0040: 67 65 6e 74 3a 20 63 75 72 6c 2f 37 2e 38 37 2e gent: curl/7.87.
+0050: 30 0d 0a 41 63 63 65 70 74 3a 20 2a 2f 2a 0d 0a 0..Accept: */*..
+0060: 63 6f 6e 74 65 6e 74 2d 74 79 70 65 3a 20 61 70 content-type: ap
+0070: 70 6c 69 63 61 74 69 6f 6e 2f 6a 73 6f 6e 3b 20 plication/json; 
+0080: 63 68 61 72 73 65 74 3d 73 68 69 66 74 2d 6a 69 charset=shift-ji
+0090: 73 0d 0a 43 6f 6e 74 65 6e 74 2d 4c 65 6e 67 74 s..Content-Lengt
+00a0: 68 3a 20 31 34 0d 0a 0d 0a                      h: 14....
+=> Send data, 14 bytes (0xe)
+0000: 7b 22 76 61 6c 75 65 22 3a 22 87 40 22 7d       {"value":".@"}
+== Info: Mark bundle as not supporting multiuse
+<= Recv header, 15 bytes (0xf)
+0000: 48 54 54 50 2f 31 2e 31 20 32 30 30 20 0d 0a    HTTP/1.1 200 ..
+<= Recv header, 47 bytes (0x2f)
+0000: 43 6f 6e 74 65 6e 74 2d 54 79 70 65 3a 20 61 70 Content-Type: ap
+0010: 70 6c 69 63 61 74 69 6f 6e 2f 6a 73 6f 6e 3b 20 plication/json; 
+0020: 63 68 61 72 73 65 74 3d 55 54 46 2d 38 0d 0a    charset=UTF-8..
+<= Recv header, 28 bytes (0x1c)
+0000: 54 72 61 6e 73 66 65 72 2d 45 6e 63 6f 64 69 6e Transfer-Encodin
+0010: 67 3a 20 63 68 75 6e 6b 65 64 0d 0a             g: chunked..
+<= Recv header, 37 bytes (0x25)
+0000: 44 61 74 65 3a 20 57 65 64 2c 20 31 36 20 4a 75 Date: Wed, 16 Ju
+0010: 6c 20 32 30 32 35 20 31 37 3a 31 32 3a 33 34 20 l 2025 17:12:34 
+0020: 47 4d 54 0d 0a                                  GMT..
+<= Recv header, 2 bytes (0x2)
+0000: 0d 0a                                           ..
+<= Recv data, 46 bytes (0x2e)
+0000: 32 38 0d 0a 7b 0a 20 20 22 76 61 6c 75 65 22 3a 28..{.  "value":
+0010: 20 22 e2 91 a0 22 2c 0a 20 20 22 55 54 46 2d 31  "...",.  "UTF-1
+0020: 36 22 3a 20 22 32 34 36 30 22 0a 7d 0d 0a       6": "2460".}..
+<= Recv data, 5 bytes (0x5)
+0000: 30 0d 0a 0d 0a                                  0....
+== Info: Connection #0 to host localhost left intact

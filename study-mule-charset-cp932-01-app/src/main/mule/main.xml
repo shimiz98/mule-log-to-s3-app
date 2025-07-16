@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:validation="http://www.mulesoft.org/schema/mule/validation" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/validation http://www.mulesoft.org/schema/mule/validation/current/mule-validation.xsd">
+	<flow name="01-mainDefaultCharsetFlow" doc:id="7a7545be-b242-4610-9121-0f6591903b3c" >
+		<http:listener doc:name="Listener" doc:id="235df0a3-21c5-473e-8b30-61a55370bea2" config-ref="HTTP_Listener_config" path="/01-default-charset" allowedMethods="POST"/>
+		<flow-ref doc:name="Flow Reference" doc:id="15193502-80fd-48d1-bea9-121e627d8f39" name="subFlow"/>
+	</flow>
+	<flow name="02-mainFixedCharsetFlow" doc:id="a9e3896b-28e2-4086-b891-a69f4f05d68d" >
+		<http:listener doc:name="Listener" doc:id="c582c676-8b47-426e-8b57-bf60a7299604" config-ref="HTTP_Listener_config" path="/02-fixed-charset" allowedMethods="POST" outputMimeType="application/json" outputEncoding="windows-31j"/>
+		<flow-ref doc:name="Flow Reference" doc:id="51204f68-4a06-4bbf-be93-e14fd85b7a24" name="subFlow"/>
+	</flow>
+	<flow name="03-mainValidateContentTypeFlow" doc:id="b58535a7-3c95-4cee-a58f-35d34a1c6816" >
+		<http:listener doc:name="Listener" doc:id="8e2fdef7-3240-4db8-8de2-06301f6b6c8a" config-ref="HTTP_Listener_config" path="/03-validate-charset" allowedMethods="POST" outputMimeType="application/json" outputEncoding="windows-31j"/>
+		<logger level="INFO" doc:name="content-type" doc:id="79ce73b4-5000-4dff-926f-0ba7c4df7d30" message='#[output application/json indent=false --- dw::module::Mime::fromString(attributes.headers."content-type")]'/>
+		<validation:is-true doc:name="validate subtype" doc:id="b0026230-cb32-4550-824d-46f47b91d831" expression='#[lower(dw::module::Mime::fromString(attributes.headers."content-type").result."subtype") == "json"]' message="content-type subtype is not 'json'"/>
+		<set-variable value="#[myapp::MyFuncs::checkContentType(attributes)]" doc:name="check content-type" doc:id="e5186295-cd60-4f92-bf4f-af6b6ad4328e" variableName="checkContentTypeResult"/>
+		<choice doc:name="Choice" doc:id="a4693e99-1955-417c-be5d-0359187b2c62" >
+			<when expression="#[!vars.checkContentTypeResult.success]">
+				<raise-error doc:name="INVALID_CONTENT_TYPE" doc:id="5d2d2859-d3c3-412c-9599-4f7640ea9575" type="MYAPP:INVALID_CONTENT_TYPE" description="#[vars.checkContentTypeResult.error]"/>
+			</when>
+		</choice>
+		<flow-ref doc:name="Flow Reference" doc:id="755c9290-3935-4367-8e96-7f9d438790f2" name="subFlow"/>
+	</flow>
+	<sub-flow name="subFlow" doc:id="7c10f486-3c60-414d-968a-582fde534992" >
+			<logger level="INFO" doc:name="begin" doc:id="0370b066-11ee-4118-8818-ca7952d6122d" category="myapp.flow.begin" message="#[output application/dw --- {payload: payload, httpHeaders: attributes.headers}]"/>
+		<set-payload value='#[output application/json&#10;import dw::core::Binaries&#10;import dw::util::Coercions&#10;---&#10;payload as Object ++ {"UTF-16": Binaries::toHex(Coercions::toBinary(payload.value as String, "UTF-16BE"))}]' doc:name="Set Payload" doc:id="622114ae-5866-491d-8a2c-5dda904a2182" />
+		<logger level="INFO" doc:name="end" doc:id="f901df5e-6ffd-47d4-aea0-14818c6183f0" category="myapp.flow.end" message="#[output application/json indent=false --- {payload: payload}]"/>
+	</sub-flow>
+	<flow name="testDriverFlow" doc:id="682a422c-bb80-4040-bc5e-48d0ddb09a1a" >
+		<http:listener doc:name="Listener" doc:id="57f89c29-ab2f-4350-a1a4-5908c63f5038" config-ref="HTTP_Listener_config" path="/test"/>
+		<logger level="INFO" doc:name="Logger" doc:id="0d288607-4600-4199-85b7-c645e025c5fd" />
+		<foreach doc:name="For Each" doc:id="4926fa05-3002-4517-bfa0-933d2b751502" collection="#[32 to 127]">
+			<http:request method="POST" doc:name="Request" doc:id="86408a20-1138-4903-a6ad-9edea2fae915" config-ref="HTTP_Request_config" path="/">
+				<http:body ><![CDATA[#[import dw::util::Coercions
+---
+Coercions::toBinary('{"value":"', 'ASCII')
+	++ dw::core::Numbers::toBinary(vars.counter)
+	++ Coercions::toBinary('"}', 'ASCII')]]]></http:body>
+				<http:headers ><![CDATA[#[output application/java
+---
+{
+	'content-type' : 'application/json; charset=windows-31j'
+}]]]></http:headers>
+			</http:request>
+		</foreach>
+	</flow>
+</mule>
