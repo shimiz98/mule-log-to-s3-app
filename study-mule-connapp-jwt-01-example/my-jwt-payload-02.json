@@ -1,0 +1,5 @@
+{
+  "iss": "d94f9c3c95464802ab3136787790e583",
+  "sub": "v2|mulesoft|dec21064-2506",
+  "aud": "https://anypoint.mulesoft.com/accounts/api/v2/oauth2/token"
+}
