@@ -1,0 +1,21 @@
+# https://docs.github.com/ja/actions/reference/workflow-syntax-for-github-actions
+on:
+  workflow_dispatch:
+jobs:
+  run_custom_action:
+    runs-on: ubuntu-latest
+    steps:
+        - name: run custom action
+          id: run
+          uses: shimiz98/mulesoft-connected-app-jtw-signer@d8b9409254339b0eb72ae4d1f748d68d63bb91df
+          with:
+            anypoint_connapp_client_id: 'aaa'
+            anypoint_identity_provider_id: 'bbb'
+            anypoint_user_name: 'ccc'
+            anypoint_token_endpoint_url: 'ddd'
+            private_key_pem: ${{ secrets.myPrivateKeyPem }}
+        - name: view result
+          run: |
+            echo ${{ env.json_web_token }}
+          env:
+            json_web_token: ${{ steps.run.json_web_token }}
