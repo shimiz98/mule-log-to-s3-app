@@ -18,4 +18,4 @@ jobs:
           run: |
             echo ${{ env.json_web_token }}
           env:
-            json_web_token: ${{ steps.run.json_web_token }}
+            json_web_token: ${{ steps.run.outputs.json_web_token }}
