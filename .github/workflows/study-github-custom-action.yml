@@ -7,7 +7,7 @@ jobs:
     steps:
         - name: run custom action
           id: run
-          uses: shimiz98/mulesoft-connected-app-jtw-signer@d8b9409254339b0eb72ae4d1f748d68d63bb91df
+          uses: shimiz98/mulesoft-connected-app-jtw-signer@6b8a19f4db2d50b7f9be5cd072affc61cd0f56d0
           with:
             anypoint_connapp_client_id: 'aaa'
             anypoint_identity_provider_id: 'bbb'
@@ -19,3 +19,18 @@ jobs:
             echo ${{ env.json_web_token }}
           env:
             json_web_token: ${{ steps.run.outputs.json_web_token }}
+        - name: write result
+          run: |
+            echo ${{ env.json_web_token }} > ./output-secret-jwt.txt
+          env:
+            json_web_token: ${{ steps.run.outputs.json_web_token }}
+        - name: 'upload secret jwt [[[this is for DEBUG ONLY]]]'
+          uses: actions/upload-artifact@v4
+          with:
+            # Name of the artifact to upload.
+            # Optional. Default is 'artifact'
+            name: 'output-secret-jwt.txt'
+
+            # A file, directory or wildcard pattern that describes what to upload
+            # Required.
+            path: ./output-secret-jwt.txt
