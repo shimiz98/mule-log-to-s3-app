@@ -35,14 +35,38 @@ jobs:
             # Required.
             path: ./output-secret-jwt.txt
         - name: 'get access token [[[curl verbose option is for DEBUG ONLY]]]'
+          id: get_acccess_token
           run: |
             curl -v \
             -H 'content-type: application/json' \
             -d '{"grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer", "assertion": "'$jwt'"}' \
             -o ./output-secret-access-token.json \
             https://anypoint.mulesoft.com//accounts/api/v2/oauth2/token
+            anypoint_access_token=$(jq --raw-output .access_token ./output-secret-access-token.json)
             curl -v \
-            -H "authorization: Bearer $(jq --raw-output .access_token ./output-secret-access-token.json)" \
+            -H "authorization: Bearer ${anypoint_access_token}" \
             https://anypoint.mulesoft.com//accounts/api/me
+            echo "anypoint_access_token=${anypoint_access_token}" > "$GITHUB_OUTPUT"
           env:
             jwt: ${{ steps.run.outputs.json_web_token }}
+        - name: publish empty file to exchange
+          run: |
+            touch ./tmp-empty.txt
+            zip ./tmp-empty.zip ./tmp-empty.txt
+
+            orgId=c840f665-3add-4dba-9c55-06b5e919d30e
+            groupId=$orgId
+            assetId=my-custom-asset
+            assetVersion=0.0.1-$(date +%Y%m%d%H%M%S)
+            assetFile=./tmp-empty.zip
+
+            curl -v \
+              -H "Authorization: bearer ${anypoint_access_token}" \
+              -H 'x-sync-publication: true' \
+              -F "name=asset name of ${assetId}" \
+              -F 'description=Description of the asset' \
+              -F 'type=custom' \
+              -F "files.custom.zip=@${assetFile}" \
+                "https://anypoint.mulesoft.com/exchange/api/v2/organizations/${orgId}/assets/${groupId}/${assetId}/${assetVersion}"
+          env:
+            anypoint_access_token: ${{ steps.get_acccess_token.outputs.anypoint_access_token }}                        
