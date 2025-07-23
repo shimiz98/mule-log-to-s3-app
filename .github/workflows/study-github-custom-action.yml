@@ -9,10 +9,10 @@ jobs:
           id: run
           uses: shimiz98/mulesoft-connected-app-jtw-signer@6b8a19f4db2d50b7f9be5cd072affc61cd0f56d0
           with:
-            anypoint_connapp_client_id: 'aaa'
-            anypoint_identity_provider_id: 'bbb'
-            anypoint_user_name: 'ccc'
-            anypoint_token_endpoint_url: 'ddd'
+            anypoint_connapp_client_id: '1c27faeb7ed74b929c7e6bb715b0035f'
+            anypoint_identity_provider_id: 'mulesoft'
+            anypoint_user_name: 'dec21064-2506'
+            anypoint_token_endpoint_url: 'https://anypoint.mulesoft.com/accounts/api/v2/oauth2/token'
             private_key_pem: ${{ secrets.myPrivateKeyPem }}
         - name: view result
           run: |
@@ -34,3 +34,15 @@ jobs:
             # A file, directory or wildcard pattern that describes what to upload
             # Required.
             path: ./output-secret-jwt.txt
+        - name: 'get access token [[[curl verbose option is for DEBUG ONLY]]]'
+          run: |
+            curl -v \
+            -H 'content-type: application/json' \
+            -d '{"grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer", "assertion": "'$jwt'"}' \
+            -o ./output-secret-access-token.json \
+            https://anypoint.mulesoft.com//accounts/api/v2/oauth2/token
+            curl -v \
+            -H "authorization: Bearer $(jq --raw-output .access_token ./output-secret-access-token.json)" \
+            https://anypoint.mulesoft.com//accounts/api/me
+          env:
+            jwt: ${{ steps.run.outputs.json_web_token }}
