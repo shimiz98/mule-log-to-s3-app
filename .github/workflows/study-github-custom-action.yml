@@ -5,8 +5,8 @@ jobs:
   run_custom_action:
     runs-on: ubuntu-latest
     steps:
-        - name: run custom action
-          id: get_acces_token
+        - name: get access token
+          id: get_access_token
           uses: shimiz98/mulesoft-connected-app-jtw-signer@main
           with:
             anypoint_connapp_client_id: '1c27faeb7ed74b929c7e6bb715b0035f'
@@ -23,8 +23,8 @@ jobs:
             echo "$anypoint_access_token"
             echo "$anypoint_access_token" | wc -c # 文字数を出力
           env:
-            json_web_token: ${{ steps.get_acces_token.outputs.json_web_token }}
-            anypoint_access_token: ${{ steps.get_acces_token.outputs.anypoint_access_token }}
+            json_web_token: ${{ steps.get_access_token.outputs.json_web_token }}
+            anypoint_access_token: ${{ steps.get_access_token.outputs.anypoint_access_token }}
         - name: write result
           run: |
             echo 'jwt' >> ./output-secret-for-debug.txt
@@ -32,8 +32,8 @@ jobs:
             echo 'access_token' >> ./output-secret-for-debug.txt
             echo "$anypoint_access_token" >> ./output-secret-for-debug.txt
           env:
-            json_web_token: ${{ steps.get_acces_token.outputs.json_web_token }}
-            anypoint_access_token: ${{ steps.get_acces_token.outputs.anypoint_access_token }}
+            json_web_token: ${{ steps.get_access_token.outputs.json_web_token }}
+            anypoint_access_token: ${{ steps.get_access_token.outputs.anypoint_access_token }}
         - name: 'upload secret jwt [[[this is for DEBUG ONLY]]]'
           uses: actions/upload-artifact@v4
           with:
@@ -64,4 +64,4 @@ jobs:
               -F "files.custom.zip=@${assetFile}" \
                 "https://anypoint.mulesoft.com/exchange/api/v2/organizations/${orgId}/assets/${groupId}/${assetId}/${assetVersion}"
           env:
-            anypoint_access_token: ${{ steps.get_acces_token.outputs.anypoint_access_token }}                        
+            anypoint_access_token: ${{ steps.get_access_token.outputs.anypoint_access_token }}                        
