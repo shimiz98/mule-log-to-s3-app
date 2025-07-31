@@ -7,7 +7,7 @@ jobs:
     steps:
         - name: run custom action
           id: run
-          uses: shimiz98/mulesoft-connected-app-jtw-signer@6b8a19f4db2d50b7f9be5cd072affc61cd0f56d0
+          uses: shimiz98/mulesoft-connected-app-jtw-signer@main
           with:
             anypoint_connapp_client_id: '1c27faeb7ed74b929c7e6bb715b0035f'
             anypoint_identity_provider_id: 'mulesoft'
@@ -21,34 +21,23 @@ jobs:
             json_web_token: ${{ steps.run.outputs.json_web_token }}
         - name: write result
           run: |
-            echo ${{ env.json_web_token }} > ./output-secret-jwt.txt
+            echo 'jwt' >> ./output-secret-for-debug.txt
+            echo ${{ env.json_web_token }} >> ./output-secret-for-debug.txt
+            echo 'access_token' >> ./output-secret-for-debug.txt
+            echo ${{ env.anypoint_access_token }} >> ./output-secretfor-debug.txt
           env:
             json_web_token: ${{ steps.run.outputs.json_web_token }}
+            anypoint_access_token: ${{ steps.run.outputs.anypoint_access_token }}
         - name: 'upload secret jwt [[[this is for DEBUG ONLY]]]'
           uses: actions/upload-artifact@v4
           with:
             # Name of the artifact to upload.
             # Optional. Default is 'artifact'
-            name: 'output-secret-jwt.txt'
+            name: 'output-secret-for-debug.txt'
 
             # A file, directory or wildcard pattern that describes what to upload
             # Required.
-            path: ./output-secret-jwt.txt
-        - name: 'get access token [[[curl verbose option is for DEBUG ONLY]]]'
-          id: get_acccess_token
-          run: |
-            curl -v \
-            -H 'content-type: application/json' \
-            -d '{"grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer", "assertion": "'$jwt'"}' \
-            -o ./output-secret-access-token.json \
-            https://anypoint.mulesoft.com//accounts/api/v2/oauth2/token
-            anypoint_access_token=$(jq --raw-output .access_token ./output-secret-access-token.json)
-            curl -v \
-            -H "authorization: Bearer ${anypoint_access_token}" \
-            https://anypoint.mulesoft.com//accounts/api/me
-            echo "anypoint_access_token=${anypoint_access_token}" > "$GITHUB_OUTPUT"
-          env:
-            jwt: ${{ steps.run.outputs.json_web_token }}
+            path: ./output-secret-for-debug.txt
         - name: publish empty file to exchange
           run: |
             touch ./tmp-empty.txt
@@ -69,4 +58,4 @@ jobs:
               -F "files.custom.zip=@${assetFile}" \
                 "https://anypoint.mulesoft.com/exchange/api/v2/organizations/${orgId}/assets/${groupId}/${assetId}/${assetVersion}"
           env:
-            anypoint_access_token: ${{ steps.get_acccess_token.outputs.anypoint_access_token }}                        
+            anypoint_access_token: ${{ steps.run.outputs.anypoint_access_token }}                        
