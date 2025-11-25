@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="mainFlow-test-suite.xml" />
+	<munit:test name="mainFlow-test-suite-mainFlowTest" doc:id="a71ae4e8-cbcd-4434-a6f2-ff6e77826a2c" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to mainFlow" doc:id="2852cb89-3a0f-443a-a8ae-03e919b5c358" name="mainFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="payload.message" doc:id="2a992dfc-99a7-4056-b40f-1e38f070dedf" actual="#[payload.message]" expected='pong' />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mainFlow-test-suite-beginLogFlowTest" doc:id="f29378e4-4401-4891-bbce-eb2608790e33" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to beginLogFlow" doc:id="fc69deb9-7024-48b8-8390-dc2d7e163564" name="beginLogFlow"/>
+		</munit:execution>
+	</munit:test>
+	<munit:test name="mainFlow-test-suite-endLogFlowTest" doc:id="b66066d2-aa94-404c-aba8-d47bbeb2a6f0" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to endLogFlow" doc:id="143c08af-a322-4c8e-af0f-1d549bebf659" name="endLogFlow"/>
+		</munit:execution>
+	</munit:test>
+
+
+</mule>

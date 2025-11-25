@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	<sub-flow name="pongFlow" doc:id="df6730f0-3bf6-472a-bd17-1ca82dd0820c" >
+		<set-payload value='#[{message: "pong", "reply-to": payload}]' doc:name="pong" doc:id="363a961f-e57c-4ca4-a392-8c50b740f9b8" />
+	</sub-flow>
+</mule>

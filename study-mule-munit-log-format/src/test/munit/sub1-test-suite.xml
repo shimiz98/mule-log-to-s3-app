@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="sub1-test-suite.xml" />
+	<munit:test name="sub1-test-suite-pongFlowTest" doc:id="f8057d48-4d58-4b58-b845-a6de3eba9627" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to pongFlow" doc:id="373cebd9-39f8-433a-8b1b-e46f73f992e8" name="pongFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="f97809fb-fa8b-4eb7-84cd-ebaef37dbbe6" actual="#[payload.message]" expected="pong"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="sub1-test-suite-failureTest" doc:id="3ddbbb8b-a701-4802-aae9-230de7ea45d4" >
+		<munit:execution >
+			<flow-ref doc:name="pongFlow" doc:id="2487f610-dc00-407f-ac41-9f7ea9df7493" name="pongFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="eb0dccad-4463-44ab-8067-c5aca9e5cdc9" actual="#[payload.message]" expected="thisTestCaseShuldBeFailure"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="sub1-test-suite-errorTest" doc:id="b1dc45c2-1858-45f0-99d5-ab4dfdca478f" >
+		<munit:execution >
+			<flow-ref doc:name="pongFlow" doc:id="64138772-a81c-4691-ae05-b56aa18a56c5" name="pongFlow" />
+			<raise-error doc:name="Raise error" doc:id="1e8e2ce3-d9e6-4702-a104-21af760c7ee7" type="MYAPP:ERROR1"/>
+		</munit:execution>
+	</munit:test>
+
+
+</mule>

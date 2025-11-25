@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="mainFlow" doc:id="ba17ffd2-e16d-49b8-bc2f-46fdb317d077" >
+		<http:listener doc:name="Listener" doc:id="5808cd8b-3998-4d10-92fd-67b353eca140" config-ref="HTTP_Listener_config" path="/*"/>
+		<flow-ref doc:name="begin log" doc:id="36867c11-44e7-4262-ab9a-7ef584b40c80" name="beginLogFlow"/>
+		<flow-ref doc:name="Flow Reference" doc:id="0960a00d-dd85-4d58-8737-939202462358" name="pongFlow"/>
+		<flow-ref doc:name="end log" doc:id="f1733f28-3cd8-4216-a0fd-c4bf35cfc205" name="endLogFlow"/>
+	</flow>
+	<sub-flow name="beginLogFlow" doc:id="71233785-b97f-4958-9802-f36db84b4236" >
+		<logger level="INFO" doc:name="Logger" doc:id="cfdee596-9817-40f6-b659-e2a8465933f4" category="myapp.flow.begin"/>
+	</sub-flow>
+	<sub-flow name="endLogFlow" doc:id="4b0e8d80-2923-42e1-aa5a-4372dbc495d5" >
+		<logger level="INFO" doc:name="Logger" doc:id="ef719a94-0efc-4d74-b7bb-b51c6a0fa1f7" category="myapp.flow.end"/>
+	</sub-flow>
+</mule>
