@@ -21,9 +21,23 @@ jobs:
             - study-mule-opentelemetry-04-app
             - study-mule-opentelemetry-70-app
     steps:
+      - uses: actions/cache@v4
+        if: ${{ matrix.app_path == inputs.app_path || 'all' == inputs.app_path }}
+        # https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching#example-using-the-cache-action
+        env:
+            my-cache-name: build-mule-apps
+        with:
+            path: ~/.m2/
+            key: ${{ runner.os }}-build-${{ env.my-cache-name }}-${{ hashFiles('**/pom.xml') }}
+            restore-keys: |
+                ${{ runner.os }}-build-${{ env.my-cache-name }}-
+                ${{ runner.os }}-build-
+                ${{ runner.os }}-
+
       - uses: actions/checkout@v6
+        if: ${{ matrix.app_path == inputs.app_path || 'all' == inputs.app_path }}
 
       - name: maven package
         if: ${{ matrix.app_path == inputs.app_path || 'all' == inputs.app_path }}
         working-directory: ${{ matrix.app_path }}
-        run: mvn package -DskipTests --show-version
+        run: mvn package -DskipTests --batch-mode --show-version
