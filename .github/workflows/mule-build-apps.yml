@@ -1,0 +1,10 @@
+# https://docs.github.com/ja/actions/reference/workflow-syntax-for-github-actions
+on:
+  workflow_dispatch:
+
+jobs:
+  dummy:
+    if: ${{ false }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: ""
