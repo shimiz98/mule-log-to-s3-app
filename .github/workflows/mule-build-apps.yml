@@ -21,6 +21,8 @@ jobs:
             - study-mule-opentelemetry-04-app
             - study-mule-opentelemetry-70-app
     steps:
+      - uses: actions/checkout@v6
+
       - name: maven package
         if: ${{ matrix.app_path == inputs.app_path || 'all' == inputs.app_path }}
         working-directory: ${{ matrix.app_path }}
