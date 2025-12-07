@@ -12,16 +12,17 @@ jobs:
   define-target-apps:
     runs-on: ubuntu-latest
     outputs: 
-        target_apps_paths: ${{ steps.define_target_apps.outputs.target_app_paths }}
+        app_path_array: ${{ steps.define_target_apps.outputs.app_path_array }}
     steps:
       - id: define_target_apps
         env:
           INPUTS_APP_PATH: ${{ inputs.app_path }}
         run: |
           if [ "$INPUTS_APP_PATH" == "all" ]; then
-            echo 'target_app_paths=["study-mule-munit-log-format","study-mule-opentelemetry-01-app","study-mule-opentelemetry-02-app"]' >> "$GITHUB_OUTPUT"
+            # 後でparseJson()するので、JSON形式で出力する
+            echo 'app_path_array=["study-mule-munit-log-format","study-mule-opentelemetry-01-app","study-mule-opentelemetry-02-app"]' >> "$GITHUB_OUTPUT"
           else
-            echo "target_app_paths=[\"${INPUTS_APP_PATH}\"]" >> "$GITHUB_OUTPUT"
+            echo "app_path_array=[\"${INPUTS_APP_PATH}\"]" >> "$GITHUB_OUTPUT"
           fi
         
   build:
@@ -29,7 +30,8 @@ jobs:
     needs: define-target-apps
     strategy:
         matrix:
-          app_path: ${{ fromJson(needs.define-target-apps.outputs.target_apps_paths) }}
+          # https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/run-job-variations#using-an-output-to-define-two-matrices
+          app_path: ${{ fromJson(needs.define-target-apps.outputs.app_path_array) }}
     steps:
       - uses: actions/checkout@v6
 
