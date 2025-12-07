@@ -9,23 +9,31 @@ on:
             - study-mule-munit-log-format
 
 jobs:
+  define-target-apps:
+    runs-on: ubuntu-latest
+    outputs: 
+        target_apps_paths: ${{ steps.define_target_apps.outputs.target_app_paths }}
+    steps:
+      - id: define_target_apps
+        env:
+          INPUTS_APP_PATH: ${{ inputs.app_path }}
+        run: |
+          if [ "$INPUTS_APP_PATH" == "all" ]; then
+            echo 'target_app_paths=["study-mule-munit-log-format","study-mule-opentelemetry-01-app","study-mule-opentelemetry-02-app"]' >> "$GITHUB_OUTPUT"
+          else
+            echo "target_app_paths=[\"${INPUTS_APP_PATH}\"]" >> "$GITHUB_OUTPUT"
+          fi
+        
   build:
     runs-on: ubuntu-latest
+    needs: define-target-apps
     strategy:
         matrix:
-          app_path: 
-            - study-mule-munit-log-format
-            - study-mule-opentelemetry-01-app
-            - study-mule-opentelemetry-02-app
-            - study-mule-opentelemetry-03-app
-            - study-mule-opentelemetry-04-app
-            - study-mule-opentelemetry-70-app
+          app_path: ${{ fromJson(needs.define-target-apps.outputs.target_apps_paths) }}
     steps:
       - uses: actions/checkout@v6
-        if: ${{ matrix.app_path == inputs.app_path || 'all' == inputs.app_path }}
 
       - uses: actions/cache@v4
-        if: ${{ matrix.app_path == inputs.app_path || 'all' == inputs.app_path }}
         # https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching#example-using-the-cache-action
         env:
             my-cache-name: build-mule-apps
@@ -38,6 +46,5 @@ jobs:
                 ${{ runner.os }}-
 
       - name: maven package
-        if: ${{ matrix.app_path == inputs.app_path || 'all' == inputs.app_path }}
         working-directory: ${{ matrix.app_path }}
         run: mvn package -DskipTests --batch-mode --show-version
