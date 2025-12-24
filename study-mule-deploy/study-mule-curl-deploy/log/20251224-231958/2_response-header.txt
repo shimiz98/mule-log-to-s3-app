@@ -1,0 +1,10 @@
+HTTP/2 200 
+date: Wed, 24 Dec 2025 14:19:59 GMT
+content-type: application/json
+content-length: 711
+x-anypnt-trx-id: ecf83
+strict-transport-security: max-age=31536000; includeSubDomains
+server: sfdcedge
+x-sfdc-request-id: 61f1af7e66aa8ea4e4796546e94e220b
+x-request-id: 61f1af7e66aa8ea4e4796546e94e220b
+

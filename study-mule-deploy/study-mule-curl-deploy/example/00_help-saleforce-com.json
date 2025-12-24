@@ -1,0 +1,145 @@
+{
+    "name": "app-name",
+    "target": {
+        "provider": "MC",
+        "targetId": "9c237504-4796-401b-9dbd-689f1857edcf",
+        "deploymentSettings": {
+            "clustered": false,
+            "enforceDeployingReplicasAcrossNodes": false,
+            "http": {
+                "inbound": {
+                    "publicUrl": "",
+                    "pathRewrite": "",
+                    "lastMileSecurity": false,
+                    "forwardSslSession": false,
+                    "internalUrl": "",
+                    "uniqueId": ""
+                }
+            },
+            "jvm": {
+                "args": ""
+            },
+            "runtimeVersion": "4.6.0:40-java17",
+            "runtimeReleaseChannel": "LTS",
+            "runtime": "{\n  \"version\": \"4.6.0:40-java17\",\n  \"releaseChannel\": \"LTS\",\n  \"java\": \"17\"\n}",
+            "autoscaling": "{\n  \"enabled\": true,\n  \"minReplicas\": 2,\n  \"maxReplicas\": 8\n}",
+            "updateStrategy": "",
+            "resources": {
+                "cpu": {
+                    "limit": "",
+                    "reserved": ""
+                },
+                "memory": {
+                    "limit": "",
+                    "reserved": ""
+                },
+                "storage": {
+                    "limit": "",
+                    "reserved": ""
+                }
+            },
+            "lastMileSecurity": false,
+            "disableAmLogForwarding": false,
+            "persistentObjectStore": false,
+            "anypointMonitoringScope": "",
+            "sidecars": {
+                "anypoint-monitoring": {
+                    "image": "",
+                    "resources": {
+                        "cpu": {
+                            "limit": "",
+                            "reserved": ""
+                        },
+                        "memory": {
+                            "limit": "",
+                            "reserved": ""
+                        },
+                        "storage": {
+                            "limit": "",
+                            "reserved": ""
+                        }
+                    }
+                }
+            },
+            "forwardSslSession": false,
+            "disableExternalLogForwarding": false,
+            "tracingEnabled": true,
+            "generateDefaultPublicUrl": false,
+            "cpuMax": "",
+            "cpuReserved": "",
+            "memoryMax": "",
+            "memoryReserved": "",
+            "replicationFactor": 0,
+            "environmentVariables": {},
+            "clusteringEnabled": false,
+            "publicUrl": "",
+            "jvmProperties": ""
+        },
+        "replicas": 1
+    },
+    "application": {
+        "desiredState": "STARTED",
+        "ref": {
+            "classifier": "",
+            "type": "",
+            "groupId": "",
+            "artifactId": "",
+            "version": "",
+            "packaging": ""
+        },
+        "configuration": {
+            "mule.agent.application.properties.service": {
+                "applicationName": "",
+                "properties": {},
+                "secureProperties": {},
+                "secureproperties": {}
+            },
+            "mule.agent.logging.service": {
+                "artifactName": "",
+                "scopeLoggingConfigurations": [
+                    {
+                        "scope": "",
+                        "logLevel": ""
+                    }
+                ]
+            },
+            "mule.agent.scheduling.service": {
+                "applicationName": "",
+                "schedulers": [
+                    {
+                        "name": "",
+                        "type": "",
+                        "flowName": "",
+                        "enabled": false,
+                        "timeUnit": "NANOSECONDS",
+                        "frequency": "",
+                        "startDelay": "",
+                        "expression": "",
+                        "timeZone": ""
+                    }
+                ]
+            }
+        },
+        "resourceAssets": {
+            "ref": {
+                "version": "",
+                "secretGroup": "",
+                "secretType": "",
+                "secretId": "",
+                "packaging": "",
+                "environment": ""
+            },
+            "mappings": {}
+        },
+        "vCores": 0,
+        "integrations": {
+            "services": {
+                "objectStoreV2": {
+                    "enabled": false
+                }
+            }
+        },
+        "objectStoreV2Enabled": false
+    },
+    "desiredVersion": "1.0.0"
+}

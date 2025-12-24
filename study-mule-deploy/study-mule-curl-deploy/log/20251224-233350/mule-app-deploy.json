@@ -1,0 +1,57 @@
+{
+  "name": "study-script-deploy-app",
+  "target": {
+    "provider": "MC",
+    "targetId": "cloudhub-us-east-2",
+    "deploymentSettings": {
+      "clustered": false,
+      "enforceDeployingReplicasAcrossNodes": true,
+      "http": {},
+      "outbound": {},
+      "jvm": {},
+      "updateStrategy": "rolling",
+      "disableAmLogForwarding": false,
+      "persistentObjectStore": false,
+      "anypointMonitoringScope": "app",
+      "generateDefaultPublicUrl": true,
+      "runtime": {
+        "version": "4.9",
+        "releaseChannel": "LTS",
+        "java": "17"
+      }
+    },
+    "replicas": 1
+  },
+  "application": {
+    "desiredState": "STARTED",
+    "ref": {
+      "groupId": "a81c52fe-cb9e-4acb-8e3a-284b26c4f12e",
+      "artifactId": "study-mule-minmum-01-app",
+      "version": "1.0.0-2",
+      "packaging": "jar"
+    },
+    "configuration": {
+      "mule.agent.application.properties.service": {
+        "properties": {
+          "prop-name1": "prop-value1",
+          "prop-name2": "prop-value2",
+          "prop-name3": "prop-value3"
+        },
+        "secureProperties": {
+          "secure-prop-name1": "prop-value1",
+          "secure-prop-name2": "prop-value2",
+          "secure-prop-name3": "prop-value3"
+        }
+      },
+      "mule.agent.logging.service": {
+        "scopeLoggingConfigurations": [
+          {
+            "scope": "org.mule.service.http.impl.service.HttpMessageLogger",
+            "logLevel": "DEBUG"
+          }
+        ]
+      }
+    },
+    "vCores": 0.1
+  }
+}

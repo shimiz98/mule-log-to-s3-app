@@ -1,0 +1,7 @@
+{
+    "timestamp": 1766583893140,
+    "status": 400,
+    "error": "Bad Request",
+    "message": "vCores should be provided for this target",
+    "path": "/organizations/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/environments/a071aaf1-57e2-486f-9919-67e78a97e798/deployments"
+}

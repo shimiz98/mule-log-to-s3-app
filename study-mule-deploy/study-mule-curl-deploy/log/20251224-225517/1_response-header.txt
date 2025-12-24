@@ -1,0 +1,33 @@
+HTTP/2 200 
+date: Wed, 24 Dec 2025 13:55:18 GMT
+content-type: application/json
+content-length: 95
+x-frame-options: SAMEORIGIN
+x-frame-options: SAMEORIGIN
+x-anypnt-trx-id: 9c7ae6c476654c38a22728e271c7af37
+x-xss-protection: 0
+x-dns-prefetch-control: off
+x-request-id: 9c7ae6c476654c38a22728e271c7af37
+x-ratelimit-reset: 1766584560
+cache-control: no-store
+cross-origin-resource-policy: same-origin
+x-geoip2-client-country: JP
+x-permitted-cross-domain-policies: none
+x-ratelimit-limit: 1000
+x-download-options: noopen
+x-content-type-options: nosniff
+x-ratelimit-remaining: 999
+strict-transport-security: max-age=31536000; includeSubDomains
+origin-agent-cluster: ?1
+set-cookie: _csrf=qAs9Yvg1z-Gcvq_5991YUNM7; Path=/; HttpOnly; Secure
+set-cookie: XSRF-TOKEN=IvnFoXD5-z8ShsbZu9axpNQMI54hiofOKpDU; Path=/; Secure
+set-cookie: _csrf=RrxX5dhYhqRJzyjxy6SqS6_4; Path=/; HttpOnly; Secure
+expires: -1
+pragma: no-cache
+referrer-policy: no-referrer
+content-security-policy: default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests
+vary: X-HTTP-Method-Override, Accept-Encoding
+server: sfdcedge
+x-sfdc-request-id: 9c7ae6c476654c38a22728e271c7af37
+x-request-id: 9c7ae6c476654c38a22728e271c7af37
+
