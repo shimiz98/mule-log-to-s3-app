@@ -29,8 +29,7 @@ funcParseCommandLine() {
     fi
     gOrgId=$1
     gEnvId=$2
-    gAssetGroupId=$3
-    [ "$gAssetGroupId" = "" ] && gAssetGroupId="$gOrgId"
+    gAssetGroupId=${3:-$gOrgId} # 空欄の場合はOrgIdと同じ値を使う
     gAssetId=$4
     gAssetVersion=$5
     gAppTemplateFile=$6
@@ -38,7 +37,7 @@ funcParseCommandLine() {
 
 funcCreateLogDir() {
     gLogDir="./${gLogDirPrefix}$(date +%Y%m%d-%H%M%S)"
-    gLogFileNum=0
+    gLogFileNum=00
     mkdir "$gLogDir"
 }
 
@@ -46,7 +45,7 @@ funcDeploy() {
     local appName
     appName=$(jq --raw-output '.name' "$gDeployConfigFile")
 
-    gLogFileNum=$(( gLogFileNum + 1 ))
+    gLogFileNum=$(printf '%02d' $(( (10#$gLogFileNum) + 1 )) )
     local responseHeaderFile=${gLogDir}/${gLogFileNum}_response-header.txt
     local responseBodyFile=${gLogDir}/${gLogFileNum}_response-body.json
     curl "https://anypoint.mulesoft.com/amc/application-manager/api/v2/organizations/${gOrgId}/environments/${gEnvId}/deployments" \
@@ -57,14 +56,11 @@ funcDeploy() {
         && true
     local rc=$?
 
-    funcPrintHttpResponse "$rc" "$responseHeaderFile" "$responseBodyFile"
-    if [ "$rc" -ne 0 ]; then
-        exit "$rc"
-    fi
+    funcCheckCurlResult "$rc" "$responseHeaderFile" "$responseBodyFile"
     deploymentId=$(jq --arg x "$appName" --raw-output '.items[] | select(.name == $ARGS.named["x"]) | .id' "$responseBodyFile")
 
     if [ "$deploymentId" = "" ]; then
-        gLogFileNum=$(( gLogFileNum + 1 ))
+        gLogFileNum=$(printf '%02d' $(( (10#$gLogFileNum) + 1 )) )
         local responseHeaderFile=${gLogDir}/${gLogFileNum}_response-header.txt
         local responseBodyFile=${gLogDir}/${gLogFileNum}_response-body.json
         curl "https://anypoint.mulesoft.com/amc/application-manager/api/v2/organizations/${gOrgId}/environments/${gEnvId}/deployments" \
@@ -77,12 +73,9 @@ funcDeploy() {
             && true
         local rc=$?
 
-        funcPrintHttpResponse "$rc" "$responseHeaderFile" "$responseBodyFile"
-        if [ "$rc" -ne 0 ]; then
-            exit "$rc"
-        fi
+        funcCheckCurlResult "$rc" "$responseHeaderFile" "$responseBodyFile"
     else
-        gLogFileNum=$(( gLogFileNum + 1 ))
+        gLogFileNum=$(printf '%02d' $(( (10#$gLogFileNum) + 1 )) )
         local responseHeaderFile=${gLogDir}/${gLogFileNum}_response-header.txt
         local responseBodyFile=${gLogDir}/${gLogFileNum}_response-body.json
         curl "https://anypoint.mulesoft.com/amc/application-manager/api/v2/organizations/${gOrgId}/environments/${gEnvId}/deployments/${deploymentId}" \
@@ -93,13 +86,10 @@ funcDeploy() {
             && true
         local rc=$?
 
-        funcPrintHttpResponse "$rc" "$responseHeaderFile" "$responseBodyFile"
-        if [ "$rc" -ne 0 ]; then
-            exit "$rc"
-        fi
+        funcCheckCurlResult "$rc" "$responseHeaderFile" "$responseBodyFile"
         local beforeDeployStatusFile=$responseBodyFile
 
-        gLogFileNum=$(( gLogFileNum + 1 ))
+        gLogFileNum=$(printf '%02d' $(( (10#$gLogFileNum) + 1 )) )
         local responseHeaderFile=${gLogDir}/${gLogFileNum}_response-header.txt
         local responseBodyFile=${gLogDir}/${gLogFileNum}_response-body.json
         curl "https://anypoint.mulesoft.com/amc/application-manager/api/v2/organizations/${gOrgId}/environments/${gEnvId}/deployments/${deploymentId}" \
@@ -113,13 +103,10 @@ funcDeploy() {
             && true
         local rc=$?
 
-        funcPrintHttpResponse "$rc" "$responseHeaderFile" "$responseBodyFile"
-        if [ "$rc" -ne 0 ]; then
-            exit "$rc"
-        fi
+        funcCheckCurlResult "$rc" "$responseHeaderFile" "$responseBodyFile"
         local afterDeployStatusFile=$responseBodyFile
 
-        diff <(jq . "$beforeDeployStatusFile") <(jq . "$afterDeployStatusFile") && true
+        diff <(jq . "$beforeDeployStatusFile") <(jq . "$afterDeployStatusFile") > "${gLogDir}/mule-app-status.diff" && true
         rc=$?
         if [ "$rc" -ne 0 ] && [ "$rc" -ne 1 ]; then
             exit "$rc"
@@ -146,7 +133,7 @@ funcGetAccessToken() {
         gDoNotRevokeAccessToken=""
         return
     fi
-    gLogFileNum=$(( gLogFileNum + 1 ))
+    gLogFileNum=$(printf '%02d' $(( (10#$gLogFileNum) + 1 )) )
     local responseHeaderFile=${gLogDir}/${gLogFileNum}_response-header.txt
     local responseBodyFile=${gLogDir}/${gLogFileNum}_response-body.json
 
@@ -162,15 +149,12 @@ funcGetAccessToken() {
         && true
     local rc=$?
 
-    funcPrintHttpResponse "$rc" "$responseHeaderFile" "$responseBodyFile" skipBodyOnSuccess
-    if [ "$rc" -ne 0 ]; then
-        exit "$rc"
-    fi
+    funcCheckCurlResult "$rc" "$responseHeaderFile" "$responseBodyFile" skipBodyOnSuccess
     gAccessToken=$(jq --raw-output '.access_token' "$responseBodyFile")
 }
 
 funcCheckAccessToken() {
-    gLogFileNum=$(( gLogFileNum + 1 ))
+    gLogFileNum=$(printf '%02d' $(( (10#$gLogFileNum) + 1 )) )
     local responseHeaderFile=${gLogDir}/${gLogFileNum}_response-header.txt
     local responseBodyFile=${gLogDir}/${gLogFileNum}_response-body.json
     curl https://anypoint.mulesoft.com/accounts/api/me \
@@ -181,10 +165,7 @@ funcCheckAccessToken() {
         && true
     local rc=$?
 
-    funcPrintHttpResponse "$rc" "$responseHeaderFile" "$responseBodyFile"
-    if [ "$rc" -ne 0 ]; then
-        exit "$rc"
-    fi
+    funcCheckCurlResult "$rc" "$responseHeaderFile" "$responseBodyFile"
 }
 
 funcRevokeAccessToken () {
@@ -193,7 +174,7 @@ funcRevokeAccessToken () {
         return
     fi
 
-    gLogFileNum=$(( gLogFileNum + 1 ))
+    gLogFileNum=$(printf '%02d' $(( (10#$gLogFileNum) + 1 )) )
     local responseHeaderFile=${gLogDir}/${gLogFileNum}_response-header.txt
     local responseBodyFile=${gLogDir}/${gLogFileNum}_response-body.json
     curl https://anypoint.mulesoft.com/accounts/api/v2/oauth2/revoke \
@@ -205,13 +186,10 @@ funcRevokeAccessToken () {
         && true
     local rc=$?
 
-    funcPrintHttpResponse "$rc" "$responseHeaderFile" "$responseBodyFile"
-    if [ "$rc" -ne 0 ]; then
-        exit "$rc"
-    fi
+    funcCheckCurlResult "$rc" "$responseHeaderFile" "$responseBodyFile"
 }
 
-funcPrintHttpResponse() {
+funcCheckCurlResult() {
     local rc=$1
     local headerFile=$2
     local bodyFile=$3
@@ -237,6 +215,7 @@ funcPrintHttpResponse() {
         printf '[INFO] curl rc=%s\n' "$rc"
     else
         printf '[ERROR] curl rc=%s\n' "$rc"
+        exit "$rc"
     fi
 }
 
