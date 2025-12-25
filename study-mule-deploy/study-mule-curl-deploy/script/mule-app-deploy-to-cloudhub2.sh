@@ -19,6 +19,7 @@ funcMain() {
     funcCreateDeployConfigFile
     funcGetAccessToken
     funcDeploy
+    funcWaitDeployComplete
     funcRevokeAccessToken
 }
 
@@ -41,6 +42,15 @@ funcCreateLogDir() {
     mkdir "$gLogDir"
 }
 
+funcCreateDeployConfigFile() {
+    gDeployConfigFile=${gLogDir}/mule-app-deploy.json
+    jq \
+        --arg groupId "$gAssetGroupId" \
+        --arg artifactId "$gAssetId" \
+        --arg version "$gAssetVersion" \
+        '.application.ref.groupId=$groupId | .application.ref.artifactId=$artifactId | .application.ref.version=$version' "$gAppTemplateFile" > "$gDeployConfigFile"
+}
+
 funcDeploy() {
     local appName
     appName=$(jq --raw-output '.name' "$gDeployConfigFile")
@@ -57,9 +67,9 @@ funcDeploy() {
     local rc=$?
 
     funcCheckCurlResult "$rc" "$responseHeaderFile" "$responseBodyFile"
-    deploymentId=$(jq --arg x "$appName" --raw-output '.items[] | select(.name == $ARGS.named["x"]) | .id' "$responseBodyFile")
+    gDeploymentId=$(jq --arg x "$appName" --raw-output '.items[] | select(.name == $ARGS.named["x"]) | .id' "$responseBodyFile")
 
-    if [ "$deploymentId" = "" ]; then
+    if [ "$gDeploymentId" = "" ]; then
         gLogFileNum=$(printf '%02d' $(( (10#$gLogFileNum) + 1 )) )
         local responseHeaderFile=${gLogDir}/${gLogFileNum}_response-header.txt
         local responseBodyFile=${gLogDir}/${gLogFileNum}_response-body.json
@@ -74,11 +84,14 @@ funcDeploy() {
         local rc=$?
 
         funcCheckCurlResult "$rc" "$responseHeaderFile" "$responseBodyFile"
+
+        gDeploymentId=$(jq '.id' "$responseBodyFile")
+
     else
         gLogFileNum=$(printf '%02d' $(( (10#$gLogFileNum) + 1 )) )
         local responseHeaderFile=${gLogDir}/${gLogFileNum}_response-header.txt
         local responseBodyFile=${gLogDir}/${gLogFileNum}_response-body.json
-        curl "https://anypoint.mulesoft.com/amc/application-manager/api/v2/organizations/${gOrgId}/environments/${gEnvId}/deployments/${deploymentId}" \
+        curl "https://anypoint.mulesoft.com/amc/application-manager/api/v2/organizations/${gOrgId}/environments/${gEnvId}/deployments/${gDeploymentId}" \
             -H "Authorization: Bearer ${gAccessToken}" \
             --fail-with-body \
             --dump-header "$responseHeaderFile" \
@@ -92,7 +105,7 @@ funcDeploy() {
         gLogFileNum=$(printf '%02d' $(( (10#$gLogFileNum) + 1 )) )
         local responseHeaderFile=${gLogDir}/${gLogFileNum}_response-header.txt
         local responseBodyFile=${gLogDir}/${gLogFileNum}_response-body.json
-        curl "https://anypoint.mulesoft.com/amc/application-manager/api/v2/organizations/${gOrgId}/environments/${gEnvId}/deployments/${deploymentId}" \
+        curl "https://anypoint.mulesoft.com/amc/application-manager/api/v2/organizations/${gOrgId}/environments/${gEnvId}/deployments/${gDeploymentId}" \
             -H "Authorization: Bearer ${gAccessToken}" \
             -X PATCH \
             -H 'Content-Type: application/json' \
@@ -106,21 +119,42 @@ funcDeploy() {
         funcCheckCurlResult "$rc" "$responseHeaderFile" "$responseBodyFile"
         local afterDeployStatusFile=$responseBodyFile
 
-        diff <(jq . "$beforeDeployStatusFile") <(jq . "$afterDeployStatusFile") > "${gLogDir}/mule-app-status.diff" && true
+        diff <(jq . "$beforeDeployStatusFile") <(jq . "$afterDeployStatusFile") > "${gLogDir}/mule-app-detail.diff" && true
         rc=$?
         if [ "$rc" -ne 0 ] && [ "$rc" -ne 1 ]; then
             exit "$rc"
         fi
-    fi 
+    fi
+
 }
 
-funcCreateDeployConfigFile() {
-    gDeployConfigFile=${gLogDir}/mule-app-deploy.json
-    jq \
-        --arg groupId "$gAssetGroupId" \
-        --arg artifactId "$gAssetId" \
-        --arg version "$gAssetVersion" \
-        '.application.ref.groupId=$groupId | .application.ref.artifactId=$artifactId | .application.ref.version=$version' "$gAppTemplateFile" > "$gDeployConfigFile"
+funcWaitDeployComplete() {
+    local -r statusCheckInterval=3
+    local -r statusCheckMax=40
+    for (( i=1; i < statusCheckMax; i++ )); do
+        gLogFileNum=$(printf '%02d' $(( (10#$gLogFileNum) + 1 )) )
+        local responseHeaderFile=${gLogDir}/${gLogFileNum}_response-header.txt
+        local responseBodyFile=${gLogDir}/${gLogFileNum}_response-body.json
+        curl "https://anypoint.mulesoft.com/amc/application-manager/api/v2/organizations/${gOrgId}/environments/${gEnvId}/deployments/${gDeploymentId}" \
+            -H "Authorization: Bearer ${gAccessToken}" \
+            --fail-with-body \
+            --dump-header "$responseHeaderFile" \
+            --output "$responseBodyFile" \
+            && true
+        local rc=$?
+        funcCheckCurlResult "$rc" "$responseHeaderFile" "$responseBodyFile"
+
+        local status1 status2
+        status1=$(jq --raw-output .status "$responseBodyFile")
+        status2=$(jq --raw-output .application.status "$responseBodyFile")
+        printf '[INFO] %s %s\n' "$status1" "$status2"
+        echo "$(date '+%Y%m%d %H%M%S')" "$status1" "$status2" >> "${gLogDir}/mule-app-status.txt"
+        if [ "$status1" = 'APPLIED' ] && [ "$status2" = 'RUNNING' ]; then
+            printf '[INFO] デプロイ後の起動が完了しました。\n'
+            break
+        fi
+        sleep "$statusCheckInterval"
+    done
 }
 
 # 

@@ -15,12 +15,13 @@
 .application.vCores 0.2
 
 # Deployment model
-.target.deploymentSettings.updateStrategy "RECREATE"
+.target.deploymentSettings.updateStrategy "recreate"
 
 # Run in Runtime Cluster Mode
 .target.deploymentSettings.clustered true
 
 # Use Object Store V2
+.application.integrations.services.objectStoreV2.enabled true
 
 # Ingress > Path Rewrite ※不明
 

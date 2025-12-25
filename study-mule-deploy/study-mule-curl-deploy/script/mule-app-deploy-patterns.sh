@@ -31,8 +31,8 @@ funcMain() {
     done < "$patternFile"
 
     # ファイルの末尾にLFが無い場合
-    if [ "$modifiedFile" = '' ]; then
-        funcDeploy "$modifiedFile"
+    if [ "$modifiedFile" != '' ]; then
+        funcDeploy "$templateFile" "$modifiedFile" "$patternComment"
     fi
 }
 
@@ -77,7 +77,7 @@ funcDeploy() {
 
     # TODO: cleanup
     local x
-    x=$(printf '%s' "${patternComment#\#}" | head -n1 | cut -c -40 | tr '\\/:*?"<>|' '_')
+    x=$(printf '%s' "${patternComment}" | head -n1 | cut -c -40 | tr '\\/:*?"<>|' '_' | sed 's/^# *//;s/ *$//')
     if [ -n "$x" ]; then
        mv "$gPatternDir" "${gPatternDir}_${x}"
         gPatternDir="${gPatternDir}_${x}" # TODO modifiedFile には未反映。
