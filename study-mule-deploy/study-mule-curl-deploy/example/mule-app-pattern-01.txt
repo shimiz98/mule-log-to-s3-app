@@ -1,0 +1,45 @@
+# Release Channel
+.target.deploymentSettings.runtime.releaseChannel "Edge"
+
+# Runtime Version
+.target.deploymentSettings.runtime.version "4.6"
+
+# Java Version
+.target.deploymentSettings.runtime.version "4.6"
+.target.deploymentSettings.runtime.java "8"
+
+# Replica Count
+.target.replicas 2
+
+# Replica size
+.application.vCores 0.2
+
+# Deployment model
+.target.deploymentSettings.updateStrategy "RECREATE"
+
+# Run in Runtime Cluster Mode
+.target.deploymentSettings.clustered true
+
+# Use Object Store V2
+
+# Ingress > Path Rewrite ※不明
+
+# Ingress > Forward SSL Session
+.target.deploymentSettings.http.inbound.forwardSslSession true
+
+# Ingress > Last-Mile Security
+.target.deploymentSettings.http.inbound.lastMileSecurity true
+
+# Properties
+.application.configuration["mule.agent.application.properties.service"].properties {}
+
+# Properties
+.application.configuration["mule.agent.application.properties.service"].secureProperties {}
+
+# Monitoring > Forward application logs to Anypoint Platform
+.target.deploymentSettings.disableAmLogForwarding true
+
+# Monitoring > ログレベル と Appender名 のリスト
+.application.configuration["mule.agent.logging.service"].scopeLoggingConfigurations [{"scope":"aaa", "logLevel":"WARN"}]
+
+# Firewall Rules ※不明
