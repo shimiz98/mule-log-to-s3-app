@@ -7,6 +7,7 @@ on:
         options:
             - all
             - study-mule-munit-log-format
+            - study-mule-maven-build-with-exchange
 
 jobs:
   define-target-apps:
@@ -49,4 +50,12 @@ jobs:
 
       - name: maven package
         working-directory: ${{ matrix.app_path }}
-        run: mvn package -DskipTests --batch-mode --show-version
+        run: |
+          mvn package -DskipTests --batch-mode --show-version \
+            -s ./maven-settings.xml \
+            -Dorg.slf4j.simpleLogger.log.org.apache.http=debug
+        env:
+          ANYPOINT_CONNAPP_CLIENT_ID: ${{vars.ANYPOINT_CONNAPP_CLIENT_ID}}
+          ANYPOINT_CONNAPP_CLIENT_SECRET: ${{secrets.ANYPOINT_CONNAPP_CLIENT_SECRET}}
+
+

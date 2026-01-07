@@ -10,7 +10,21 @@ https://maven.apache.org/docs/3.9.10/release-notes.html
 > * The Maven Resolver transport has changed from Wagon to “native HTTP”, see Resolver Transport guide.
 
 https://maven.apache.org/resolver-1.x/configuration.html
-> 
+> * `aether.connector.http.retryHandler.serviceUnavailable`	Comma separated list of HTTP codes that should be handled as “too many requests”.	"429,503"
+
+https://maven.apache.org/resolver/configuration.html
+> * `aether.transport.http.retryHandler.serviceUnavailable`
+
+https://maven.apache.org/maven-logging.html
+> To configure logging with SLF4J Simple, edit the properties in the ${maven.home}/conf/logging/simplelogger.properties file. See the linked reference documentation for details.
+
+file://${maven.home}/conf/logging/simplelogger.properties
+> \# MNG-6181: mvn -X also prints all debug logging from HttpClient
+> org.slf4j.simpleLogger.log.org.apache.http=off
+> org.slf4j.simpleLogger.log.org.apache.http.wire=off
+
+https://hc.apache.org/httpcomponents-client-5.6.x/logging.html
+> The wire logger is used to log all data transmitted to and from servers when executing HTTP requests. The wire logger uses the org.apache.hc.client5.http.wire logger name.
 
 ## 詳細ログ
 ### Mavenのデフォルト設定
