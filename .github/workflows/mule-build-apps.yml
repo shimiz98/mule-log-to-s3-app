@@ -30,6 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: define-target-apps
     strategy:
+        fail-fast: false
         matrix:
           # https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/run-job-variations#using-an-output-to-define-two-matrices
           app_path: ${{ fromJson(needs.define-target-apps.outputs.app_path_array) }}
