@@ -38,6 +38,8 @@ jobs:
       - uses: actions/checkout@v6
 
       - uses: actions/cache@v4
+        # 一時的にcacheを使用しない設定にする
+        if: false 
         # https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching#example-using-the-cache-action
         env:
             my-cache-name: build-mule-apps
