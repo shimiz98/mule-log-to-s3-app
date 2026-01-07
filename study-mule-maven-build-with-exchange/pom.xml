@@ -40,8 +40,8 @@
 			<groupId>${my.anypoint.bg.id}</groupId>
 			<artifactId>study-mule-maven-build-with-exchange-api</artifactId>
 			<version>1.0.0</version>
-			<type>rest-api</type>
-			<classifier>oas</classifier>
+			<classifier>oas</classifier> <!-- (raml|oas|...) -->
+			<type>zip</type> <!-- ここでは拡張子を指定する模様 -->
 		</dependency>
 	</dependencies>
 
