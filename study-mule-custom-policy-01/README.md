@@ -80,6 +80,17 @@ https://maven.apache.org/settings.html
 
 ### mule-artifact.json を書き換えた
 * java17を追加したが、これで正しいか、まだ確証がない。
+  * 次の「my-custom-polily-01.yaml 」を書き換えれば、こちらは不要かも。
+
+### my-custom-polily-01.yaml を書き換えた。
+* 以下のバージョン不一致のエラーが表示されたため、Custom Policyが対応しているJavaVersionの設定を追加した。
+  * このエラーが表示されているが、この書き換え済みのCustom Policyが無いと、UIの内部エラー的なメッセージが表示されて、すこしハマった。
+  * > There are instances with incompatible policies. Check for policy updates to solve this issue. Review instances.
+  * >
+  * > This policy is not compatible with the runtime / java version.
+  * > Check to see if there is a compatible policy version
+  * https://docs.mulesoft.com/mule-gateway/policies-custom-java-version#non-split-model-policies
+  * supportedJavaVersions: ["8", "11", "17"]
 
 ## エラーメッセージ
 ### generate 時に、org.mule.tools:api-gateway-custom-policy-archetype:1.2.0 が無い。
