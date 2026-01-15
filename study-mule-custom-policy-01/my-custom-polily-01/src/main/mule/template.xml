@@ -10,14 +10,9 @@
 
     <http-policy:proxy name="{{{policyId}}}-custom-policy">
         <http-policy:source>
-
+            <logger level="INFO" message="#[{msg: 'policy-begin', attributes: attributes, payload: payload}]" category="myapp.policy.begin"/>
             <http-policy:execute-next/>
-
-            <http-transform:set-response statusCode="201">
-                <http-transform:body>#[ 'Hello World!' ]</http-transform:body>
-                <http-transform:headers>#[ {'New-Header': 'Hello World!'} ]</http-transform:headers>
-            </http-transform:set-response>
-
+            <logger level="INFO" message="#[{msg: 'policy-end', attributes: attributes, payload: payload}]" category="myapp.policy.end"/>
         </http-policy:source>
     </http-policy:proxy>
 </mule>
