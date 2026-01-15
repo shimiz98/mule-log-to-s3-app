@@ -1,0 +1,75 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------< a81c52fe-cb9e-4acb-8e3a-284b26c4f12e:my-custom-polily-01 >------
+[INFO] Building my-custom-policy-01 1.0.0
+[INFO]   from pom.xml
+[INFO] ----------------------------[ mule-policy ]-----------------------------
+[INFO] 
+[INFO] --- mule:4.6.1:validate (default-validate) @ my-custom-polily-01 ---
+[INFO] 
+[INFO] --- mule:4.6.1:initialize (default-initialize) @ my-custom-polily-01 ---
+[INFO] 
+[INFO] --- mule:4.6.1:generate-sources (default-generate-sources) @ my-custom-polily-01 ---
+[INFO] 
+[INFO] --- mule:4.6.1:process-sources (default-process-sources) @ my-custom-polily-01 ---
+[INFO] About to fetch required dependencies for artifact: a81c52fe-cb9e-4acb-8e3a-284b26c4f12e:my-custom-polily-01:pom:1.0.0. This may take a while...
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ my-custom-polily-01 ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- mule:4.6.1:process-resources (default-process-resources) @ my-custom-polily-01 ---
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ my-custom-polily-01 ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- mule:4.6.1:compile (default-compile) @ my-custom-polily-01 ---
+[INFO] 
+[INFO] --- mule:4.6.1:process-classes (default-process-classes) @ my-custom-polily-01 ---
+[INFO] 
+[INFO] --- mule:4.6.1:generate-test-sources (default-generate-test-sources) @ my-custom-polily-01 ---
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ my-custom-polily-01 ---
+[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- mule:4.6.1:generate-test-resources (default-generate-test-resources) @ my-custom-polily-01 ---
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ my-custom-polily-01 ---
+[INFO] Nothing to compile - all classes are up to date
+[INFO] 
+[INFO] --- mule:4.6.1:test-compile (default-test-compile) @ my-custom-polily-01 ---
+[INFO] 
+[INFO] --- surefire:3.1.2:test (default-test) @ my-custom-polily-01 ---
+[INFO] 
+[INFO] --- mule:4.6.1:package (default-package) @ my-custom-polily-01 ---
+[INFO] Building zip: C:\mulesoft\workspace-7.21a\study-mule-custom-policy-01\my-custom-polily-01\target\my-custom-polily-01-1.0.0-mule-policy.jar
+[INFO] 
+[INFO] --- mule:4.6.1:verify (default-verify) @ my-custom-polily-01 ---
+[INFO] 
+[INFO] --- install:3.1.1:install (default-install) @ my-custom-polily-01 ---
+[INFO] Installing C:\mulesoft\workspace-7.21a\study-mule-custom-policy-01\my-custom-polily-01\pom.xml to C:\Users\sh98\.m2\repository\a81c52fe-cb9e-4acb-8e3a-284b26c4f12e\my-custom-polily-01\1.0.0\my-custom-polily-01-1.0.0.pom
+[INFO] Installing C:\mulesoft\workspace-7.21a\study-mule-custom-policy-01\my-custom-polily-01\target\my-custom-polily-01-1.0.0-mule-policy.jar to C:\Users\sh98\.m2\repository\a81c52fe-cb9e-4acb-8e3a-284b26c4f12e\my-custom-polily-01\1.0.0\my-custom-polily-01-1.0.0-mule-policy.jar
+[INFO] Installing C:\mulesoft\workspace-7.21a\study-mule-custom-policy-01\my-custom-polily-01\my-custom-polily-01.yaml to C:\Users\sh98\.m2\repository\a81c52fe-cb9e-4acb-8e3a-284b26c4f12e\my-custom-polily-01\1.0.0\my-custom-polily-01-1.0.0-policy-definition.yaml
+[INFO] 
+[INFO] --- exchange-mule:0.1.4:exchange-pre-deploy (default-exchange-pre-deploy) @ my-custom-polily-01 ---
+[INFO] 
+[INFO] --- deploy:3.1.1:deploy (default-deploy) @ my-custom-polily-01 ---
+[INFO] Uploading to exchange-server: https://maven.anypoint.mulesoft.com/api/v1/organizations/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/maven/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/my-custom-polily-01/1.0.0/my-custom-polily-01-1.0.0.pom
+[INFO] Uploaded to exchange-server: https://maven.anypoint.mulesoft.com/api/v1/organizations/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/maven/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/my-custom-polily-01/1.0.0/my-custom-polily-01-1.0.0.pom (3.0 kB at 1.2 kB/s)
+[INFO] Uploading to exchange-server: https://maven.anypoint.mulesoft.com/api/v1/organizations/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/maven/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/my-custom-polily-01/1.0.0/my-custom-polily-01-1.0.0-mule-policy.jar
+[INFO] Uploading to exchange-server: https://maven.anypoint.mulesoft.com/api/v1/organizations/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/maven/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/my-custom-polily-01/1.0.0/my-custom-polily-01-1.0.0-policy-definition.yaml
+[INFO] Uploaded to exchange-server: https://maven.anypoint.mulesoft.com/api/v1/organizations/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/maven/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/my-custom-polily-01/1.0.0/my-custom-polily-01-1.0.0-policy-definition.yaml (263 B at 231 B/s)
+[INFO] Uploaded to exchange-server: https://maven.anypoint.mulesoft.com/api/v1/organizations/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/maven/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/my-custom-polily-01/1.0.0/my-custom-polily-01-1.0.0-mule-policy.jar (3.9 kB at 1.5 kB/s)
+[INFO] Downloading from exchange-server: https://maven.anypoint.mulesoft.com/api/v1/organizations/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/maven/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/my-custom-polily-01/maven-metadata.xml
+[INFO] Downloaded from exchange-server: https://maven.anypoint.mulesoft.com/api/v1/organizations/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/maven/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/my-custom-polily-01/maven-metadata.xml (287 B at 650 B/s)
+[INFO] Uploading to exchange-server: https://maven.anypoint.mulesoft.com/api/v1/organizations/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/maven/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/my-custom-polily-01/maven-metadata.xml
+[INFO] Uploaded to exchange-server: https://maven.anypoint.mulesoft.com/api/v1/organizations/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/maven/a81c52fe-cb9e-4acb-8e3a-284b26c4f12e/my-custom-polily-01/maven-metadata.xml (362 B at 348 B/s)
+[INFO] 
+[INFO] --- exchange-mule:0.1.4:exchange-deploy (default-exchange-deploy) @ my-custom-polily-01 ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  11.795 s
+[INFO] Finished at: 2026-01-16T00:38:37+09:00
+[INFO] ------------------------------------------------------------------------

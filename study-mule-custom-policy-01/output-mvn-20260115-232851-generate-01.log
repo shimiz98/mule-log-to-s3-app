@@ -1,0 +1,426 @@
+Apache Maven 3.9.10 (5f519b97e944483d878815739f519b2eade0a91d)
+Maven home: C:\Users\sh98\.sdkman\candidates\maven\current
+Java version: 24.0.1, vendor: Eclipse Adoptium, runtime: C:\Users\sh98\.sdkman\candidates\java\current
+Default locale: ja_JP, platform encoding: UTF-8
+OS name: "windows 11", version: "10.0", arch: "amd64", family: "windows"
+[DEBUG] Created new class realm maven.api
+[DEBUG] Importing foreign packages into class realm maven.api
+[DEBUG]   Imported: javax.annotation.* < plexus.core
+[DEBUG]   Imported: javax.annotation.security.* < plexus.core
+[DEBUG]   Imported: javax.inject.* < plexus.core
+[DEBUG]   Imported: org.apache.maven.* < plexus.core
+[DEBUG]   Imported: org.apache.maven.artifact < plexus.core
+[DEBUG]   Imported: org.apache.maven.classrealm < plexus.core
+[DEBUG]   Imported: org.apache.maven.cli < plexus.core
+[DEBUG]   Imported: org.apache.maven.configuration < plexus.core
+[DEBUG]   Imported: org.apache.maven.exception < plexus.core
+[DEBUG]   Imported: org.apache.maven.execution < plexus.core
+[DEBUG]   Imported: org.apache.maven.execution.scope < plexus.core
+[DEBUG]   Imported: org.apache.maven.graph < plexus.core
+[DEBUG]   Imported: org.apache.maven.lifecycle < plexus.core
+[DEBUG]   Imported: org.apache.maven.model < plexus.core
+[DEBUG]   Imported: org.apache.maven.monitor < plexus.core
+[DEBUG]   Imported: org.apache.maven.plugin < plexus.core
+[DEBUG]   Imported: org.apache.maven.profiles < plexus.core
+[DEBUG]   Imported: org.apache.maven.project < plexus.core
+[DEBUG]   Imported: org.apache.maven.reporting < plexus.core
+[DEBUG]   Imported: org.apache.maven.repository < plexus.core
+[DEBUG]   Imported: org.apache.maven.rtinfo < plexus.core
+[DEBUG]   Imported: org.apache.maven.settings < plexus.core
+[DEBUG]   Imported: org.apache.maven.toolchain < plexus.core
+[DEBUG]   Imported: org.apache.maven.usability < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.* < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.authentication < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.authorization < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.events < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.observers < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.proxy < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.repository < plexus.core
+[DEBUG]   Imported: org.apache.maven.wagon.resource < plexus.core
+[DEBUG]   Imported: org.codehaus.classworlds < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.* < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.classworlds < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.component < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.configuration < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.container < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.context < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.lifecycle < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.logging < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.personality < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.util.xml.Xpp3Dom < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.util.xml.pull.XmlPullParser < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.util.xml.pull.XmlPullParserException < plexus.core
+[DEBUG]   Imported: org.codehaus.plexus.util.xml.pull.XmlSerializer < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.* < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.artifact < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.collection < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.deployment < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.graph < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.impl < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.installation < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.internal.impl < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.metadata < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.repository < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.resolution < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.spi < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.transfer < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.util < plexus.core
+[DEBUG]   Imported: org.eclipse.aether.version < plexus.core
+[DEBUG]   Imported: org.fusesource.jansi.* < plexus.core
+[DEBUG]   Imported: org.slf4j.* < plexus.core
+[DEBUG]   Imported: org.slf4j.event.* < plexus.core
+[DEBUG]   Imported: org.slf4j.helpers.* < plexus.core
+[DEBUG]   Imported: org.slf4j.spi.* < plexus.core
+[DEBUG] Populating class realm maven.api
+[DEBUG] Created adapter factory; available factories [file-lock, rwlock-local, semaphore-local, noop]; available name mappers [discriminating, file-gav, file-hgav, file-static, gav, static]
+[INFO] Error stacktraces are turned on.
+[DEBUG] Message scheme: color
+[DEBUG] Message styles: debug info warning error success failure strong mojo project
+[DEBUG] Reading global settings from C:\Users\sh98\.sdkman\candidates\maven\current\conf\settings.xml
+[DEBUG] Reading user settings from C:\mulesoft\workspace-7.21a\study-mule-custom-policy-01\maven-settings.xml
+[DEBUG] Reading global toolchains from C:\Users\sh98\.sdkman\candidates\maven\current\conf\toolchains.xml
+[DEBUG] Reading user toolchains from C:\Users\sh98\.m2\toolchains.xml
+[DEBUG] Using local repository at C:\Users\sh98\.m2\repository
+[DEBUG] Using manager EnhancedLocalRepositoryManager with priority 10.0 for C:\Users\sh98\.m2\repository
+[INFO] Scanning for projects...
+[DEBUG] Extension realms for project org.apache.maven:standalone-pom:pom:1: (none)
+[DEBUG] Looking up lifecycle mappings for packaging pom from ClassRealm[plexus.core, parent: null]
+[DEBUG] Resolving plugin prefix archetype from [org.apache.maven.plugins, org.codehaus.mojo]
+[DEBUG] Creating adapter using nameMapper 'gav' and factory 'rwlock-local'
+[DEBUG] Could not find metadata org.apache.maven.plugins/maven-metadata.xml in local (C:\Users\sh98\.m2\repository)
+[DEBUG] Skipped remote request for org.apache.maven.plugins/maven-metadata.xml, locally cached metadata up-to-date
+[DEBUG] Could not find metadata org.codehaus.mojo/maven-metadata.xml in local (C:\Users\sh98\.m2\repository)
+[DEBUG] Skipped remote request for org.codehaus.mojo/maven-metadata.xml, locally cached metadata up-to-date
+[DEBUG] Resolved plugin prefix archetype to org.apache.maven.plugins:maven-archetype-plugin from repository central
+[DEBUG] Could not find metadata org.apache.maven.plugins:maven-archetype-plugin/maven-metadata.xml in local (C:\Users\sh98\.m2\repository)
+[DEBUG] Skipped remote request for org.apache.maven.plugins:maven-archetype-plugin/maven-metadata.xml, locally cached metadata up-to-date
+[DEBUG] Resolved plugin version for org.apache.maven.plugins:maven-archetype-plugin to 3.4.1 from repository central (https://repo.maven.apache.org/maven2, default, releases)
+[DEBUG] === REACTOR BUILD PLAN ================================================
+[DEBUG] Project: org.apache.maven:standalone-pom:pom:1
+[DEBUG] Tasks:   [archetype:generate]
+[DEBUG] Style:   Aggregating
+[DEBUG] =======================================================================
+[INFO] 
+[INFO] ------------------< org.apache.maven:standalone-pom >-------------------
+[INFO] Building Maven Stub Project (No POM) 1
+[INFO] --------------------------------[ pom ]---------------------------------
+[DEBUG] Resolving plugin prefix archetype from [org.apache.maven.plugins, org.codehaus.mojo]
+[DEBUG] Could not find metadata org.apache.maven.plugins/maven-metadata.xml in local (C:\Users\sh98\.m2\repository)
+[DEBUG] Skipped remote request for org.apache.maven.plugins/maven-metadata.xml, locally cached metadata up-to-date
+[DEBUG] Could not find metadata org.codehaus.mojo/maven-metadata.xml in local (C:\Users\sh98\.m2\repository)
+[DEBUG] Skipped remote request for org.codehaus.mojo/maven-metadata.xml, locally cached metadata up-to-date
+[DEBUG] Resolved plugin prefix archetype to org.apache.maven.plugins:maven-archetype-plugin from repository central
+[DEBUG] Reusing cached resolved plugin version for org.apache.maven.plugins:maven-archetype-plugin to 3.4.1 from POM null
+[DEBUG] Lifecycle clean -> [pre-clean, clean, post-clean]
+[DEBUG] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[DEBUG] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[DEBUG] Lifecycle clean -> [pre-clean, clean, post-clean]
+[DEBUG] Lifecycle default -> [validate, initialize, generate-sources, process-sources, generate-resources, process-resources, compile, process-classes, generate-test-sources, process-test-sources, generate-test-resources, process-test-resources, test-compile, process-test-classes, test, prepare-package, package, pre-integration-test, integration-test, post-integration-test, verify, install, deploy]
+[DEBUG] Lifecycle site -> [pre-site, site, post-site, site-deploy]
+[DEBUG] === PROJECT BUILD PLAN ================================================
+[DEBUG] Project:       org.apache.maven:standalone-pom:1
+[DEBUG] Dependencies (collect): []
+[DEBUG] Dependencies (resolve): []
+[DEBUG] Repositories (dependencies): [archetype (https://repository.mulesoft.org/nexus/content/repositories/public, default, releases+snapshots), central (https://repo.maven.apache.org/maven2, default, releases)]
+[DEBUG] Repositories (plugins)     : [central (https://repo.maven.apache.org/maven2, default, releases)]
+[DEBUG] --- init fork of org.apache.maven:standalone-pom:1 for org.apache.maven.plugins:maven-archetype-plugin:3.4.1:generate (default-cli) ---
+[DEBUG] Dependencies (collect): []
+[DEBUG] Dependencies (resolve): []
+[DEBUG] --- exit fork of org.apache.maven:standalone-pom:1 for org.apache.maven.plugins:maven-archetype-plugin:3.4.1:generate (default-cli) ---
+[DEBUG] -----------------------------------------------------------------------
+[DEBUG] Goal:          org.apache.maven.plugins:maven-archetype-plugin:3.4.1:generate (default-cli)
+[DEBUG] Style:         Regular
+[DEBUG] Configuration: <?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <archetypeArtifactId>${archetypeArtifactId}</archetypeArtifactId>
+  <archetypeCatalog default-value="remote,local">${archetypeCatalog}</archetypeCatalog>
+  <archetypeGroupId>${archetypeGroupId}</archetypeGroupId>
+  <archetypeVersion>${archetypeVersion}</archetypeVersion>
+  <askForDefaultPropertyValues default-value="false">${askForDefaultPropertyValues}</askForDefaultPropertyValues>
+  <filter>${filter}</filter>
+  <goals>${goals}</goals>
+  <interactiveMode default-value="${settings.interactiveMode}">${interactiveMode}</interactiveMode>
+  <outputDirectory default-value="${basedir}">${outputDirectory}</outputDirectory>
+  <project default-value="${project}"/>
+  <session default-value="${session}"/>
+</configuration>
+[DEBUG] =======================================================================
+[INFO] 
+[INFO] >>> archetype:3.4.1:generate (default-cli) > generate-sources @ standalone-pom >>>
+[INFO] 
+[INFO] <<< archetype:3.4.1:generate (default-cli) < generate-sources @ standalone-pom <<<
+[INFO] 
+[INFO] 
+[INFO] --- archetype:3.4.1:generate (default-cli) @ standalone-pom ---
+[DEBUG] Using mirror maven-default-http-blocker (http://0.0.0.0/) for apache.snapshots (http://repository.apache.org/snapshots).
+[DEBUG] Dependency collection stats {ConflictMarker.analyzeTime=836300, ConflictMarker.markTime=233900, ConflictMarker.nodeCount=93, ConflictIdSorter.graphTime=524300, ConflictIdSorter.topsortTime=274600, ConflictIdSorter.conflictIdCount=41, ConflictIdSorter.conflictIdCycleCount=0, ConflictResolver.totalTime=4995200, ConflictResolver.conflictItemCount=78, DfDependencyCollector.collectTime=308234800, DfDependencyCollector.transformTime=8629400}
+[DEBUG] org.apache.maven.plugins:maven-archetype-plugin:jar:3.4.1
+[DEBUG]    org.apache.maven.archetype:archetype-catalog:jar:3.4.1:compile
+[DEBUG]       org.codehaus.plexus:plexus-xml:jar:3.0.1:compile (version managed from default)
+[DEBUG]    org.apache.maven.archetype:archetype-descriptor:jar:3.4.1:compile
+[DEBUG]    org.apache.maven.archetype:archetype-common:jar:3.4.1:compile
+[DEBUG]       org.apache.groovy:groovy:jar:4.0.28:compile (version managed from default)
+[DEBUG]       org.apache.groovy:groovy-json:jar:4.0.28:runtime (version managed from default)
+[DEBUG]       org.apache.groovy:groovy-templates:jar:4.0.28:runtime (version managed from default)
+[DEBUG]       org.apache.groovy:groovy-xml:jar:4.0.28:runtime (version managed from default)
+[DEBUG]       org.apache.groovy:groovy-yaml:jar:4.0.28:runtime (version managed from default)
+[DEBUG]          com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.19.2:runtime
+[DEBUG]             org.yaml:snakeyaml:jar:2.4:runtime
+[DEBUG]             com.fasterxml.jackson.core:jackson-core:jar:2.19.2:runtime
+[DEBUG]          com.fasterxml.jackson.core:jackson-databind:jar:2.19.2:runtime
+[DEBUG]             com.fasterxml.jackson.core:jackson-annotations:jar:2.19.2:runtime
+[DEBUG]       org.apache.ivy:ivy:jar:2.5.3:runtime
+[DEBUG]       org.jdom:jdom2:jar:2.0.6.1:compile (version managed from default)
+[DEBUG]       commons-io:commons-io:jar:2.20.0:compile (version managed from default)
+[DEBUG]       org.codehaus.plexus:plexus-velocity:jar:2.2.1:compile (version managed from default)
+[DEBUG]       com.ibm.icu:icu4j:jar:77.1:compile
+[DEBUG]    org.apache.maven:maven-archiver:jar:3.6.4:compile
+[DEBUG]       org.codehaus.plexus:plexus-interpolation:jar:1.28:compile
+[DEBUG]    org.codehaus.plexus:plexus-archiver:jar:4.10.2:compile
+[DEBUG]       javax.inject:javax.inject:jar:1:compile
+[DEBUG]       org.codehaus.plexus:plexus-io:jar:3.5.1:compile
+[DEBUG]       org.apache.commons:commons-compress:jar:1.28.0:compile
+[DEBUG]          commons-codec:commons-codec:jar:1.19.0:compile
+[DEBUG]       io.airlift:aircompressor:jar:0.27:compile
+[DEBUG]       org.tukaani:xz:jar:1.10:runtime
+[DEBUG]       com.github.luben:zstd-jni:jar:1.5.7-4:runtime
+[DEBUG]    org.codehaus.plexus:plexus-utils:jar:4.0.2:compile
+[DEBUG]    org.codehaus.plexus:plexus-interactivity-api:jar:1.4:compile
+[DEBUG]    org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.15.1:compile (optional)
+[DEBUG]    org.apache.maven.shared:maven-shared-utils:jar:3.4.2:compile
+[DEBUG]    org.apache.maven.shared:maven-invoker:jar:3.3.0:compile
+[DEBUG]    org.apache.commons:commons-lang3:jar:3.19.0:compile
+[DEBUG]    org.apache.velocity:velocity-engine-core:jar:2.4.1:compile
+[DEBUG]    commons-collections:commons-collections:jar:3.2.2:compile
+[DEBUG]    org.apache.maven.shared:maven-script-interpreter:jar:1.5:compile
+[DEBUG]       org.apache-extras.beanshell:bsh:jar:2.0b6:compile
+[DEBUG]    org.slf4j:slf4j-api:jar:1.7.36:compile
+[DEBUG] Created new class realm plugin>org.apache.maven.plugins:maven-archetype-plugin:3.4.1
+[DEBUG] Importing foreign packages into class realm plugin>org.apache.maven.plugins:maven-archetype-plugin:3.4.1
+[DEBUG]   Imported:  < maven.api
+[DEBUG] Populating class realm plugin>org.apache.maven.plugins:maven-archetype-plugin:3.4.1
+[DEBUG]   Included: org.apache.maven.plugins:maven-archetype-plugin:jar:3.4.1
+[DEBUG]   Included: org.apache.maven.archetype:archetype-catalog:jar:3.4.1
+[DEBUG]   Included: org.codehaus.plexus:plexus-xml:jar:3.0.1
+[DEBUG]   Included: org.apache.maven.archetype:archetype-descriptor:jar:3.4.1
+[DEBUG]   Included: org.apache.maven.archetype:archetype-common:jar:3.4.1
+[DEBUG]   Included: org.apache.groovy:groovy:jar:4.0.28
+[DEBUG]   Included: org.apache.groovy:groovy-json:jar:4.0.28
+[DEBUG]   Included: org.apache.groovy:groovy-templates:jar:4.0.28
+[DEBUG]   Included: org.apache.groovy:groovy-xml:jar:4.0.28
+[DEBUG]   Included: org.apache.groovy:groovy-yaml:jar:4.0.28
+[DEBUG]   Included: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:jar:2.19.2
+[DEBUG]   Included: org.yaml:snakeyaml:jar:2.4
+[DEBUG]   Included: com.fasterxml.jackson.core:jackson-core:jar:2.19.2
+[DEBUG]   Included: com.fasterxml.jackson.core:jackson-databind:jar:2.19.2
+[DEBUG]   Included: com.fasterxml.jackson.core:jackson-annotations:jar:2.19.2
+[DEBUG]   Included: org.apache.ivy:ivy:jar:2.5.3
+[DEBUG]   Included: org.jdom:jdom2:jar:2.0.6.1
+[DEBUG]   Included: commons-io:commons-io:jar:2.20.0
+[DEBUG]   Included: org.codehaus.plexus:plexus-velocity:jar:2.2.1
+[DEBUG]   Included: com.ibm.icu:icu4j:jar:77.1
+[DEBUG]   Included: org.apache.maven:maven-archiver:jar:3.6.4
+[DEBUG]   Included: org.codehaus.plexus:plexus-interpolation:jar:1.28
+[DEBUG]   Included: org.codehaus.plexus:plexus-archiver:jar:4.10.2
+[DEBUG]   Included: org.codehaus.plexus:plexus-io:jar:3.5.1
+[DEBUG]   Included: org.apache.commons:commons-compress:jar:1.28.0
+[DEBUG]   Included: commons-codec:commons-codec:jar:1.19.0
+[DEBUG]   Included: io.airlift:aircompressor:jar:0.27
+[DEBUG]   Included: org.tukaani:xz:jar:1.10
+[DEBUG]   Included: com.github.luben:zstd-jni:jar:1.5.7-4
+[DEBUG]   Included: org.codehaus.plexus:plexus-utils:jar:4.0.2
+[DEBUG]   Included: org.codehaus.plexus:plexus-interactivity-api:jar:1.4
+[DEBUG]   Included: org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.15.1
+[DEBUG]   Included: org.apache.maven.shared:maven-shared-utils:jar:3.4.2
+[DEBUG]   Included: org.apache.maven.shared:maven-invoker:jar:3.3.0
+[DEBUG]   Included: org.apache.commons:commons-lang3:jar:3.19.0
+[DEBUG]   Included: org.apache.velocity:velocity-engine-core:jar:2.4.1
+[DEBUG]   Included: commons-collections:commons-collections:jar:3.2.2
+[DEBUG]   Included: org.apache.maven.shared:maven-script-interpreter:jar:1.5
+[DEBUG]   Included: org.apache-extras.beanshell:bsh:jar:2.0b6
+[DEBUG] Loading mojo org.apache.maven.plugins:maven-archetype-plugin:3.4.1:generate from plugin realm ClassRealm[plugin>org.apache.maven.plugins:maven-archetype-plugin:3.4.1, parent: jdk.internal.loader.ClassLoaders$AppClassLoader@251a69d7]
+[DEBUG] Initializing Velocity, Calling init()...
+[DEBUG] Starting Apache Velocity 2.4.1
+[DEBUG] Default Properties resource: org/apache/velocity/runtime/defaults/velocity.properties
+[DEBUG] ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+[DEBUG] ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+[DEBUG] FileResourceLoader: adding path ''
+[DEBUG] initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+[DEBUG] Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+[DEBUG] Loaded System Directive: org.apache.velocity.runtime.directive.Define
+[DEBUG] Loaded System Directive: org.apache.velocity.runtime.directive.Break
+[DEBUG] Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+[DEBUG] Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+[DEBUG] Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+[DEBUG] Loaded System Directive: org.apache.velocity.runtime.directive.Include
+[DEBUG] Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+[DEBUG] Created 20 parsers.
+[DEBUG] "velocimacro.library.path" is not set. Trying default library: velocimacros.vtl
+[DEBUG] Could not load resource 'velocimacros.vtl' from ResourceLoader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+[DEBUG] Default library velocimacros.vtl not found. Trying old default library: VM_global_library.vm
+[DEBUG] Could not load resource 'VM_global_library.vm' from ResourceLoader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+[DEBUG] Old default library VM_global_library.vm not found.
+[DEBUG] allowInline = true: VMs can be defined inline in templates
+[DEBUG] allowInlineToOverride = true: VMs defined inline may replace previous VM definitions
+[DEBUG] allowInlineLocal = false: VMs defined inline will be global in scope if allowed.
+[DEBUG] autoload off: VM system will not automatically reload global library macros
+[DEBUG] Configuring mojo execution 'org.apache.maven.plugins:maven-archetype-plugin:3.4.1:generate:default-cli' with basic configurator -->
+[DEBUG]   (f) archetypeArtifactId = api-gateway-custom-policy-archetype
+[DEBUG]   (f) archetypeCatalog = remote,local
+[DEBUG]   (f) archetypeGroupId = org.mule.tools
+[DEBUG]   (f) archetypeVersion = 1.2.0
+[DEBUG]   (f) askForDefaultPropertyValues = false
+[DEBUG]   (f) interactiveMode = true
+[DEBUG]   (f) outputDirectory = C:\mulesoft\workspace-7.21a\study-mule-custom-policy-01
+[DEBUG]   (f) project = MavenProject: org.apache.maven:standalone-pom:1 @ 
+[DEBUG]   (f) session = org.apache.maven.execution.MavenSession@1668919e
+[DEBUG] -- end configuration --
+[INFO] Generating project in Interactive mode
+[DEBUG] Using transporter HttpTransporter with priority 5.0 for https://repository.mulesoft.org/nexus/content/repositories/public
+[DEBUG] Using connector BasicRepositoryConnector with priority 0.0 for https://repository.mulesoft.org/nexus/content/repositories/public
+Downloading from archetype: https://repository.mulesoft.org/nexus/content/repositories/public/archetype-catalog.xml
+Progress (1):  (0/18 MB)Progress (1):  (0/18 MB)Progress (1):  (0/18 MB)Progress (1):  (0/18 MB)Progress (1):  (0/18 MB)Progress (1):  (0/18 MB)Progress (1):  (0/18 MB)Progress (1):  (0/18 MB)Progress (1):  (0.1/18 MB)Progress (1):  (0.1/18 MB)Progress (1):  (0.1/18 MB)Progress (1):  (0.1/18 MB)Progress (1):  (0.1/18 MB)Progress (1):  (0.1/18 MB)Progress (1):  (0.1/18 MB)Progress (1):  (0.1/18 MB)Progress (1):  (0.2/18 MB)Progress (1):  (0.2/18 MB)Progress (1):  (0.2/18 MB)Progress (1):  (0.2/18 MB)Progress (1):  (0.2/18 MB)Progress (1):  (0.2/18 MB)Progress (1):  (0.3/18 MB)Progress (1):  (0.3/18 MB)Progress (1):  (0.3/18 MB)Progress (1):  (0.3/18 MB)Progress (1):  (0.3/18 MB)Progress (1):  (0.3/18 MB)Progress (1):  (0.4/18 MB)Progress (1):  (0.4/18 MB)Progress (1):  (0.4/18 MB)Progress (1):  (0.4/18 MB)Progress (1):  (0.4/18 MB)Progress (1):  (0.4/18 MB)Progress (1):  (0.5/18 MB)Progress (1):  (0.5/18 MB)Progress (1):  (0.5/18 MB)Progress (1):  (0.5/18 MB)Progress (1):  (0.5/18 MB)Progress (1):  (0.5/18 MB)Progress (1):  (0.6/18 MB)Progress (1):  (0.6/18 MB)Progress (1):  (0.6/18 MB)Progress (1):  (0.6/18 MB)Progress (1):  (0.6/18 MB)Progress (1):  (0.6/18 MB)Progress (1):  (0.7/18 MB)Progress (1):  (0.7/18 MB)Progress (1):  (0.7/18 MB)Progress (1):  (0.7/18 MB)Progress (1):  (0.7/18 MB)Progress (1):  (0.7/18 MB)Progress (1):  (0.8/18 MB)Progress (1):  (0.8/18 MB)Progress (1):  (0.8/18 MB)Progress (1):  (0.8/18 MB)Progress (1):  (0.8/18 MB)Progress (1):  (0.8/18 MB)Progress (1):  (0.8/18 MB)Progress (1):  (0.9/18 MB)Progress (1):  (0.9/18 MB)Progress (1):  (0.9/18 MB)Progress (1):  (0.9/18 MB)Progress (1):  (0.9/18 MB)Progress (1):  (0.9/18 MB)Progress (1):  (1.0/18 MB)Progress (1):  (1.0/18 MB)Progress (1):  (1.0/18 MB)Progress (1):  (1.0/18 MB)Progress (1):  (1.0/18 MB)Progress (1):  (1.0/18 MB)Progress (1):  (1.1/18 MB)Progress (1):  (1.1/18 MB)Progress (1):  (1.1/18 MB)Progress (1):  (1.1/18 MB)Progress (1):  (1.1/18 MB)Progress (1):  (1.1/18 MB)Progress (1):  (1.2/18 MB)Progress (1):  (1.2/18 MB)Progress (1):  (1.2/18 MB)Progress (1):  (1.2/18 MB)Progress (1):  (1.2/18 MB)Progress (1):  (1.2/18 MB)Progress (1):  (1.3/18 MB)Progress (1):  (1.3/18 MB)Progress (1):  (1.3/18 MB)Progress (1):  (1.3/18 MB)Progress (1):  (1.3/18 MB)Progress (1):  (1.3/18 MB)Progress (1):  (1.4/18 MB)Progress (1):  (1.4/18 MB)Progress (1):  (1.4/18 MB)Progress (1):  (1.4/18 MB)Progress (1):  (1.4/18 MB)Progress (1):  (1.4/18 MB)Progress (1):  (1.5/18 MB)Progress (1):  (1.5/18 MB)Progress (1):  (1.5/18 MB)Progress (1):  (1.5/18 MB)Progress (1):  (1.5/18 MB)Progress (1):  (1.5/18 MB)Progress (1):  (1.6/18 MB)Progress (1):  (1.6/18 MB)Progress (1):  (1.6/18 MB)Progress (1):  (1.6/18 MB)Progress (1):  (1.6/18 MB)Progress (1):  (1.6/18 MB)Progress (1):  (1.7/18 MB)Progress (1):  (1.7/18 MB)Progress (1):  (1.7/18 MB)Progress (1):  (1.7/18 MB)Progress (1):  (1.7/18 MB)Progress (1):  (1.7/18 MB)Progress (1):  (1.7/18 MB)Progress (1):  (1.8/18 MB)Progress (1):  (1.8/18 MB)Progress (1):  (1.8/18 MB)Progress (1):  (1.8/18 MB)Progress (1):  (1.8/18 MB)Progress (1):  (1.8/18 MB)Progress (1):  (1.9/18 MB)Progress (1):  (1.9/18 MB)Progress (1):  (1.9/18 MB)Progress (1):  (1.9/18 MB)Progress (1):  (1.9/18 MB)Progress (1):  (1.9/18 MB)Progress (1):  (2.0/18 MB)Progress (1):  (2.0/18 MB)Progress (1):  (2.0/18 MB)Progress (1):  (2.0/18 MB)Progress (1):  (2.0/18 MB)Progress (1):  (2.0/18 MB)Progress (1):  (2.1/18 MB)Progress (1):  (2.1/18 MB)Progress (1):  (2.1/18 MB)Progress (1):  (2.1/18 MB)Progress (1):  (2.1/18 MB)Progress (1):  (2.1/18 MB)Progress (1):  (2.2/18 MB)Progress (1):  (2.2/18 MB)Progress (1):  (2.2/18 MB)Progress (1):  (2.2/18 MB)Progress (1):  (2.2/18 MB)Progress (1):  (2.2/18 MB)Progress (1):  (2.3/18 MB)Progress (1):  (2.3/18 MB)Progress (1):  (2.3/18 MB)Progress (1):  (2.3/18 MB)Progress (1):  (2.3/18 MB)Progress (1):  (2.3/18 MB)Progress (1):  (2.4/18 MB)Progress (1):  (2.4/18 MB)Progress (1):  (2.4/18 MB)Progress (1):  (2.4/18 MB)Progress (1):  (2.4/18 MB)Progress (1):  (2.4/18 MB)Progress (1):  (2.5/18 MB)Progress (1):  (2.5/18 MB)Progress (1):  (2.5/18 MB)Progress (1):  (2.5/18 MB)Progress (1):  (2.5/18 MB)Progress (1):  (2.5/18 MB)Progress (1):  (2.6/18 MB)Progress (1):  (2.6/18 MB)Progress (1):  (2.6/18 MB)Progress (1):  (2.6/18 MB)Progress (1):  (2.6/18 MB)Progress (1):  (2.6/18 MB)Progress (1):  (2.7/18 MB)Progress (1):  (2.7/18 MB)Progress (1):  (2.7/18 MB)Progress (1):  (2.7/18 MB)Progress (1):  (2.7/18 MB)Progress (1):  (2.7/18 MB)Progress (1):  (2.7/18 MB)Progress (1):  (2.8/18 MB)Progress (1):  (2.8/18 MB)Progress (1):  (2.8/18 MB)Progress (1):  (2.8/18 MB)Progress (1):  (2.8/18 MB)Progress (1):  (2.8/18 MB)Progress (1):  (2.9/18 MB)Progress (1):  (2.9/18 MB)Progress (1):  (2.9/18 MB)Progress (1):  (2.9/18 MB)Progress (1):  (2.9/18 MB)Progress (1):  (2.9/18 MB)Progress (1):  (3.0/18 MB)Progress (1):  (3.0/18 MB)Progress (1):  (3.0/18 MB)Progress (1):  (3.0/18 MB)Progress (1):  (3.0/18 MB)Progress (1):  (3.0/18 MB)Progress (1):  (3.1/18 MB)Progress (1):  (3.1/18 MB)Progress (1):  (3.1/18 MB)Progress (1):  (3.1/18 MB)Progress (1):  (3.1/18 MB)Progress (1):  (3.1/18 MB)Progress (1):  (3.2/18 MB)Progress (1):  (3.2/18 MB)Progress (1):  (3.2/18 MB)Progress (1):  (3.2/18 MB)Progress (1):  (3.2/18 MB)Progress (1):  (3.2/18 MB)Progress (1):  (3.3/18 MB)Progress (1):  (3.3/18 MB)Progress (1):  (3.3/18 MB)Progress (1):  (3.3/18 MB)Progress (1):  (3.3/18 MB)Progress (1):  (3.3/18 MB)Progress (1):  (3.4/18 MB)Progress (1):  (3.4/18 MB)Progress (1):  (3.4/18 MB)Progress (1):  (3.4/18 MB)Progress (1):  (3.4/18 MB)Progress (1):  (3.4/18 MB)Progress (1):  (3.5/18 MB)Progress (1):  (3.5/18 MB)Progress (1):  (3.5/18 MB)Progress (1):  (3.5/18 MB)Progress (1):  (3.5/18 MB)Progress (1):  (3.5/18 MB)Progress (1):  (3.6/18 MB)Progress (1):  (3.6/18 MB)Progress (1):  (3.6/18 MB)Progress (1):  (3.6/18 MB)Progress (1):  (3.6/18 MB)Progress (1):  (3.6/18 MB)Progress (1):  (3.7/18 MB)Progress (1):  (3.7/18 MB)Progress (1):  (3.7/18 MB)Progress (1):  (3.7/18 MB)Progress (1):  (3.7/18 MB)Progress (1):  (3.7/18 MB)Progress (1):  (3.7/18 MB)Progress (1):  (3.8/18 MB)Progress (1):  (3.8/18 MB)Progress (1):  (3.8/18 MB)Progress (1):  (3.8/18 MB)Progress (1):  (3.8/18 MB)Progress (1):  (3.8/18 MB)Progress (1):  (3.9/18 MB)Progress (1):  (3.9/18 MB)Progress (1):  (3.9/18 MB)Progress (1):  (3.9/18 MB)Progress (1):  (3.9/18 MB)Progress (1):  (3.9/18 MB)Progress (1):  (4.0/18 MB)Progress (1):  (4.0/18 MB)Progress (1):  (4.0/18 MB)Progress (1):  (4.0/18 MB)Progress (1):  (4.0/18 MB)Progress (1):  (4.0/18 MB)Progress (1):  (4.1/18 MB)Progress (1):  (4.1/18 MB)Progress (1):  (4.1/18 MB)Progress (1):  (4.1/18 MB)Progress (1):  (4.1/18 MB)Progress (1):  (4.1/18 MB)Progress (1):  (4.2/18 MB)Progress (1):  (4.2/18 MB)Progress (1):  (4.2/18 MB)Progress (1):  (4.2/18 MB)Progress (1):  (4.2/18 MB)Progress (1):  (4.2/18 MB)Progress (1):  (4.3/18 MB)Progress (1):  (4.3/18 MB)Progress (1):  (4.3/18 MB)Progress (1):  (4.3/18 MB)Progress (1):  (4.3/18 MB)Progress (1):  (4.3/18 MB)Progress (1):  (4.4/18 MB)Progress (1):  (4.4/18 MB)Progress (1):  (4.4/18 MB)Progress (1):  (4.4/18 MB)Progress (1):  (4.4/18 MB)Progress (1):  (4.4/18 MB)Progress (1):  (4.5/18 MB)Progress (1):  (4.5/18 MB)Progress (1):  (4.5/18 MB)Progress (1):  (4.5/18 MB)Progress (1):  (4.5/18 MB)Progress (1):  (4.5/18 MB)Progress (1):  (4.6/18 MB)Progress (1):  (4.6/18 MB)Progress (1):  (4.6/18 MB)Progress (1):  (4.6/18 MB)Progress (1):  (4.6/18 MB)Progress (1):  (4.6/18 MB)Progress (1):  (4.6/18 MB)Progress (1):  (4.7/18 MB)Progress (1):  (4.7/18 MB)Progress (1):  (4.7/18 MB)Progress (1):  (4.7/18 MB)Progress (1):  (4.7/18 MB)Progress (1):  (4.7/18 MB)Progress (1):  (4.8/18 MB)Progress (1):  (4.8/18 MB)Progress (1):  (4.8/18 MB)Progress (1):  (4.8/18 MB)Progress (1):  (4.8/18 MB)Progress (1):  (4.8/18 MB)Progress (1):  (4.9/18 MB)Progress (1):  (4.9/18 MB)Progress (1):  (4.9/18 MB)Progress (1):  (4.9/18 MB)Progress (1):  (4.9/18 MB)Progress (1):  (4.9/18 MB)Progress (1):  (5.0/18 MB)Progress (1):  (5.0/18 MB)Progress (1):  (5.0/18 MB)Progress (1):  (5.0/18 MB)Progress (1):  (5.0/18 MB)Progress (1):  (5.0/18 MB)Progress (1):  (5.1/18 MB)Progress (1):  (5.1/18 MB)Progress (1):  (5.1/18 MB)Progress (1):  (5.1/18 MB)Progress (1):  (5.1/18 MB)Progress (1):  (5.1/18 MB)Progress (1):  (5.2/18 MB)Progress (1):  (5.2/18 MB)Progress (1):  (5.2/18 MB)Progress (1):  (5.2/18 MB)Progress (1):  (5.2/18 MB)Progress (1):  (5.2/18 MB)Progress (1):  (5.3/18 MB)Progress (1):  (5.3/18 MB)Progress (1):  (5.3/18 MB)Progress (1):  (5.3/18 MB)Progress (1):  (5.3/18 MB)Progress (1):  (5.3/18 MB)Progress (1):  (5.4/18 MB)Progress (1):  (5.4/18 MB)Progress (1):  (5.4/18 MB)Progress (1):  (5.4/18 MB)Progress (1):  (5.4/18 MB)Progress (1):  (5.4/18 MB)Progress (1):  (5.5/18 MB)Progress (1):  (5.5/18 MB)Progress (1):  (5.5/18 MB)Progress (1):  (5.5/18 MB)Progress (1):  (5.5/18 MB)Progress (1):  (5.5/18 MB)Progress (1):  (5.6/18 MB)Progress (1):  (5.6/18 MB)Progress (1):  (5.6/18 MB)Progress (1):  (5.6/18 MB)Progress (1):  (5.6/18 MB)Progress (1):  (5.6/18 MB)Progress (1):  (5.6/18 MB)Progress (1):  (5.7/18 MB)Progress (1):  (5.7/18 MB)Progress (1):  (5.7/18 MB)Progress (1):  (5.7/18 MB)Progress (1):  (5.7/18 MB)Progress (1):  (5.7/18 MB)Progress (1):  (5.8/18 MB)Progress (1):  (5.8/18 MB)Progress (1):  (5.8/18 MB)Progress (1):  (5.8/18 MB)Progress (1):  (5.8/18 MB)Progress (1):  (5.8/18 MB)Progress (1):  (5.9/18 MB)Progress (1):  (5.9/18 MB)Progress (1):  (5.9/18 MB)Progress (1):  (5.9/18 MB)Progress (1):  (5.9/18 MB)Progress (1):  (5.9/18 MB)Progress (1):  (6.0/18 MB)Progress (1):  (6.0/18 MB)Progress (1):  (6.0/18 MB)Progress (1):  (6.0/18 MB)Progress (1):  (6.0/18 MB)Progress (1):  (6.0/18 MB)Progress (1):  (6.1/18 MB)Progress (1):  (6.1/18 MB)Progress (1):  (6.1/18 MB)Progress (1):  (6.1/18 MB)Progress (1):  (6.1/18 MB)Progress (1):  (6.1/18 MB)Progress (1):  (6.2/18 MB)Progress (1):  (6.2/18 MB)Progress (1):  (6.2/18 MB)Progress (1):  (6.2/18 MB)Progress (1):  (6.2/18 MB)Progress (1):  (6.2/18 MB)Progress (1):  (6.3/18 MB)Progress (1):  (6.3/18 MB)Progress (1):  (6.3/18 MB)Progress (1):  (6.3/18 MB)Progress (1):  (6.3/18 MB)Progress (1):  (6.3/18 MB)Progress (1):  (6.4/18 MB)Progress (1):  (6.4/18 MB)Progress (1):  (6.4/18 MB)Progress (1):  (6.4/18 MB)Progress (1):  (6.4/18 MB)Progress (1):  (6.4/18 MB)Progress (1):  (6.5/18 MB)Progress (1):  (6.5/18 MB)Progress (1):  (6.5/18 MB)Progress (1):  (6.5/18 MB)Progress (1):  (6.5/18 MB)Progress (1):  (6.5/18 MB)Progress (1):  (6.6/18 MB)Progress (1):  (6.6/18 MB)Progress (1):  (6.6/18 MB)Progress (1):  (6.6/18 MB)Progress (1):  (6.6/18 MB)Progress (1):  (6.6/18 MB)Progress (1):  (6.6/18 MB)Progress (1):  (6.7/18 MB)Progress (1):  (6.7/18 MB)Progress (1):  (6.7/18 MB)Progress (1):  (6.7/18 MB)Progress (1):  (6.7/18 MB)Progress (1):  (6.7/18 MB)Progress (1):  (6.8/18 MB)Progress (1):  (6.8/18 MB)Progress (1):  (6.8/18 MB)Progress (1):  (6.8/18 MB)Progress (1):  (6.8/18 MB)Progress (1):  (6.8/18 MB)Progress (1):  (6.9/18 MB)Progress (1):  (6.9/18 MB)Progress (1):  (6.9/18 MB)Progress (1):  (6.9/18 MB)Progress (1):  (6.9/18 MB)Progress (1):  (6.9/18 MB)Progress (1):  (7.0/18 MB)Progress (1):  (7.0/18 MB)Progress (1):  (7.0/18 MB)Progress (1):  (7.0/18 MB)Progress (1):  (7.0/18 MB)Progress (1):  (7.0/18 MB)Progress (1):  (7.1/18 MB)Progress (1):  (7.1/18 MB)Progress (1):  (7.1/18 MB)Progress (1):  (7.1/18 MB)Progress (1):  (7.1/18 MB)Progress (1):  (7.1/18 MB)Progress (1):  (7.2/18 MB)Progress (1):  (7.2/18 MB)Progress (1):  (7.2/18 MB)Progress (1):  (7.2/18 MB)Progress (1):  (7.2/18 MB)Progress (1):  (7.2/18 MB)Progress (1):  (7.3/18 MB)Progress (1):  (7.3/18 MB)Progress (1):  (7.3/18 MB)Progress (1):  (7.3/18 MB)Progress (1):  (7.3/18 MB)Progress (1):  (7.3/18 MB)Progress (1):  (7.4/18 MB)Progress (1):  (7.4/18 MB)Progress (1):  (7.4/18 MB)Progress (1):  (7.4/18 MB)Progress (1):  (7.4/18 MB)Progress (1):  (7.4/18 MB)Progress (1):  (7.5/18 MB)Progress (1):  (7.5/18 MB)Progress (1):  (7.5/18 MB)Progress (1):  (7.5/18 MB)Progress (1):  (7.5/18 MB)Progress (1):  (7.5/18 MB)Progress (1):  (7.5/18 MB)Progress (1):  (7.6/18 MB)Progress (1):  (7.6/18 MB)Progress (1):  (7.6/18 MB)Progress (1):  (7.6/18 MB)Progress (1):  (7.6/18 MB)Progress (1):  (7.6/18 MB)Progress (1):  (7.7/18 MB)Progress (1):  (7.7/18 MB)Progress (1):  (7.7/18 MB)Progress (1):  (7.7/18 MB)Progress (1):  (7.7/18 MB)Progress (1):  (7.7/18 MB)Progress (1):  (7.8/18 MB)Progress (1):  (7.8/18 MB)Progress (1):  (7.8/18 MB)Progress (1):  (7.8/18 MB)Progress (1):  (7.8/18 MB)Progress (1):  (7.8/18 MB)Progress (1):  (7.9/18 MB)Progress (1):  (7.9/18 MB)Progress (1):  (7.9/18 MB)Progress (1):  (7.9/18 MB)Progress (1):  (7.9/18 MB)Progress (1):  (7.9/18 MB)Progress (1):  (8.0/18 MB)Progress (1):  (8.0/18 MB)Progress (1):  (8.0/18 MB)Progress (1):  (8.0/18 MB)Progress (1):  (8.0/18 MB)Progress (1):  (8.0/18 MB)Progress (1):  (8.1/18 MB)Progress (1):  (8.1/18 MB)Progress (1):  (8.1/18 MB)Progress (1):  (8.1/18 MB)Progress (1):  (8.1/18 MB)Progress (1):  (8.1/18 MB)Progress (1):  (8.2/18 MB)Progress (1):  (8.2/18 MB)Progress (1):  (8.2/18 MB)Progress (1):  (8.2/18 MB)Progress (1):  (8.2/18 MB)Progress (1):  (8.2/18 MB)Progress (1):  (8.3/18 MB)Progress (1):  (8.3/18 MB)Progress (1):  (8.3/18 MB)Progress (1):  (8.3/18 MB)Progress (1):  (8.3/18 MB)Progress (1):  (8.3/18 MB)Progress (1):  (8.4/18 MB)Progress (1):  (8.4/18 MB)Progress (1):  (8.4/18 MB)Progress (1):  (8.4/18 MB)Progress (1):  (8.4/18 MB)Progress (1):  (8.4/18 MB)Progress (1):  (8.5/18 MB)Progress (1):  (8.5/18 MB)Progress (1):  (8.5/18 MB)Progress (1):  (8.5/18 MB)Progress (1):  (8.5/18 MB)Progress (1):  (8.5/18 MB)Progress (1):  (8.5/18 MB)Progress (1):  (8.6/18 MB)Progress (1):  (8.6/18 MB)Progress (1):  (8.6/18 MB)Progress (1):  (8.6/18 MB)Progress (1):  (8.6/18 MB)Progress (1):  (8.6/18 MB)Progress (1):  (8.7/18 MB)Progress (1):  (8.7/18 MB)Progress (1):  (8.7/18 MB)Progress (1):  (8.7/18 MB)Progress (1):  (8.7/18 MB)Progress (1):  (8.7/18 MB)Progress (1):  (8.8/18 MB)Progress (1):  (8.8/18 MB)Progress (1):  (8.8/18 MB)Progress (1):  (8.8/18 MB)Progress (1):  (8.8/18 MB)Progress (1):  (8.8/18 MB)Progress (1):  (8.9/18 MB)Progress (1):  (8.9/18 MB)Progress (1):  (8.9/18 MB)Progress (1):  (8.9/18 MB)Progress (1):  (8.9/18 MB)Progress (1):  (8.9/18 MB)Progress (1):  (9.0/18 MB)Progress (1):  (9.0/18 MB)Progress (1):  (9.0/18 MB)Progress (1):  (9.0/18 MB)Progress (1):  (9.0/18 MB)Progress (1):  (9.0/18 MB)Progress (1):  (9.1/18 MB)Progress (1):  (9.1/18 MB)Progress (1):  (9.1/18 MB)Progress (1):  (9.1/18 MB)Progress (1):  (9.1/18 MB)Progress (1):  (9.1/18 MB)Progress (1):  (9.2/18 MB)Progress (1):  (9.2/18 MB)Progress (1):  (9.2/18 MB)Progress (1):  (9.2/18 MB)Progress (1):  (9.2/18 MB)Progress (1):  (9.2/18 MB)Progress (1):  (9.3/18 MB)Progress (1):  (9.3/18 MB)Progress (1):  (9.3/18 MB)Progress (1):  (9.3/18 MB)Progress (1):  (9.3/18 MB)Progress (1):  (9.3/18 MB)Progress (1):  (9.4/18 MB)Progress (1):  (9.4/18 MB)Progress (1):  (9.4/18 MB)Progress (1):  (9.4/18 MB)Progress (1):  (9.4/18 MB)Progress (1):  (9.4/18 MB)Progress (1):  (9.5/18 MB)Progress (1):  (9.5/18 MB)Progress (1):  (9.5/18 MB)Progress (1):  (9.5/18 MB)Progress (1):  (9.5/18 MB)Progress (1):  (9.5/18 MB)Progress (1):  (9.5/18 MB)Progress (1):  (9.6/18 MB)Progress (1):  (9.6/18 MB)Progress (1):  (9.6/18 MB)Progress (1):  (9.6/18 MB)Progress (1):  (9.6/18 MB)Progress (1):  (9.6/18 MB)Progress (1):  (9.7/18 MB)Progress (1):  (9.7/18 MB)Progress (1):  (9.7/18 MB)Progress (1):  (9.7/18 MB)Progress (1):  (9.7/18 MB)Progress (1):  (9.7/18 MB)Progress (1):  (9.8/18 MB)Progress (1):  (9.8/18 MB)Progress (1):  (9.8/18 MB)Progress (1):  (9.8/18 MB)Progress (1):  (9.8/18 MB)Progress (1):  (9.8/18 MB)Progress (1):  (9.9/18 MB)Progress (1):  (9.9/18 MB)Progress (1):  (9.9/18 MB)Progress (1):  (9.9/18 MB)Progress (1):  (9.9/18 MB)Progress (1):  (9.9/18 MB)Progress (1):  (10.0/18 MB)Progress (1):  (10.0/18 MB)Progress (1):  (10.0/18 MB)Progress (1):  (10/18 MB)  Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (10/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (11/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (12/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (13/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (14/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (15/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (16/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (17/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18/18 MB)Progress (1):  (18 MB)                         Downloaded from archetype: https://repository.mulesoft.org/nexus/content/repositories/public/archetype-catalog.xml (18 MB at 577 kB/s)
+[DEBUG] Writing tracking file 'C:\Users\sh98\.m2\repository\resolver-status.properties'
+[DEBUG] Getting archetypes from catalog: C:\Users\sh98\.m2\repository\archetype-catalog.xml
+[INFO] Archetype repository not defined. Using the one from [org.mule.tools:api-gateway-custom-policy-archetype:1.0.0] found in catalog remote
+[DEBUG] Not found archetype org.mule.tools:api-gateway-custom-policy-archetype:1.2.0 in cache
+[DEBUG] Resolving artifact org.mule.tools:api-gateway-custom-policy-archetype:jar:1.2.0 from [archetype (https://repository.mulesoft.org/nexus/content/repositories/public, default, releases+snapshots), central (https://repo.maven.apache.org/maven2, default, releases)]
+[DEBUG] Resolving artifact org.mule.tools:api-gateway-custom-policy-archetype:jar:1.2.0 from [archetype (https://repository.mulesoft.org/nexus/content/repositories/public, default, releases+snapshots), central (https://repo.maven.apache.org/maven2, default, releases)]
+[DEBUG] Using transporter HttpTransporter with priority 5.0 for https://repository.mulesoft.org/nexus/content/repositories/public
+[DEBUG] Using connector BasicRepositoryConnector with priority 0.0 for https://repository.mulesoft.org/nexus/content/repositories/public
+Downloading from archetype: https://repository.mulesoft.org/nexus/content/repositories/public/org/mule/tools/api-gateway-custom-policy-archetype/1.2.0/api-gateway-custom-policy-archetype-1.2.0.jar
+Progress (1): api-gateway-custom-policy-archetype-1.2.0.jar (3.3 kB)                                                                    Downloaded from archetype: https://repository.mulesoft.org/nexus/content/repositories/public/org/mule/tools/api-gateway-custom-policy-archetype/1.2.0/api-gateway-custom-policy-archetype-1.2.0.jar (3.3 kB at 7.0 kB/s)
+[DEBUG] Writing tracking file 'C:\Users\sh98\.m2\repository\org\mule\tools\api-gateway-custom-policy-archetype\1.2.0\_remote.repositories'
+[DEBUG] Writing tracking file 'C:\Users\sh98\.m2\repository\org\mule\tools\api-gateway-custom-policy-archetype\1.2.0\api-gateway-custom-policy-archetype-1.2.0.jar.lastUpdated'
+[DEBUG] Found archetype org.mule.tools:api-gateway-custom-policy-archetype:1.2.0 in cache: C:\Users\sh98\.m2\repository\org\mule\tools\api-gateway-custom-policy-archetype\1.2.0\api-gateway-custom-policy-archetype-1.2.0.jar
+[DEBUG] checking fileset archetype status on C:\Users\sh98\.m2\repository\org\mule\tools\api-gateway-custom-policy-archetype\1.2.0\api-gateway-custom-policy-archetype-1.2.0.jar
+[DEBUG] Searching for META-INF/maven/archetype-metadata.xml inside C:\Users\sh98\.m2\repository\org\mule\tools\api-gateway-custom-policy-archetype\1.2.0\api-gateway-custom-policy-archetype-1.2.0.jar
+[DEBUG]   - META-INF/maven/archetype-metadata.xml
+[DEBUG] Entry found
+[DEBUG] Searching for META-INF/maven/archetype-metadata.xml inside C:\Users\sh98\.m2\repository\org\mule\tools\api-gateway-custom-policy-archetype\1.2.0\api-gateway-custom-policy-archetype-1.2.0.jar
+[DEBUG]   - META-INF/maven/archetype-metadata.xml
+[DEBUG] Entry found
+[DEBUG] Creating ArchetypeConfiguration from fileset descriptor and Properties
+[DEBUG] Adding requiredProperty minMuleVersion
+[DEBUG] Setting property minMuleVersion=4.1.1
+[DEBUG] Setting defaultProperty minMuleVersion=4.1.1
+[DEBUG] Adding requiredProperty policyDescription
+[DEBUG] Adding requiredProperty policyName
+[DEBUG] Adding requiredProperty exchangeRepositoryUrl
+[DEBUG] Setting property exchangeRepositoryUrl=https://maven.anypoint.mulesoft.com/api/v1/organizations
+[DEBUG] Setting defaultProperty exchangeRepositoryUrl=https://maven.anypoint.mulesoft.com/api/v1/organizations
+[DEBUG] Adding requiredProperty encryptionSupported
+[DEBUG] Setting property encryptionSupported=false
+[DEBUG] Setting defaultProperty encryptionSupported=false
+[DEBUG] Adding requiredProperty groupId
+[DEBUG] Setting property groupId=12345678
+[DEBUG] Adding requiredProperty artifactId
+[DEBUG] Setting property artifactId=my-custom-polily-01
+[DEBUG] Adding requiredProperty version
+[DEBUG] Setting property version=1.0.0
+[DEBUG] Adding requiredProperty package
+[DEBUG] Setting property package=mule-policy
+[INFO] Using property: minMuleVersion = 4.1.1
+Define value for property 'policyDescription': Define value for property 'policyName': [INFO] Using property: exchangeRepositoryUrl = https://maven.anypoint.mulesoft.com/api/v1/organizations
+[INFO] Using property: encryptionSupported = false
+[INFO] Using property: groupId = 12345678
+[INFO] Using property: artifactId = my-custom-polily-01
+[INFO] Using property: version = 1.0.0
+[INFO] Using property: package = mule-policy
+Confirm properties configuration:
+minMuleVersion: 4.1.1
+policyDescription: my-policy-description
+policyName: my-policy-name
+exchangeRepositoryUrl: https://maven.anypoint.mulesoft.com/api/v1/organizations
+encryptionSupported: false
+groupId: 12345678
+artifactId: my-custom-polily-01
+version: 1.0.0
+package: mule-policy
+ Y: [DEBUG] Archetype generation configuration confirmed
+[DEBUG] Found archetype org.mule.tools:api-gateway-custom-policy-archetype:1.2.0 in cache: C:\Users\sh98\.m2\repository\org\mule\tools\api-gateway-custom-policy-archetype\1.2.0\api-gateway-custom-policy-archetype-1.2.0.jar
+[DEBUG] Found archetype org.mule.tools:api-gateway-custom-policy-archetype:1.2.0 in cache: C:\Users\sh98\.m2\repository\org\mule\tools\api-gateway-custom-policy-archetype\1.2.0\api-gateway-custom-policy-archetype-1.2.0.jar
+[DEBUG] checking fileset archetype status on C:\Users\sh98\.m2\repository\org\mule\tools\api-gateway-custom-policy-archetype\1.2.0\api-gateway-custom-policy-archetype-1.2.0.jar
+[DEBUG] Searching for META-INF/maven/archetype-metadata.xml inside C:\Users\sh98\.m2\repository\org\mule\tools\api-gateway-custom-policy-archetype\1.2.0\api-gateway-custom-policy-archetype-1.2.0.jar
+[DEBUG]   - META-INF/maven/archetype-metadata.xml
+[DEBUG] Entry found
+[DEBUG] Searching for META-INF/maven/archetype-metadata.xml inside C:\Users\sh98\.m2\repository\org\mule\tools\api-gateway-custom-policy-archetype\1.2.0\api-gateway-custom-policy-archetype-1.2.0.jar
+[DEBUG]   - META-INF/maven/archetype-metadata.xml
+[DEBUG] Entry found
+[INFO] ----------------------------------------------------------------------------
+[INFO] Using following parameters for creating project from Archetype: api-gateway-custom-policy-archetype:1.2.0
+[INFO] ----------------------------------------------------------------------------
+[INFO] Parameter: groupId, Value: 12345678
+[INFO] Parameter: artifactId, Value: my-custom-polily-01
+[INFO] Parameter: version, Value: 1.0.0
+[INFO] Parameter: package, Value: mule-policy
+[INFO] Parameter: packageInPathFormat, Value: mule-policy
+[INFO] Parameter: policyDescription, Value: my-policy-description
+[INFO] Parameter: package, Value: mule-policy
+[INFO] Parameter: policyName, Value: my-policy-name
+[INFO] Parameter: groupId, Value: 12345678
+[INFO] Parameter: encryptionSupported, Value: false
+[INFO] Parameter: minMuleVersion, Value: 4.1.1
+[INFO] Parameter: artifactId, Value: my-custom-polily-01
+[INFO] Parameter: exchangeRepositoryUrl, Value: https://maven.anypoint.mulesoft.com/api/v1/organizations
+[INFO] Parameter: version, Value: 1.0.0
+[DEBUG] getFilesetArchetypeResources( "C:\Users\sh98\.m2\repository\org\mule\tools\api-gateway-custom-policy-archetype\1.2.0\api-gateway-custom-policy-archetype-1.2.0.jar" )
+[DEBUG]   - ignored resource META-INF/maven/archetype-metadata.xml
+[DEBUG]   - found resource (archetype-resources/)__artifactId__.yaml
+[DEBUG]   - found resource (archetype-resources/)pom.xml
+[DEBUG]   - found resource (archetype-resources/)mule-artifact.json
+[DEBUG]   - found resource (archetype-resources/)src/main/mule/template.xml
+[DEBUG] Processing complete archetype custom-policy
+[DEBUG] Processing module my-custom-polily-01
+[DEBUG] Processing module rootArtifactId my-custom-polily-01
+[DEBUG] Processing module pom C:\mulesoft\workspace-7.21a\study-mule-custom-policy-01\my-custom-polily-01\pom.xml
+[DEBUG] Processing module moduleOffset 
+[DEBUG] Processing module outputDirectoryFile C:\mulesoft\workspace-7.21a\study-mule-custom-policy-01\my-custom-polily-01
+[DEBUG] Processing fileset project moduleId my-custom-polily-01
+[DEBUG] Processing fileset project pom C:\mulesoft\workspace-7.21a\study-mule-custom-policy-01\my-custom-polily-01\pom.xml
+[DEBUG] Processing fileset project moduleOffset 
+[DEBUG] Processing fileset project outputDirectoryFile C:\mulesoft\workspace-7.21a\study-mule-custom-policy-01\my-custom-polily-01
+[DEBUG] Processing fileset project basedirPom C:\mulesoft\workspace-7.21a\study-mule-custom-policy-01\pom.xml
+[DEBUG] Processing pom C:\mulesoft\workspace-7.21a\study-mule-custom-policy-01\my-custom-polily-01\pom.xml
+[DEBUG] Processing template archetype-resources/pom.xml
+[DEBUG] Merging into C:\mulesoft\workspace-7.21a\study-mule-custom-policy-01\my-custom-polily-01\pom.xml
+[DEBUG] Processing filesets
+  [__artifactId__.yaml, pom.xml, mule-artifact.json, src/main/mule/template.xml]
+[DEBUG] Final interpolated file path: '//'
+[DEBUG]     Processing fileset  (Filtered-Flat) [mule-artifact.json, __artifactId__.yaml -- ] -> 2:
+      [__artifactId__.yaml, mule-artifact.json]
+[DEBUG] Replacing property 'artifactId' in file path '//__artifactId__.yaml' with value 'my-custom-polily-01'.
+[DEBUG] Final interpolated file path: '//my-custom-polily-01.yaml'
+[DEBUG] Processing template archetype-resources/__artifactId__.yaml
+[DEBUG] Merging into C:\mulesoft\workspace-7.21a\study-mule-custom-policy-01\my-custom-polily-01\my-custom-polily-01.yaml
+[DEBUG] Final interpolated file path: '//mule-artifact.json'
+[DEBUG] Processing template archetype-resources/mule-artifact.json
+[DEBUG] Merging into C:\mulesoft\workspace-7.21a\study-mule-custom-policy-01\my-custom-polily-01\mule-artifact.json
+[DEBUG]     Processed 2 files.
+[DEBUG] Final interpolated file path: 'src/main/mule//'
+[DEBUG]     Processing fileset src/main/mule (Filtered-Flat) [**/*.xml -- ] -> 1:
+      [src/main/mule/template.xml]
+[DEBUG] Final interpolated file path: 'src/main/mule///template.xml'
+[DEBUG] Processing template archetype-resources/src/main/mule/template.xml
+[DEBUG] Merging into C:\mulesoft\workspace-7.21a\study-mule-custom-policy-01\my-custom-polily-01\src\main\mule\template.xml
+[DEBUG]     Processed 1 files.
+[DEBUG] Processed 2 filesets
+[DEBUG] Processed my-custom-polily-01
+[DEBUG] Searching for META-INF/archetype-post-generate.groovy inside C:\Users\sh98\.m2\repository\org\mule\tools\api-gateway-custom-policy-archetype\1.2.0\api-gateway-custom-policy-archetype-1.2.0.jar
+[DEBUG]   - META-INF/maven/archetype-metadata.xml
+[DEBUG]   - archetype-resources/__artifactId__.yaml
+[DEBUG]   - archetype-resources/pom.xml
+[DEBUG]   - archetype-resources/mule-artifact.json
+[DEBUG]   - archetype-resources/src/main/mule/template.xml
+[INFO] Project created from Archetype in dir: C:\mulesoft\workspace-7.21a\study-mule-custom-policy-01\my-custom-polily-01
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  57.555 s
+[INFO] Finished at: 2026-01-15T23:29:50+09:00
+[INFO] ------------------------------------------------------------------------
+[DEBUG] Shutting down adapter factory; available factories [file-lock, rwlock-local, semaphore-local, noop]; available name mappers [discriminating, file-gav, file-hgav, file-static, gav, static]
+[DEBUG] Shutting down 'file-lock' factory
+[DEBUG] Shutting down 'rwlock-local' factory
+[DEBUG] Shutting down 'semaphore-local' factory
+[DEBUG] Shutting down 'noop' factory
