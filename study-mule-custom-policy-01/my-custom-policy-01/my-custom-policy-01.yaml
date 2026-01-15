@@ -1,0 +1,13 @@
+id: my-policy-name
+name: my-policy-name
+description: my-policy-description
+category: Custom
+type: custom
+resourceLevelSupported: true
+encryptionSupported: false
+standalone: true
+# https://docs.mulesoft.com/mule-gateway/policies-custom-java-version#non-split-model-policies
+supportedJavaVersions: ["8", "11", "17"]
+requiredCharacteristics: []
+providedCharacteristics: []
+configuration: []
