@@ -80,9 +80,9 @@ https://maven.apache.org/settings.html
 
 ### mule-artifact.json を書き換えた
 * java17を追加したが、これで正しいか、まだ確証がない。
-  * 次の「my-custom-polily-01.yaml 」を書き換えれば、こちらは不要かも。
+  * 次の「my-custom-policy-01.yaml 」を書き換えれば、こちらは不要かも。
 
-### my-custom-polily-01.yaml を書き換えた。
+### my-custom-policy-01.yaml を書き換えた。
 * 以下のバージョン不一致のエラーが表示されたため、Custom Policyが対応しているJavaVersionの設定を追加した。
   * このエラーが表示されているが、この書き換え済みのCustom Policyが無いと、UIの内部エラー的なメッセージが表示されて、すこしハマった。
   * > There are instances with incompatible policies. Check for policy updates to solve this issue. Review instances.
@@ -123,8 +123,8 @@ Downloading from central: https://repo.maven.apache.org/maven2/org/mule/tools/ap
 ### Muleアプリ起動時に、Custom Policyのxml構造エラー
 対処: Custom Policyを修正する。
 ```
-ERROR 2026-01-16 00:56:55,372 [agw-policy-set-deployment.01] com.mulesoft.mule.runtime.gw.policies.deployment.DefaultPolicyDeployer: Error deploying policy my-custom-polily-01-7634037 to application study-mule-minmum-04-app
-org.mule.runtime.deployment.model.api.policy.PolicyRegistrationException: Error occured registering policy 'my-custom-polily-01-7634037-mainFlow'
+ERROR 2026-01-16 00:56:55,372 [agw-policy-set-deployment.01] com.mulesoft.mule.runtime.gw.policies.deployment.DefaultPolicyDeployer: Error deploying policy my-custom-policy-01-7634037 to application study-mule-minmum-04-app
+org.mule.runtime.deployment.model.api.policy.PolicyRegistrationException: Error occured registering policy 'my-custom-policy-01-7634037-mainFlow'
 	at org.mule.runtime.deployment.model.impl@4.9.0/org.mule.runtime.module.deployment.impl.internal.application.MuleApplicationPolicyProvider.addPolicy(MuleApplicationPolicyProvider.java:112) ~[mule-module-deployment-model-impl-4.9.0.jar:?]
 	at com.mulesoft.anypoint.gw.core@4.9.0/com.mulesoft.mule.runtime.gw.model.ApiImplementation.addPolicy(ApiImplementation.java:86) ~[api-gateway-core-4.9.0.jar:?]
 	at com.mulesoft.anypoint.gw.module.policies@4.9.0/com.mulesoft.mule.runtime.gw.policies.deployment.DefaultPolicyDeployer.internalDeploy(DefaultPolicyDeployer.java:78) ~[mule-module-policies-4.9.0.jar:?]
@@ -152,11 +152,11 @@ org.mule.runtime.deployment.model.api.policy.PolicyRegistrationException: Error 
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
 	at java.base/java.lang.Thread.run(Thread.java:840) [?:?]
 Caused by: org.mule.runtime.api.lifecycle.InitialisationException: Cannot create artifact context for the policy instance
-Caused by: org.mule.runtime.core.api.config.ConfigurationException: There was '1' error while parsing the given file 'C:\mulesoft\AnypointStudio-7.21\plugins\org.mule.tooling.server.4.9.ee_7.21.0.202502030106\mule\policies\my-custom-polily-01-7634037\policy.xml'.
+Caused by: org.mule.runtime.core.api.config.ConfigurationException: There was '1' error while parsing the given file 'C:\mulesoft\AnypointStudio-7.21\plugins\org.mule.tooling.server.4.9.ee_7.21.0.202502030106\mule\policies\my-custom-policy-01-7634037\policy.xml'.
 Full list:
 org.xml.sax.SAXParseException; lineNumber: 16; columnNumber: 59; cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.mulesoft.org/schema/mule/http-policy-transform":set-response}'. One of '{"http://www.mulesoft.org/schema/mule/core":abstract-message-processor, "http://www.mulesoft.org/schema/mule/core":abstract-mixed-content-message-processor}' is expected.
 
-Caused by: org.mule.runtime.api.exception.MuleRuntimeException: There was '1' error while parsing the given file 'C:\mulesoft\AnypointStudio-7.21\plugins\org.mule.tooling.server.4.9.ee_7.21.0.202502030106\mule\policies\my-custom-polily-01-7634037\policy.xml'.
+Caused by: org.mule.runtime.api.exception.MuleRuntimeException: There was '1' error while parsing the given file 'C:\mulesoft\AnypointStudio-7.21\plugins\org.mule.tooling.server.4.9.ee_7.21.0.202502030106\mule\policies\my-custom-policy-01-7634037\policy.xml'.
 Full list:
 org.xml.sax.SAXParseException; lineNumber: 16; columnNumber: 59; cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.mulesoft.org/schema/mule/http-policy-transform":set-response}'. One of '{"http://www.mulesoft.org/schema/mule/core":abstract-message-processor, "http://www.mulesoft.org/schema/mule/core":abstract-mixed-content-message-processor}' is expected.
 ```
