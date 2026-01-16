@@ -5,9 +5,23 @@ on:
       app_path:
         type: choice
         options:
-            - all
-            - study-mule-munit-log-format
-            - study-mule-maven-build-with-exchange
+          - all
+          - study-mule-munit-log-format
+          - study-mule-maven-build-with-exchange
+      maven_http_log:
+        type: choice
+        options:
+          - none
+          - info
+          - debug
+        default: none
+      maven_http_wire_log:
+        type: choice
+        options:
+          - none
+          - info
+          - debug
+        default: none
 
 jobs:
   define-target-apps:
@@ -51,14 +65,28 @@ jobs:
                 ${{ runner.os }}-build-
                 ${{ runner.os }}-
 
+      - name: mask ANYPOINT_CONNAPP_CLIENT_SECRET
+        run: |
+          echo '---1---'
+          x=$(echo "~~~Client~~~:ANYPOINT_CONNAPP_CLIENT_ID~?~ANYPOINT_CONNAPP_CLIENT_SECRET" | base64)
+          echo '---2---'
+          echo "::add-mask::${x}"
+          echo '---3---'
+        env:
+          ANYPOINT_CONNAPP_CLIENT_ID: ${{vars.ANYPOINT_CONNAPP_CLIENT_ID}}
+          ANYPOINT_CONNAPP_CLIENT_SECRET: ${{secrets.ANYPOINT_CONNAPP_CLIENT_SECRET}}
+
       - name: maven package
         working-directory: ${{ matrix.app_path }}
         run: |
           mvn package -DskipTests --batch-mode --show-version \
-            -s ./maven-settings.xml \
-            -Dorg.slf4j.simpleLogger.log.org.apache.http=debug
+            -s ./.github/maven-settings.xml \
+            -Dorg.slf4j.simpleLogger.log.org.apache.http=${MAVEN_HTTP_LOG} \
+            -Dorg.slf4j.simpleLogger.log.org.apache.http.wire=${MAVEN_HTTP_WIRE_LOG} \
         env:
           ANYPOINT_CONNAPP_CLIENT_ID: ${{vars.ANYPOINT_CONNAPP_CLIENT_ID}}
           ANYPOINT_CONNAPP_CLIENT_SECRET: ${{secrets.ANYPOINT_CONNAPP_CLIENT_SECRET}}
+          MAVEN_HTTP_LOG: ${{inputs.maven_http_log}}
+          MAVEN_HTTP_WIRE_LOG: $${{inputs.maven_http_wire_log}}
 
 
