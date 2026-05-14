@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="mainFlow" doc:id="9da30a1d-a21a-4383-ad31-8dbd8c271793" >
+		<http:listener doc:name="Listener" doc:id="5e2cfafa-0383-4119-8b22-3cfd43a33d07" config-ref="HTTP_Listener_config" path="/*"/>
+		<logger level="INFO" doc:name="myapp.flow.begin" doc:id="9dd5c96b-3813-455f-b6ac-99320a83614f" category="myapp.flow.begin" message="#[output application/json --- {msg: 'flow begin', attr: attributes}]"/>
+		<choice doc:name="Choice" doc:id="0d9d4e2f-ea37-4aed-a1b0-c98b0c8e05fe" >
+			<when expression="#[attributes.queryParams['q'] != null]">
+				<http:request method="GET" doc:name="Request" doc:id="0d1a9e85-f110-4723-95bc-4fcf58ca85c6" url="#[attributes.queryParams['q']]" config-ref="HTTP_Request_config"/>
+			</when>
+			<otherwise >
+				<logger level="INFO" doc:name="skip" doc:id="e212dd20-b763-4dc1-8760-dc73a35ae651" message="#[output application/json --- {msg: 'skip'}]"/>
+			</otherwise>
+		</choice>
+		<logger level="INFO" doc:name="myapp.flow.end" doc:id="3d479d2a-45bb-4064-a9d9-a824438083f3" category="myapp.flow.end" message="#[output application/json --- {msg: 'flow end'}]"/>
+	</flow>
+</mule>

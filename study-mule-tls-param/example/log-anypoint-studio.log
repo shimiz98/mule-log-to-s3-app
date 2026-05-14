@@ -1,0 +1,383 @@
+INFO  2026-05-15 01:48:03,711 [[MuleRuntime].uber.01: [study-mule-tls-param].mainFlow.CPU_LITE @5ae12a29] [processor: mainFlow/processors/0; event: accd4f80-4fb4-11f1-aecd-244bfe937825] myapp.flow.begin: {
+  "msg": "flow begin",
+  "attr": {
+    "headers": {
+      "host": "localhost:8081",
+      "user-agent": "curl/8.18.0",
+      "accept": "*/*"
+    },
+    "clientCertificate": null,
+    "method": "GET",
+    "scheme": "http",
+    "queryParams": {
+      "q": "https://study-mule-tls-param-4nfndu.5sc6y6-3.usa-e2.cloudhub.io/"
+    },
+    "requestUri": "/?q=https://study-mule-tls-param-4nfndu.5sc6y6-3.usa-e2.cloudhub.io/",
+    "queryString": "q=https://study-mule-tls-param-4nfndu.5sc6y6-3.usa-e2.cloudhub.io/",
+    "version": "HTTP/1.1",
+    "maskedRequestPath": "/",
+    "listenerPath": "/*",
+    "localAddress": "/127.0.0.1:8081",
+    "relativePath": "/",
+    "uriParams": {
+      
+    },
+    "rawRequestUri": "/?q=https://study-mule-tls-param-4nfndu.5sc6y6-3.usa-e2.cloudhub.io/",
+    "rawRequestPath": "/",
+    "remoteAddress": "/127.0.0.1:59478",
+    "requestPath": "/"
+  }
+}
+WARN  2026-05-15 01:48:03,717 [[MuleRuntime].uber.01: [study-mule-tls-param].mainFlow.CPU_LITE @5ae12a29] [processor: mainFlow/processors/1/route/0/processors/0; event: accd4f80-4fb4-11f1-aecd-244bfe937825] org.mule.extension.http.internal.request.HttpRequestFactory: Body is ignored since the HTTP Method is between the empty body methods ([HEAD, GET, OPTIONS]) and the Send Body Mode is not set to 'ALWAYS'. future warnings like this will be suppressed in order to avoid performance degradations
+javax.net.ssl|INFO|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.014 JST|AlpnExtension.java:182|No available application protocols
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.014 JST|SSLExtensions.java:272|Ignore, context unavailable extension: application_layer_protocol_negotiation
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.014 JST|SessionTicketExtension.java:410|Stateless resumption supported
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.014 JST|SSLExtensions.java:272|Ignore, context unavailable extension: renegotiation_info
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.015 JST|ClientHello.java:641|Produced ClientHello handshake message (
+"ClientHello": {
+  "client version"      : "TLSv1.2",
+  "random"              : "4B5EF567C326DC12DAF7AE5B7079F43EFE350A9FC005ED58EFB7607B3F70B8BA",
+  "session id"          : "",
+  "cipher suites"       : "[TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384(0xC02C), TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256(0xC02B), TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256(0xCCA9), TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384(0xC030), TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256(0xCCA8), TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256(0xC02F), TLS_DHE_RSA_WITH_AES_256_GCM_SHA384(0x009F), TLS_DHE_RSA_WITH_CHACHA20_POLY1305_SHA256(0xCCAA), TLS_DHE_DSS_WITH_AES_256_GCM_SHA384(0x00A3), TLS_DHE_RSA_WITH_AES_128_GCM_SHA256(0x009E), TLS_DHE_DSS_WITH_AES_128_GCM_SHA256(0x00A2), TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384(0xC024), TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384(0xC028), TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256(0xC023), TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256(0xC027), TLS_DHE_RSA_WITH_AES_256_CBC_SHA256(0x006B), TLS_DHE_DSS_WITH_AES_256_CBC_SHA256(0x006A), TLS_DHE_RSA_WITH_AES_128_CBC_SHA256(0x0067), TLS_DHE_DSS_WITH_AES_128_CBC_SHA256(0x0040), TLS_ECDH_ECDSA_WITH_AES_256_GCM_SHA384(0xC02E), TLS_ECDH_RSA_WITH_AES_256_GCM_SHA384(0xC032), TLS_ECDH_ECDSA_WITH_AES_128_GCM_SHA256(0xC02D), TLS_ECDH_RSA_WITH_AES_128_GCM_SHA256(0xC031), TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA384(0xC026), TLS_ECDH_RSA_WITH_AES_256_CBC_SHA384(0xC02A), TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA256(0xC025), TLS_ECDH_RSA_WITH_AES_128_CBC_SHA256(0xC029), TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA(0xC00A), TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA(0xC014), TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA(0xC009), TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA(0xC013), TLS_DHE_RSA_WITH_AES_256_CBC_SHA(0x0039), TLS_DHE_DSS_WITH_AES_256_CBC_SHA(0x0038), TLS_DHE_RSA_WITH_AES_128_CBC_SHA(0x0033), TLS_DHE_DSS_WITH_AES_128_CBC_SHA(0x0032), TLS_ECDH_ECDSA_WITH_AES_256_CBC_SHA(0xC005), TLS_ECDH_RSA_WITH_AES_256_CBC_SHA(0xC00F), TLS_ECDH_ECDSA_WITH_AES_128_CBC_SHA(0xC004), TLS_ECDH_RSA_WITH_AES_128_CBC_SHA(0xC00E), TLS_RSA_WITH_AES_256_GCM_SHA384(0x009D), TLS_RSA_WITH_AES_128_GCM_SHA256(0x009C), TLS_RSA_WITH_AES_256_CBC_SHA256(0x003D), TLS_RSA_WITH_AES_128_CBC_SHA256(0x003C), TLS_RSA_WITH_AES_256_CBC_SHA(0x0035), TLS_RSA_WITH_AES_128_CBC_SHA(0x002F), TLS_EMPTY_RENEGOTIATION_INFO_SCSV(0x00FF)]",
+  "compression methods" : "00",
+  "extensions"          : [
+    "server_name (0)": {
+      type=host_name (0), value=study-mule-tls-param-4nfndu.5sc6y6-3.usa-e2.cloudhub.io
+    },
+    "status_request (5)": {
+      "certificate status type": ocsp
+      "OCSP status request": {
+        "responder_id": <empty>
+        "request extensions": {
+          <empty>
+        }
+      }
+    },
+    "supported_groups (10)": {
+      "versions": [x25519, secp256r1, secp384r1, secp521r1, x448, ffdhe2048, ffdhe3072, ffdhe4096, ffdhe6144, ffdhe8192]
+    },
+    "ec_point_formats (11)": {
+      "formats": [uncompressed]
+    },
+    "status_request_v2 (17)": {
+      "cert status request": {
+        "certificate status type": ocsp_multi
+        "OCSP status request": {
+          "responder_id": <empty>
+          "request extensions": {
+            <empty>
+          }
+        }
+      }
+    },
+    "extended_master_secret (23)": {
+      <empty>
+    },
+    "session_ticket (35)": {
+      <empty>
+    },
+    "signature_algorithms (13)": {
+      "signature schemes": [ecdsa_secp256r1_sha256, ecdsa_secp384r1_sha384, ecdsa_secp521r1_sha512, ed25519, ed448, rsa_pss_rsae_sha256, rsa_pss_rsae_sha384, rsa_pss_rsae_sha512, rsa_pss_pss_sha256, rsa_pss_pss_sha384, rsa_pss_pss_sha512, rsa_pkcs1_sha256, rsa_pkcs1_sha384, rsa_pkcs1_sha512, dsa_sha256, ecdsa_sha1, rsa_pkcs1_sha1, dsa_sha1]
+    },
+    "supported_versions (43)": {
+      "versions": [TLSv1.2]
+    },
+    "signature_algorithms_cert (50)": {
+      "signature schemes": [ecdsa_secp256r1_sha256, ecdsa_secp384r1_sha384, ecdsa_secp521r1_sha512, ed25519, ed448, rsa_pss_rsae_sha256, rsa_pss_rsae_sha384, rsa_pss_rsae_sha512, rsa_pss_pss_sha256, rsa_pss_pss_sha384, rsa_pss_pss_sha512, rsa_pkcs1_sha256, rsa_pkcs1_sha384, rsa_pkcs1_sha512, dsa_sha256, ecdsa_sha1, rsa_pkcs1_sha1, dsa_sha1]
+    }
+  ]
+}
+)
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.191 JST|ServerHello.java:897|Consuming ServerHello handshake message (
+"ServerHello": {
+  "server version"      : "TLSv1.2",
+  "random"              : "84BFB15E6CEE24AEE8245EB2B3FCF6E98AAD8AAC121B50A6444F574E47524401",
+  "session id"          : "",
+  "cipher suite"        : "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384(0xC030)",
+  "compression methods" : "00",
+  "extensions"          : [
+    "renegotiation_info (65,281)": {
+      "renegotiated connection": [<no renegotiated connection>]
+    },
+    "server_name (0)": {
+      <empty extension_data field>
+    },
+    "ec_point_formats (11)": {
+      "formats": [uncompressed, ansiX962_compressed_prime, ansiX962_compressed_char2]
+    },
+    "session_ticket (35)": {
+      <empty>
+    },
+    "extended_master_secret (23)": {
+      <empty>
+    }
+  ]
+}
+)
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|SSLExtensions.java:185|Ignore unavailable extension: supported_versions
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|ServerHello.java:993|Negotiated protocol version: TLSv1.2
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|SSLExtensions.java:204|Consumed extension: renegotiation_info
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|SSLExtensions.java:204|Consumed extension: server_name
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|SSLExtensions.java:185|Ignore unavailable extension: max_fragment_length
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|SSLExtensions.java:185|Ignore unavailable extension: status_request
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|SSLExtensions.java:204|Consumed extension: ec_point_formats
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|SSLExtensions.java:185|Ignore unavailable extension: status_request_v2
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|SSLExtensions.java:204|Consumed extension: extended_master_secret
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|SSLExtensions.java:204|Consumed extension: session_ticket
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|SSLExtensions.java:204|Consumed extension: renegotiation_info
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|ServerHello.java:1137|Locally assigned Session Id: 89446F9DA51CF3A35EE87CB0F3021D356DBDEA6D5D623E0CA2D69601A66CF16E
+javax.net.ssl|WARNING|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|SSLExtensions.java:227|Ignore impact of unsupported extension: server_name
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|SSLExtensions.java:219|Ignore unavailable extension: max_fragment_length
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|SSLExtensions.java:219|Ignore unavailable extension: status_request
+javax.net.ssl|WARNING|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|SSLExtensions.java:227|Ignore impact of unsupported extension: ec_point_formats
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|SSLExtensions.java:219|Ignore unavailable extension: application_layer_protocol_negotiation
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|SSLExtensions.java:219|Ignore unavailable extension: status_request_v2
+javax.net.ssl|WARNING|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|SSLExtensions.java:227|Ignore impact of unsupported extension: extended_master_secret
+javax.net.ssl|WARNING|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.192 JST|SSLExtensions.java:227|Ignore impact of unsupported extension: session_ticket
+javax.net.ssl|WARNING|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.193 JST|SSLExtensions.java:227|Ignore impact of unsupported extension: renegotiation_info
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.194 JST|CertificateMessage.java:366|Consuming server Certificate handshake message (
+"Certificates": [
+  "certificate" : {
+    "version"            : "v3",
+    "serial number"      : "0620E30980FE9BDA74C83AF234AB94A594C6",
+    "signature algorithm": "SHA256withRSA",
+    "issuer"             : "CN=R12, O=Let's Encrypt, C=US",
+    "not before"         : "2026-05-10 16:19:37.000 JST",
+    "not  after"         : "2026-08-08 16:19:36.000 JST",
+    "subject"            : "CN=*.5sc6y6-3.usa-e2.cloudhub.io",
+    "subject public key" : "RSA",
+    "extensions"         : [
+      {
+        ObjectId: 1.3.6.1.4.1.11129.2.4.2 Criticality=false
+      },
+      {
+        ObjectId: 1.3.6.1.5.5.7.1.1 Criticality=false
+        AuthorityInfoAccess [
+          [
+           accessMethod: caIssuers
+           accessLocation: URIName: http://r12.i.lencr.org/
+        ]
+        ]
+      },
+      {
+        ObjectId: 2.5.29.35 Criticality=false
+        AuthorityKeyIdentifier [
+        KeyIdentifier [
+        0000: 00 B5 29 F2 2D 8E 6F 31   E8 9B 4C AD 78 3E FA DC  ..).-.o1..L.x>..
+        0010: E9 0C D1 D2                                        ....
+        ]
+        ]
+      },
+      {
+        ObjectId: 2.5.29.19 Criticality=true
+        BasicConstraints:[
+          CA:false
+          PathLen: undefined
+        ]
+      },
+      {
+        ObjectId: 2.5.29.31 Criticality=false
+        CRLDistributionPoints [
+          [DistributionPoint:
+             [URIName: http://r12.c.lencr.org/71.crl]
+        ]]
+      },
+      {
+        ObjectId: 2.5.29.32 Criticality=false
+        CertificatePolicies [
+          [CertificatePolicyId: [2.23.140.1.2.1]
+        []  ]
+        ]
+      },
+      {
+        ObjectId: 2.5.29.37 Criticality=false
+        ExtendedKeyUsages [
+          serverAuth
+        ]
+      },
+      {
+        ObjectId: 2.5.29.15 Criticality=true
+        KeyUsage [
+          DigitalSignature
+          Key_Encipherment
+        ]
+      },
+      {
+        ObjectId: 2.5.29.17 Criticality=false
+        SubjectAlternativeName [
+          DNSName: *.5sc6y6-3.usa-e2.cloudhub.io
+          DNSName: *.internal-5sc6y6-3.usa-e2.cloudhub.io
+        ]
+      },
+      {
+        ObjectId: 2.5.29.14 Criticality=false
+        SubjectKeyIdentifier [
+        KeyIdentifier [
+        0000: B6 8D 48 B4 3C 07 40 A2   20 4B DE 7B 6E A7 5D 4B  ..H.<.@. K..n.]K
+        0010: 3D 19 55 5A                                        =.UZ
+        ]
+        ]
+      }
+    ]},
+  "certificate" : {
+    "version"            : "v3",
+    "serial number"      : "00C212324B70A9B49171DC40F7E285263C",
+    "signature algorithm": "SHA256withRSA",
+    "issuer"             : "CN=ISRG Root X1, O=Internet Security Research Group, C=US",
+    "not before"         : "2024-03-13 09:00:00.000 JST",
+    "not  after"         : "2027-03-13 08:59:59.000 JST",
+    "subject"            : "CN=R12, O=Let's Encrypt, C=US",
+    "subject public key" : "RSA",
+    "extensions"         : [
+      {
+        ObjectId: 1.3.6.1.5.5.7.1.1 Criticality=false
+        AuthorityInfoAccess [
+          [
+           accessMethod: caIssuers
+           accessLocation: URIName: http://x1.i.lencr.org/
+        ]
+        ]
+      },
+      {
+        ObjectId: 2.5.29.35 Criticality=false
+        AuthorityKeyIdentifier [
+        KeyIdentifier [
+        0000: 79 B4 59 E6 7B B6 E5 E4   01 73 80 08 88 C8 1A 58  y.Y......s.....X
+        0010: F6 E9 9B 6E                                        ...n
+        ]
+        ]
+      },
+      {
+        ObjectId: 2.5.29.19 Criticality=true
+        BasicConstraints:[
+          CA:true
+          PathLen:0
+        ]
+      },
+      {
+        ObjectId: 2.5.29.31 Criticality=false
+        CRLDistributionPoints [
+          [DistributionPoint:
+             [URIName: http://x1.c.lencr.org/]
+        ]]
+      },
+      {
+        ObjectId: 2.5.29.32 Criticality=false
+        CertificatePolicies [
+          [CertificatePolicyId: [2.23.140.1.2.1]
+        []  ]
+        ]
+      },
+      {
+        ObjectId: 2.5.29.37 Criticality=false
+        ExtendedKeyUsages [
+          clientAuth
+          serverAuth
+        ]
+      },
+      {
+        ObjectId: 2.5.29.15 Criticality=true
+        KeyUsage [
+          DigitalSignature
+          Key_CertSign
+          Crl_Sign
+        ]
+      },
+      {
+        ObjectId: 2.5.29.14 Criticality=false
+        SubjectKeyIdentifier [
+        KeyIdentifier [
+        0000: 00 B5 29 F2 2D 8E 6F 31   E8 9B 4C AD 78 3E FA DC  ..).-.o1..L.x>..
+        0010: E9 0C D1 D2                                        ....
+        ]
+        ]
+      }
+    ]}
+]
+)
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.202 JST|ECDHServerKeyExchange.java:525|Consuming ECDH ServerKeyExchange handshake message (
+"ECDH ServerKeyExchange": {
+  "parameters": {
+    "named group": "x25519"
+    "ecdh public": {
+      0000: 94 7A 17 AA 77 60 19 4E   EC 9B 3A A9 06 2C E1 43  .z..w`.N..:..,.C
+      0010: 60 25 CD C3 6F BC 99 86   6A 01 A4 40 E5 6A B4 07  `%..o...j..@.j..
+    },
+  },
+  "digital signature":  {
+    "signature algorithm": "rsa_pss_rsae_sha256"
+    "signature": {
+      0000: C5 54 59 33 A5 94 6C C7   16 91 42 96 2D 6D BC 56  .TY3..l...B.-m.V
+      0010: 4A 80 EB 0F D7 A9 44 45   FE 83 60 19 F0 ED F0 77  J.....DE..`....w
+      0020: D9 EA 16 F9 27 B0 6D 5F   37 5D 72 A4 3D 3D 1D 4F  ....'.m_7]r.==.O
+      0030: 72 36 C9 7F D2 5C CA 4B   D0 F5 1A 5F 17 20 DD 86  r6...\.K..._. ..
+      0040: 77 E6 8D 6D C8 9C AB 8D   AD F6 4B 54 75 3F 11 00  w..m......KTu?..
+      0050: 1B 18 C6 FB 2D B6 5A 03   80 4D AC 6B 6A A2 0D 4D  ....-.Z..M.kj..M
+      0060: C7 18 CF AB 75 BA 19 8A   5B 71 BF 24 75 D9 9C 6A  ....u...[q.$u..j
+      0070: C4 E5 7B AF FA A1 9A 6C   E5 B3 B7 06 C2 E0 33 17  .......l......3.
+      0080: 10 0C F5 F7 92 F5 8A 06   09 EC 54 A5 C5 D0 D0 FE  ..........T.....
+      0090: BA F8 71 03 E5 C9 5C 13   09 35 44 B5 33 8C C8 AF  ..q...\..5D.3...
+      00A0: 93 FB 47 8E 36 4D 6C D3   37 5E B2 14 9C 99 24 3D  ..G.6Ml.7^....$=
+      00B0: 58 EC 92 DD 97 4A 23 8B   D4 78 CE DA 68 EC 2B 80  X....J#..x..h.+.
+      00C0: 93 2C 2E D9 02 22 7D 8F   4B 9B F4 D1 8B 5B 30 4E  .,..."..K....[0N
+      00D0: F9 CD EE 44 66 67 F4 03   F9 B8 08 D6 AD 63 61 E4  ...Dfg.......ca.
+      00E0: 1A 41 B3 A5 73 20 6D 51   A6 39 AD C7 FA F8 DA C5  .A..s mQ.9......
+      00F0: E0 F2 96 37 61 2C 7F 14   0E E5 E8 F8 EB B2 A9 6D  ...7a,.........m
+    },
+  }
+}
+)
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.203 JST|ServerHelloDone.java:151|Consuming ServerHelloDone handshake message (
+<empty>
+)
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.204 JST|ECDHClientKeyExchange.java:407|Produced ECDHE ClientKeyExchange handshake message (
+"ECDH ClientKeyExchange": {
+  "ecdh public": {
+    0000: 0D EF 30 50 87 FC 0B A6   D1 13 78 61 45 AB 41 08  ..0P......xaE.A.
+    0010: CD C2 73 39 74 60 6C 74   30 31 70 C1 0D 35 F0 0D  ..s9t`lt01p..5..
+  },
+}
+)
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.205 JST|ChangeCipherSpec.java:115|Produced ChangeCipherSpec message
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.205 JST|Finished.java:396|Produced client Finished handshake message (
+"Finished": {
+  "verify data": {
+    0000: B4 CC 57 38 56 5F BF DD   7C 9E AB 9B 
+  }'}
+)
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.381 JST|NewSessionTicket.java:678|Consuming NewSessionTicket
+"NewSessionTicket": {
+  "ticket_lifetime"      : "7,200",
+  "ticket"               : {
+    0000: FD 95 F5 D8 FE A6 1F 6C   F5 A7 34 71 50 06 03 8E  .......l..4qP...
+    0010: 94 69 C9 41 32 25 B3 C2   40 99 7A 2F BD DE 05 88  .i.A2%..@.z/....
+    0020: 1E F3 8D 61 98 6F 8C 07   9E 82 7B 03 32 31 E9 8C  ...a.o......21..
+    0030: 32 47 5B EF 8E 68 B5 F5   27 98 76 5A 01 7F BB F8  2G[..h..'.vZ....
+    0040: 90 08 E3 B0 90 B7 8D 39   52 F9 6B 1E 9D 2E 32 24  .......9R.k...2$
+    0050: CA A8 37 C3 7F A5 FD 08   8C 11 91 74 44 6E E8 1D  ..7........tDn..
+    0060: 80 87 7D CB FF 76 26 27   0A C7 70 5D 13 2C 85 F4  .....v&'..p].,..
+    0070: C6 05 E3 BD 6B 4E A8 51   44 91 49 77 A8 39 B5 46  ....kN.QD.Iw.9.F
+    0080: 35 E2 C4 6E C9 BB 9E 04   20 AD DC 37 06 DA D2 6A  5..n.... ..7...j
+    0090: 5E C6 28 D0 08 A5 B4 25   48 28 B3 2A BA 47 66 15  ^.(....%H(.*.Gf.
+    00A0: 4A AC BF C3 60 3A FD AD   9B 68 07 DA D4 6A 43 D6  J...`:...h...jC.
+    00B0: 8B 1C 90 6B DA 8B 55 C2   D2 FD 43 61 82 2F 50 AC  ...k..U...Ca./P.
+    00C0: 97 F4 44 4E 20 F9 0F 27   94 DB F4 BA 91 73 49 4B  ..DN ..'.....sIK
+    00D0: 84 34 13 58 A0 54 AE 5B   1A 0C E0 B7 0F 5F 3C 32  .4.X.T.[....._<2
+  }'}
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.381 JST|ChangeCipherSpec.java:149|Consuming ChangeCipherSpec message
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:04.382 JST|Finished.java:548|Consuming server Finished handshake message (
+"Finished": {
+  "verify data": {
+    0000: 85 D1 11 2B 61 78 78 73   9D 1A A2 36 
+  }'}
+)
+INFO  2026-05-15 01:48:04,573 [[MuleRuntime].uber.01: [study-mule-tls-param].mainFlow.CPU_LITE @5ae12a29] [processor: mainFlow/processors/2; event: accd4f80-4fb4-11f1-aecd-244bfe937825] myapp.flow.end: {
+  "msg": "flow end"
+}
+javax.net.ssl|DEBUG|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:19.568 JST|Alert.java:238|Received alert message (
+"Alert": {
+  "level"      : "warning",
+  "description": "close_notify"
+}
+)
+javax.net.ssl|WARNING|BB|[study-mule-tls-param].http.requester.HTTP_Request_config.01 SelectorRunner|2026-05-15 01:48:19.569 JST|SSLEngineOutputRecord.java:182|outbound has closed, ignore outbound application data
