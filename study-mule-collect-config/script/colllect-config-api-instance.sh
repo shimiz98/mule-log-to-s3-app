@@ -7,7 +7,7 @@ funcMain() {
     gEnvId=8e0caa2a-0a29-423e-a4d1-f7435e6f799f
     gCurlOpts=()
 
-    source "$(dirname "$0")/common-funcs.sh"
+    source "$(dirname "$0")/common-functions.sh"
     funcCreateLogDir "$(basename "$0" .sh)"
     gOutputBaseDir="${gLogDir}/output"
     mkdir -p "$gOutputBaseDir"
