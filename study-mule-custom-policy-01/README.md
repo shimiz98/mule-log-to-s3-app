@@ -168,6 +168,7 @@ org.xml.sax.SAXParseException; lineNumber: 16; columnNumber: 59; cvc-complex-typ
 1. 試験用ドライバ
 2. Exp層
   A. カスタムポリシー my-custom-policy-for-exp/ で、「3. Sys層」へstub用ヒント情報をPOSTして、処理を続行する。
+    a. 前提: HTTPヘッダ 'x-correlation-id' が、Proc層を経由してSys層までそのまま渡されるという前提とする。
   B. 通常の処理として「3. Proc層」へREST連携する。
 3. Proc層
   A. 通常の処理として「4. Sys層」へREST連携する。
@@ -193,7 +194,11 @@ org.xml.sax.SAXParseException; lineNumber: 16; columnNumber: 59; cvc-complex-typ
 設定するもの
 
 * study-mule-policy-exp-111-app
+  * anypoint.platform.client_id
+  * anypoint.platform.client_secret
   * myapp.apiInstanceId
   * myapp.sys777.url
 * study-mule-policy-sys-777-app
+  * anypoint.platform.client_id
+  * anypoint.platform.client_secret
   * myapp.apiInstanceId
