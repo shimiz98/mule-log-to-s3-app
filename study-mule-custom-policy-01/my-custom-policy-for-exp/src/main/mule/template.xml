@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:http="http://www.mulesoft.org/schema/mule/http"
+      xmlns:http-policy="http://www.mulesoft.org/schema/mule/http-policy"
+      xmlns:http-transform="http://www.mulesoft.org/schema/mule/http-policy-transform"
+      xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+               http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+               http://www.mulesoft.org/schema/mule/http-policy http://www.mulesoft.org/schema/mule/http-policy/current/mule-http-policy.xsd
+               http://www.mulesoft.org/schema/mule/http-policy-transform http://www.mulesoft.org/schema/mule/http-policy-transform/current/mule-http-policy-transform.xsd">
+
+    <http:request-config name="{{{policyId}}}_HTTP_Request_config" />
+    <http-policy:proxy name="{{{policyId}}}-custom-policy">
+        <http-policy:source>
+		    <set-variable value="{{{stubHintDataExpression}}}" variableName="myCustomPolicy_stubHintData"/>
+		    <set-variable value="{{{stubHintKeyExpression}}}" variableName="myCustomPolicy_stubHintKey"/>
+		    <http:request method="POST" url="{{{stubHintPostUrl}}}" config-ref="{{{policyId}}}_HTTP_Request_config">
+	    		<http:body ><![CDATA[#[vars.myCustomPolicy_stubHintData]]]></http:body>
+                <http:query-params ><![CDATA[#[output application/java
+---
+{
+	stubHintKey : vars.myCustomPolicy_stubHintKey
+}]]]></http:query-params>
+    		</http:request>
+
+            <http-policy:execute-next/>
+        </http-policy:source>
+    </http-policy:proxy>
+</mule>

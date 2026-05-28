@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd ">
+	<flow name="mainFlow">
+		<http:listener doc:name="Listener" doc:id="108143d3-571b-4750-8458-c2f36f732be6" config-ref="HTTP_Listener_config" path="/*"/>
+		<logger level="INFO" doc:name="Logger" doc:id="ade5627b-1a5e-432c-879a-e564acc75f9a" message="#[output application/json --- {msg: 'flow.begin', flow: flow.name}]" category="myapp.flow.begin"/>
+		<http:request doc:name="Request" doc:id="8f070946-da26-45dd-ad9a-0f382f6bb7a3" config-ref="HTTP_Request_config" url="${myapp.sys777.url}" sendCorrelationId="ALWAYS"/>
+		<logger level="INFO" doc:name="Logger" doc:id="2ace0359-52b3-4ff6-8923-88de3820d88f" message="#[output application/json --- {msg: 'flow.end', flow: flow.name}]" category="myapp.flow.end"/>
+
+	</flow>
+</mule>

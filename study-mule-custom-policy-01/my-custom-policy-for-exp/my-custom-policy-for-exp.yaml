@@ -1,0 +1,30 @@
+id: my-custom-policy-for-exp
+name: my-custom-policy-for-exp
+description: stub振り分け用ヒント情報を保存するExp層のカスタムポリシー
+category: Custom
+type: custom
+resourceLevelSupported: true
+encryptionSupported: false
+standalone: true
+supportedJavaVersions: ["8", "11", "17"]
+requiredCharacteristics: []
+providedCharacteristics: []
+configuration:
+   - propertyName: stubHintKeyExpression
+     name: stub hint key expression
+     description: stub振り分け用ヒント情報のキーを取得するDataWeave式
+     type: expression
+     optional: false
+     defaultValue: "#[attributes.headers['x-correlation-id']]"
+   - propertyName: stubHintDataExpression
+     name: stub hint data expression
+     description: stub振り分け用ヒント情報のデータを取得するDataWeave式
+     type: expression
+     optional: false
+     defaultValue: "#[payload]"
+   - propertyName: stubHintPostUrl
+     name: stub hint Post URL
+     description: stub振り分け用ヒント情報をPOSTする宛先URL。
+     type: string
+     optional: false
+     defaultValue: https://example.com/_stubHintDataForStub

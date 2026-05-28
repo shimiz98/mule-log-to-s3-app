@@ -1,0 +1,13 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <servers>
+    <server>
+       <id>exchange-server</id>
+       <!-- Connected App または アクセストークン で認証する設定方法は以下を参照 -->
+       <!-- https://docs.mulesoft.com/exchange/to-publish-assets-maven#publish-and-consume-federated-assets -->
+       <username>★書き換える</username>
+       <password>★書き換える</password>
+     </server>
+  </servers>
+</settings>

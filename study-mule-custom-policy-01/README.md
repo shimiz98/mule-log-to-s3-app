@@ -160,3 +160,40 @@ Caused by: org.mule.runtime.api.exception.MuleRuntimeException: There was '1' er
 Full list:
 org.xml.sax.SAXParseException; lineNumber: 16; columnNumber: 59; cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://www.mulesoft.org/schema/mule/http-policy-transform":set-response}'. One of '{"http://www.mulesoft.org/schema/mule/core":abstract-message-processor, "http://www.mulesoft.org/schema/mule/core":abstract-mixed-content-message-processor}' is expected.
 ```
+
+## stub用ヒント情報を保存するカスタムポリシー(作成途中)
+
+構想
+
+1. 試験用ドライバ
+2. Exp層
+  A. カスタムポリシー my-custom-policy-for-exp/ で、「3. Sys層」へstub用ヒント情報をPOSTして、処理を続行する。
+  B. 通常の処理として「3. Proc層」へREST連携する。
+3. Proc層
+  A. 通常の処理として「4. Sys層」へREST連携する。
+4. Sys層
+  A. カスタムポリシー my-custom-policy-for-sys 
+    a. もし2.A. のカスタムポリシーからのリクエストならば、ObjectStoreに保存して、処理を中断して正常終了する。
+	b. その他は、通常どおり処理を続行する。
+  B. 通常の処理として「5. 連携先stub」へREST連携する。
+  C. カスタムポリシー my-custom-policy-for-sys
+    a. ObjectStoreから、ヒント情報を取得して、stub専用HTTPヘッダに追加する。
+5. 試験用stub
+  A. stub専用HTTPヘッダの値に応じて振り分けて、返却値を決める
+
+実装したもの
+
+* my-custom-policy-for-exp
+  * 2.A.のExp層用のカスタムポリシー
+* study-mule-policy-exp-111-app
+  * 2.B.のExp層のMuleアプリ
+* study-mule-policy-sys-777-app
+  * 4.A と 4.B. を兼ねたSys層のMuleアプリ
+
+設定するもの
+
+* study-mule-policy-exp-111-app
+  * myapp.apiInstanceId
+  * myapp.sys777.url
+* study-mule-policy-sys-777-app
+  * myapp.apiInstanceId

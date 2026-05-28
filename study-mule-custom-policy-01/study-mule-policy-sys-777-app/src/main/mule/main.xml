@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:os="http://www.mulesoft.org/schema/mule/os" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd 
+http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/current/mule-os.xsd">
+	<flow name="mainFlow" doc:id="c8127dc4-c483-46af-a89d-c452ef3d6b33" >
+		<http:listener doc:name="Listener" doc:id="039b4f72-e860-4145-a736-18f54bf93f7b" config-ref="HTTP_Listener_config" path="/*"/>
+		<logger level="INFO" doc:name="Logger" doc:id="7ba6b7df-7c48-485d-9cbc-285807826b78" message="#[output application/json --- {msg: 'flow.begin', flow: flow.name}]" category="myapp.flow.begin"/>
+		<choice doc:name="Choice" doc:id="793cefe3-3f27-4d00-9ba8-330fde924a9a" >
+			<when expression="#[attributes.relativePath == '/_stashDataForStub']">
+				<os:store doc:name="Store" doc:id="f743a674-2cef-4e68-bb24-5e351aae74ed" key="#[attributes.queryParams['stubHintKey']]" objectStore="stashForStub_Object_store"/>
+				<set-payload value="#[output application/json --- {msg: 'stubData was saved.', key: attributes.queryParams['stashKey'], data: payload}]" doc:name="Set Payload" doc:id="cd506afe-205d-4ea5-a114-b73d64b91fde" />
+			</when>
+			<otherwise >
+				<os:retrieve doc:name="Retrieve" doc:id="84b1ee92-f24d-4d5e-a149-2ea20a7aad3b" key="#[attributes.headers['x-correlation-id']]" objectStore="stashForStub_Object_store">
+			<os:default-value><![CDATA[#[output application/json
+---
+{msg: "該当するstub用dataが見つかりません"}]]]></os:default-value>
+		</os:retrieve>
+			</otherwise>
+		</choice>
+		<logger level="INFO" doc:name="Logger" doc:id="cbc5e3d7-adee-4503-9752-10acfbfc1331" message="#[output application/json --- {msg: 'flow.end', flow: flow.name}]" category="myapp.flow.end"/>		
+	</flow>
+</mule>
