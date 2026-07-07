@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:os="http://www.mulesoft.org/schema/mule/os" xmlns:oauth="http://www.mulesoft.org/schema/mule/oauth"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/oauth http://www.mulesoft.org/schema/mule/oauth/current/mule-oauth.xsd
+http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/current/mule-os.xsd">
+	<global-property doc:name="Global Property" doc:id="78adcdbf-d259-4c0e-8f8e-e60ded52d724" name="http.port" value="8081" />
+	<global-property doc:name="Global Property" doc:id="14851c3e-7b54-4d40-b34f-3c63c8a129ea" name="myapp.stub.protocol" value="HTTP" />
+	<global-property doc:name="Global Property" doc:id="ed136b06-652a-4746-8af3-7c9b59440e76" name="myapp.stub.host" value="localhost" />
+	<global-property doc:name="Global Property" doc:id="a33423de-84b1-4197-951a-acfff6cb2112" name="myapp.stub.port" value="${http.port}" />
+	<global-property doc:name="Global Property" doc:id="a823a8e6-015f-461f-96d7-40886b93e00d" name="myapp.oauth.token.url" value="http://localhost:8081/stub/oauth/tokenEndpoint" />
+	<global-property doc:name="Global Property" doc:id="0d97ae12-523b-4a06-9c72-a3678f8e5eb6" name="myapp.stub.api.key" value="myapp.stub.api.keyの値" />
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="e4d788aa-2f9b-485c-a284-156f9e04c6ab" >
+		<http:listener-connection host="0.0.0.0" port="${http.port}" />
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_config_01" doc:name="HTTP Request configuration" doc:id="08adee27-17af-48cb-8855-3f31cc58b6a5" >
+		<http:request-connection host="${myapp.stub.host}" port="${myapp.stub.port}" protocol="${myapp.stub.protocol}">
+			<http:authentication >
+				<oauth:client-credentials-grant-type clientId="123" clientSecret="456" tokenUrl="${myapp.oauth.token.url}" />
+			</http:authentication>
+		</http:request-connection>
+	</http:request-config>
+	<http:request-config name="HTTP_Request_config_02" doc:name="HTTP Request configuration" doc:id="57950e41-2545-48e4-ad97-5cfffd773b7e" >
+		<http:request-connection host="${myapp.stub.host}" port="${myapp.stub.port}" protocol="${myapp.stub.protocol}">
+			<http:authentication >
+				<oauth:client-credentials-grant-type clientId="123" clientSecret="456" tokenUrl="${myapp.oauth.token.url}" encodeClientCredentialsInBody="true"/>
+			</http:authentication>
+		</http:request-connection>
+	</http:request-config>
+	<http:request-config name="HTTP_Request_config_03" doc:name="HTTP Request configuration" doc:id="d424c0ec-5a7a-4447-b9c0-73d3f5b069d2" >
+		<http:request-connection host="${myapp.stub.host}" port="${myapp.stub.port}" protocol="${myapp.stub.protocol}">
+			<http:authentication >
+				<oauth:client-credentials-grant-type clientId="123" clientSecret="456" tokenUrl="${myapp.oauth.token.url}" />
+			</http:authentication>
+		</http:request-connection>
+		<http:default-headers >
+			<http:default-header key="STUB-API-KEY" value="${myapp.stub.api.key}" />
+		</http:default-headers>
+	</http:request-config>
+	<http:request-config name="HTTP_Request_config_04" doc:name="HTTP Request configuration" doc:id="cb6174ff-a623-42d3-9bf3-15703b0224ce" >
+		<http:request-connection host="${myapp.stub.host}" port="${myapp.stub.port}" protocol="${myapp.stub.protocol}">
+			<http:authentication >
+				<oauth:client-credentials-grant-type clientId="123" clientSecret="456" tokenUrl="${myapp.oauth.token.url}" >
+					<oauth:token-manager objectStore="Object_store_04" />
+					<oauth:custom-parameter-extractors >
+						<oauth:parameter-extractor paramName="customParameterExtractorName01" value="#[payload.access_token]" />
+					</oauth:custom-parameter-extractors>
+				</oauth:client-credentials-grant-type>
+			</http:authentication>
+		</http:request-connection>
+	</http:request-config>	<os:object-store name="Object_store_04" doc:name="Object store" doc:id="03d3f92d-e80a-4c92-bb7a-e8f284b43338" />
+</mule>

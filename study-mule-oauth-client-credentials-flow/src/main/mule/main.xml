@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:oauth="http://www.mulesoft.org/schema/mule/oauth" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/oauth http://www.mulesoft.org/schema/mule/oauth/current/mule-oauth.xsd">
+	<flow name="mainFlow" doc:id="4a9807da-8188-4aa6-8072-d4b15d9fba9f" >
+		<http:listener doc:name="Listener" doc:id="04bd412c-50e6-4f93-8d0f-492e35cd2877" config-ref="HTTP_Listener_config" path="/main/{httpReqConfigNumber}"/>
+		<choice doc:name="Choice" doc:id="5d80ff76-353f-4831-bcd1-1996ff92cf92" >
+			<when expression="#['01' == attributes.uriParams['httpReqConfigNumber']]">
+				<logger level="INFO" doc:name="Logger" doc:id="a369c548-bf04-4d96-9c82-a7670845e83a" category="myapp.flow.choice" message="01"/>
+				<http:request method="GET" doc:name="Request" doc:id="2f40a567-d37e-4f53-be51-b258a8fae91b" config-ref="HTTP_Request_config_01" path="/stub/aaa" />
+			</when>
+			<when expression="#['02' == attributes.uriParams['httpReqConfigNumber']]">
+				<logger level="INFO" doc:name="Logger" doc:id="eae007f9-73d9-4d98-99e7-f0dd82154d47" category="myapp.flow.choice" message="02"/>
+				<http:request method="GET" doc:name="Request" doc:id="74c208fe-e237-4802-8f3b-19b4cd639bf0" config-ref="HTTP_Request_config_02" path="/stub/aaa" />
+			</when>
+			<when expression="#['03' == attributes.uriParams['httpReqConfigNumber']]">
+				<logger level="INFO" doc:name="Logger" doc:id="637021eb-1ae5-4e10-8b1e-bb7304c1547b" category="myapp.flow.choice" message="03"/>
+				<http:request method="GET" doc:name="Request" doc:id="217d6ab3-10c8-4803-b809-5ab6da0755d8" config-ref="HTTP_Request_config_03" path="/stub/aaa" />
+			</when>
+			<when expression="#['04' == attributes.uriParams['httpReqConfigNumber']]">
+				<logger level="INFO" doc:name="Logger" doc:id="02e06106-fad4-4453-8575-09e0255f55a1" category="myapp.flow.choice" message="04"/>
+				<http:request method="GET" doc:name="Request" doc:id="d0bee82a-9b42-417d-9364-42e5631e3a74" config-ref="HTTP_Request_config_04" path="/stub/aaa" />
+				<logger level="INFO" doc:name="vars customParameterExtractorName01" doc:id="8785738a-51b9-4aa2-99c5-449ab8e39036" message="#[{'customParameterExtractorName01': vars.customParameterExtractorName01}]"/>
+				<try doc:name="Try" doc:id="5acecf51-3f91-4bfb-aca7-8db9832435cc" >
+					<oauth:retrieve-custom-token-response-param doc:name="Retrieve custom token response param" doc:id="85822f32-8245-4191-9d9a-892b1cb99f2e" key="customParameterExtractorName01">
+					<oauth:token-manager objectStore="Object_store_04" />
+				</oauth:retrieve-custom-token-response-param>
+					<error-handler >
+						<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="28d60967-bc8f-4ced-ba7e-ecbb2c3f5ed9" type="ANY">
+							<logger level="INFO" doc:name="TODO: ここでエラーが発生する" doc:id="9e8a6286-dc8d-4cf3-bbe0-b184e8c3d451" message="#[{errMsg: 'Cannot invoke &quot;org.mule.extension.oauth2.internal.authorizationcode.state.ConfigOAuthContext.getContextForResourceOwner(String)&quot; because the return value of &quot;org.mule.extension.oauth2.api.tokenmanager.TokenManagerConfig.getConfigOAuthContext()&quot; is null'}]"/>
+						</on-error-propagate>
+					</error-handler>
+				</try>
+			</when>
+			<when expression="#['05' == attributes.uriParams['httpReqConfigNumber']]">
+				<logger level="INFO" doc:name="Logger" doc:id="f4f85091-cae2-4c9f-b87c-707ce7e588b8" category="myapp.flow.choice" message="05"/>
+				<http:request method="GET" doc:name="Request" doc:id="90ea63c1-9481-4181-9f0f-e481e8349502" config-ref="HTTP_Request_config_05" path="/stub/aaa" />
+			</when>
+			<otherwise >
+				<logger level="INFO" doc:name="Logger" doc:id="d29884b0-7271-4049-9099-699c8fc2f3dc" message="default" category="myapp.flow.choice"/>
+				<raise-error doc:name="Raise error" doc:id="fe524cce-5675-471c-9e2c-d892a343fb41" type="MYAPP:MYERR" description="何かエラーが発生しました"/>
+			</otherwise>
+		</choice>
+	</flow>
+	<flow name="stubFlow" doc:id="f745a69e-2696-4974-9bc3-be0422bf5888" >
+		<http:listener doc:name="Listener" doc:id="016be6d6-8698-4908-af4f-ce38e895e52c" config-ref="HTTP_Listener_config" path="/stub/*"/>
+		<choice doc:name="Choice" doc:id="5760c970-07f0-4ba3-898f-22eba94e14e4" >
+			<when expression="#['/stub/oauth/tokenEndpoint' == attributes.requestPath]">
+				<set-payload value="#[output application/json --- {access_token: 'myToken_at_' ++ now() as String, token_type: 'Bearer', expires_in: '3600'}]" doc:name="Set Payload" doc:id="55688f8a-703d-4108-8ce5-ccb52a4c7059" />
+			</when>
+			<otherwise >
+				<set-payload value="#[output applicatin/json --- {msg: 'hello world!!'}]" doc:name="Set Payload" doc:id="1bce1d68-6a4b-4494-8ade-488c7c825af1" />
+			</otherwise>
+		</choice>
+	</flow>
+</mule>
