@@ -13,10 +13,10 @@ funcMain() {
 
   funcParseArgs "$@"
   funcCheckInputFile
+  funcSortConfigFileList
   funcGetApiInstanceList 'before-deploy'
   funcGetApiPolicyList 'before-deploy'
   funcCheckAnypointPlatform
-  funcSortConfigFileList 'before-deploy'
   funcGetApiInstanceIdList 'before-deploy'
   funcGetApiPolicyIdList 'before-deploy'
   local deployStatus=0
@@ -74,6 +74,34 @@ funcCheckInputFile() {
   : # TODO: 入力ファイルの存在チェックや、JSON形式のチェックを追加する
 }
 
+# 入力ファイルをAPIPolicyの作成順序に並び替える。
+# APIPolicyの作成順序は、API InstanceのassetIdの昇順、API PolicyのassetIdの昇順、API Policyのorderの昇順とする。
+funcSortConfigFileList() {
+  local sortedConfigFileList=()
+  local configFile
+  local configDirName
+  local apiAssetId
+  local policyFileName
+  local policyAssetId
+  local policyOrder
+
+  while IFS=$'\t' read -r _ _ _ configFile; do
+    sortedConfigFileList+=("$configFile")
+  done < <(
+    for configFile in "${gConfigFileList[@]}"; do
+      configDirName="$(basename "${configFile%/*}")"
+      apiAssetId="${configDirName%_*}"
+      policyFileName="${configFile##*/}"
+      policyAssetId="${policyFileName#api-policy_}"
+      policyAssetId="${policyAssetId%_*}"
+      policyOrder="$(jq --row-output '.order // empty' "$configFile")"
+      printf '%s\t%s\t%s\t%s\n' \
+        "$apiAssetId" "$policyAssetId" "$policyOrder" "$configFile"
+    done | LC_ALL=C sort -t $'\t' -k1,1 -k2,2 -k3,3n -k4,4
+  )
+  gConfigFileList=("${sortedConfigFileList[@]}")
+}
+
 funcCheckAnypointPlatform() {
   : # TODO: Anypoint Platformのクラウドから取得したデータと、入力ファイルとの相関チェックを追加する
 }
@@ -127,6 +155,7 @@ funcGetApiInstanceIdList() {
       gApiInstanceIdList+=("$apiInstanceId")
     else
       # TODO: 既存のAPIインスタンスが複数件存在する場合、どれを更新対象にするかの判断が必要。現状は、複数使おうとしてエラーになる想定。
+      # TODO: extract-api-policy-id.jq を使って、APIインスタンスのIDを取得するように変更する。
       echo "error: unexpected apiInstanceId: $apiInstanceId" >&2
       exit 1
     fi
