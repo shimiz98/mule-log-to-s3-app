@@ -1,0 +1,13 @@
+{
+  "groupId": "68ef9520-24e9-4cf2-b2f5-620025690913",
+  "assetId": "ip-allowlist",
+  "assetVersion": "1.1.2",
+  "order": 2,
+  "configurationData": {
+    "ipExpression": "#[attributes.headers['x-forwarded-for']]",
+    "ips": [
+      "10.0.0.0/8",
+      "192.168.0.0/16"
+    ]
+  }
+}

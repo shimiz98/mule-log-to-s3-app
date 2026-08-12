@@ -11,7 +11,8 @@ funcCreateLogDir() {
 
 funcIncrementLogSeq() {
   while true; do
-    gLogSeq=$(printf '%03d' "$((gLogSeq + 1))")
+    # MEMO: 先頭のゼロがあると8進数として扱われてしまうため、10進数として扱うように「10#」を付与する。
+    gLogSeq=$(printf '%03d' "$((10#$gLogSeq + 1))")
     # MEMO: サブシェルの中でこの関数を呼び出した場合は、グローバル変数が更新できないため、ファイルの存在チェックで重複を避ける
     if compgen -G "$gLogDir/${gLogSeq}_*" > /dev/null; then
       continue

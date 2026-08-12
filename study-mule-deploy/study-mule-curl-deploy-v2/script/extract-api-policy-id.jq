@@ -33,14 +33,14 @@ else
 
         | if $asisIndex == null then
             .output += [{
-              type: "追加",
+              action: "追加",
               configFilePath: $tobe[$tobeIndex].configFilePath
             }]
           else
             .used += [$asisIndex]
             | .output += [{
-                type: "変更",
-                id: $asis[$asisIndex].id,
+                action: "変更",
+                apiPolicyId: $asis[$asisIndex].id,
                 configFilePath: $tobe[$tobeIndex].configFilePath
               }]
           end
@@ -58,8 +58,9 @@ else
             )
           )
         | {
-            type: "削除",
-            id: $asis[$asisIndex].id
+            action: "削除",
+            apiPolicyId: $asis[$asisIndex].id,
+            assetId:  $asis[$asisIndex].assetId
           }
       ]
 end
