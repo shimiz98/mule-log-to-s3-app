@@ -155,7 +155,6 @@ funcGetApiInstanceIdList() {
       gApiInstanceIdList+=("$apiInstanceId")
     else
       # TODO: 既存のAPIインスタンスが複数件存在する場合、どれを更新対象にするかの判断が必要。現状は、複数使おうとしてエラーになる想定。
-      # TODO: extract-api-policy-id.jq を使って、APIインスタンスのIDを取得するように変更する。
       echo "error: unexpected apiInstanceId: $apiInstanceId" >&2
       exit 1
     fi
@@ -186,6 +185,7 @@ funcGetApiPolicyIdList() {
       gApiPolicyIdList+=("$apiPolicyId")
     else
       # TODO: 1つのAPIインスタンスに対して、同じポリシーが複数件存在する場合もこのエラーになってしまうので、処理を追加する
+      # TODO: extract-api-policy-id.jq を使って、APIインスタンスのIDを取得するように変更する。
       echo "error: unexpected apiPolicyId: $apiPolicyId" >&2
       exit 1
     fi
