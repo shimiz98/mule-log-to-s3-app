@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd">
+	<flow name="my-debug-apiFlow" doc:id="bd285f0f-b05e-4369-901d-8b2dd969fd89" >
+		<http:listener doc:name="Listener" doc:id="cc197561-d5b0-4b5c-90bd-de5bb043bad5" path="/debug/*" config-ref="HTTP_Listener_config"/>
+		<logger level="INFO" doc:name="Logger" doc:id="5ba7e02e-2f80-4113-b91e-5d279730ca34" message="#[output application/json --- {payload: payload, attributes: attributes}]" category="myapp.flow.begin"/>
+		<choice doc:name="Choice" doc:id="11c7393b-90a8-4552-b421-c8ef926a0b80" >
+			<when expression="#['/mule-ee-log' == attributes.maskedRequestPath]">
+				<file:read doc:name="Read" doc:id="3acb7e56-99a7-43fa-b4dc-9159275cf84c" path="#[Mule::p('mule.home') ++ '/logs/mule_ee.log']" outputMimeType="text/plain" outputEncoding="UTF-8"/>
+			</when>
+			<when expression="#['/aws-sdk-log' == attributes.maskedRequestPath]">
+				<file:read doc:name="Read" doc:id="fcdb3a26-424e-4db7-b50a-552dbff6ca05" path="/tmp/my-aws-sdk.log" outputMimeType="text/plain" outputEncoding="UTF-8"/>
+			</when>
+			<when expression="#['/put-log' == attributes.maskedRequestPath]">
+				<set-payload value="#[java!myapp::MyDebugFunctions::putCloudWatchLogs]" doc:name="Set Payload" doc:id="6b4fffb6-cc07-469f-9313-1138aab4b32c" />
+			</when>
+		</choice>
+	</flow>
+</mule>
