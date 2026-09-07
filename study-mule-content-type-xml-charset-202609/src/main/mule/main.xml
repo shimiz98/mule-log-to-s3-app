@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="mainFlow" doc:id="569dbfa2-ed07-448e-af68-937d80f59ace" >
+		<http:listener doc:name="Listener" doc:id="d6e9ea86-1f3d-4a13-bad4-c3a5b58d18dd" config-ref="HTTP_Listener_config" path="/*"/>
+		<logger level="INFO" doc:name="flow.begin" doc:id="5454b30f-a12c-4bcb-a003-f1c9e9a879f1" message="#[output application/json --- {payload: payload, attributes: attributes}]" category="myapp.flow.begin"/>
+		<http:request method="GET" doc:name="Request" doc:id="2b04e9a2-3b80-4e0d-aaca-a96e6b3a6219" config-ref="HTTP_Request_config" path="/"/>
+		<logger level="INFO" doc:name="flow.end" doc:id="69861150-5b39-49b0-8b85-945ebe486c63" message="#[output application/json --- {payload: payload, attributes: attributes}]" category="myapp.flow.end"/>
+	</flow>
+	<flow name="stubWithContentTypeFlow" doc:id="b290d4a5-af72-406c-8c78-0cae74b17481" >
+		<http:listener doc:name="Listener" doc:id="7f8a391a-5ca6-459e-b3d2-61ec727e539f" config-ref="HTTP_Listener_config" path="/stub/withContentType">
+			<http:response >
+				<http:body ><![CDATA[#[dw::util::Coercions::toBinary(payload.responseBody, payload.responseBodyEncoding)]]]></http:body>
+				<http:headers ><![CDATA[#[output application/java
+---
+{
+	"content-type" : payload.responseContentTypeHeader
+}]]]></http:headers>
+			</http:response>
+		</http:listener>
+		<flow-ref doc:name="stubFlow" doc:id="64e3f809-44f3-40b4-8d67-2869d9fa6541" name="stubFlow"/>
+	</flow>
+	<flow name="stubWithoutContentTypeFlow" doc:id="17707652-8d16-4272-a0de-d047792cf511" >
+		<http:listener doc:name="Listener" doc:id="18360270-881e-4eb6-be35-30423b2642fc" config-ref="HTTP_Listener_config" path="/stub/withoutContentType">
+		</http:listener>
+		<flow-ref doc:name="stubFlow" doc:id="fafd5d02-8f7a-4012-8b79-20cfbd90a21f" name="stubFlow" />
+		<set-payload doc:name="xxx FixedString" doc:id="4ec15232-60aa-477e-b0f1-69bdd5e152f5" value="&lt;xxx&gt;&lt;/xxx&gt;" />
+		<logger level="INFO" doc:name="payload" doc:id="a2bf8f42-5ae8-49de-9d68-f9e2e8bae57f" message="#[output applicatin/dw --- payload]"/>
+		<set-payload value="#[`&lt;yyy&gt;&lt;/yyy&gt;`]" doc:name="yyy DataWeave" doc:id="15979013-919f-49d8-bdc9-dda51e4f90f0" />
+		<logger level="INFO" doc:name="payload" doc:id="0221d74e-ca60-4466-a685-5be717317f5e" message="#[output applicatin/dw --- payload]" />
+		<set-payload value="#[java!myapp::MyFunctions::getStringWithoutMimeType3('&lt;qqq&gt;&lt;/qqq&gt;')]" doc:name="qqq JavaMethod" doc:id="0ed6f22e-676d-4b74-8a4c-bf76adc75e82" />
+		<logger level="INFO" doc:name="payload" doc:id="13063ab2-0a37-4284-85b3-8280c162e4cb" message="#[output applicatin/dw --- payload]" />
+		<choice doc:name="Choice" doc:id="78dad47a-6d4e-46fc-a559-6ca584e4e0e3" >
+			<when expression='#[null == attributes.queryParams["xml-declaration-encoding"]]'>
+				<set-payload value='&lt;?xml version="1.0" charset="Shift-JIS"?&gt;&lt;aaa&gt;[[\u2212]]{&#x2212;} [[\uFF0D]]{{&amp;#xFF0D}}&lt;/aaa&gt;' doc:name="Set Payload" doc:id="1592f6b8-3422-42ea-844f-d899a496b148" />
+			</when>
+			<when expression='#["&lt;without-declaration&gt;" == attributes.queryParams["xml-declaration-encoding"]]'>
+				<set-payload value='&lt;aaa&gt;[[\u2212]]{&#x2212;} [[\uFF0D]]{{&amp;#xFF0D}}&lt;/aaa&gt;' doc:name="Set Payload" doc:id="2620c6d6-f43b-49bb-9f4b-1a3192fa0f41" />
+			</when>
+			<when expression='#["&lt;without-encoding&gt;" == attributes.queryParams["xml-declaration-encoding"]]'>
+				<set-payload value='&lt;?xml version="1.0"?&gt;&lt;aaa&gt;[[\u2212]]{&#x2212;} [[\uFF0D]]{{&amp;#xFF0D}}&lt;/aaa&gt;' doc:name="Set Payload" doc:id="f85ecf66-abf3-4de4-8451-48818e9e0d9d" />
+			</when>
+			<when expression='#["windows-31j" == lower(attributes.queryParams["xml-declaration-encoding"])]'>
+				<set-payload value='&lt;?xml version="1.0" charset="Windows-31J"?&gt;&lt;aaa&gt;[[\u2212]]{&#x2212;} [[\uFF0D]]{{&amp;#xFF0D}}&lt;/aaa&gt;' doc:name="Set Payload" doc:id="83fc634a-a228-4f39-a283-125929e470af" />
+			</when>
+			<otherwise >
+				<raise-error doc:name="Raise error" doc:id="6b37ccb0-3671-4457-877f-c63d5386773a" type="MYAPP:NOT_IMPLEMENTED" description="未対応です"/>
+			</otherwise>
+		</choice>
+	</flow>
+	<sub-flow name="stubFlow" doc:id="f2945fc2-0b09-49d1-b83c-4c8c6d861d77" >
+		<ee:transform doc:name="Transform Message" doc:id="8adb42b2-5d5c-44b1-ae23-bf2e25217474">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+var paramXmlDeclarationEncoding = attributes.queryParams["xml-declaration-encoding"]
+var xmlDeclarationString = paramXmlDeclarationEncoding match {
+	case null -> '<?xml version="1.0" charset="Shift-JIS"?>'
+	case '<without-declaration>' -> ''
+	case '<without-encoding>' -> '<?xml version="1.0"?>'
+	else -> '<?xml version=\"1.0\" charset="' ++ (paramXmlDeclarationEncoding default "") ++ '"?>'
+}
+output application/java
+---
+{
+	responseBody: xmlDeclarationString ++ '<aaa>[[\u2212]]{&#x2212;} [[\uFF0D]]{{&#xFF0D}}</aaa>',
+	responseBodyEncoding: attributes.queryParams["response-body-encoding"] default 'windows-31j',
+	responseContentTypeHeader: attributes.queryParams["response-content-type-header"] default 'application/xml; charset=Shift-JIS',
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</sub-flow>
+</mule>

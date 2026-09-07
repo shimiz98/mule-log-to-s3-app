@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="0c64d9f3-657f-4bf7-9d1f-d65dde96b1c0" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<http:request-config name="HTTP_Request_config" doc:name="HTTP Request configuration" doc:id="e4f50bdf-1ee6-44ac-92df-afcb116baf7a" >
+		<http:request-connection host="${myapp.stub.host}" port="${myapp.stub.port}" />
+	</http:request-config>
+	<global-property doc:name="Global Property" doc:id="3c8afc26-600a-4af9-b203-2ba49dc504f4" name="myapp.stub.host" value="localhost" />
+	<global-property doc:name="Global Property" doc:id="3918cd69-99ef-4a08-a37a-5f81f728de2b" name="myapp.stub.port" value="8081" />
+</mule>
