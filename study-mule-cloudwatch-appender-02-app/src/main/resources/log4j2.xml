@@ -15,9 +15,28 @@
             <SizeBasedTriggeringPolicy size="10 MB"/>
             <DefaultRolloverStrategy max="10"/>
         </RollingFile>
+        <File name="AwsSdkLog" fileName="/tmp/my-aws-sdk.log">
+            <PatternLayout pattern="%-5p %d [%t] [processor: %X{processorPath}; event: %X{correlationId}] %c: %m%n"/>
+        </File>
     </Appenders>
 
     <Loggers>
+    	<!--  ここから AWS SDK for Java の公式docからコピペ -->
+    	<!--  AwsCredentialsProvider の詳細を出力するため INFO DEBUGに変更 -->
+        <Logger name="software.amazon.awssdk" level="DEBUG" additivity="false">
+            <AppenderRef ref="AwsSdkLog"/>
+        </Logger>
+        <Logger name="software.amazon.awssdk.request" level="DEBUG" additivity="false">
+            <AppenderRef ref="AwsSdkLog"/>
+        </Logger>
+        <Logger name="org.apache.http.wire" level="DEBUG" additivity="false">
+            <AppenderRef ref="AwsSdkLog"/>
+        </Logger>
+        <!-- ここまで -->
+        <Logger name="org.apache.http" level="DEBUG" additivity="false">
+            <!--  IPアドレスをログ出力するためにDEBUGに設定 -->
+            <AppenderRef ref="AwsSdkLog"/>
+        </Logger>
         <!-- Http Logger shows wire traffic on DEBUG -->
         <!--AsyncLogger name="org.mule.service.http.impl.service.HttpMessageLogger" level="DEBUG"/-->
         <AsyncLogger name="org.mule.service.http" level="WARN"/>

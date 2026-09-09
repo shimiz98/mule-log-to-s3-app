@@ -10,13 +10,21 @@ http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/fil
 		<logger level="INFO" doc:name="Logger" doc:id="5ba7e02e-2f80-4113-b91e-5d279730ca34" message="#[output application/json --- {payload: payload, attributes: attributes}]" category="myapp.flow.begin"/>
 		<choice doc:name="Choice" doc:id="11c7393b-90a8-4552-b421-c8ef926a0b80" >
 			<when expression="#['/mule-ee-log' == attributes.maskedRequestPath]">
-				<file:read doc:name="Read" doc:id="3acb7e56-99a7-43fa-b4dc-9159275cf84c" path="#[Mule::p('mule.home') ++ '/logs/mule_ee.log']" outputMimeType="text/plain" outputEncoding="UTF-8"/>
+				<set-payload value="#[output text/plain encoding='UTF-8' --- java!mydebug::MyDebugFunctions::readFileOrNull(Mule::p('mule.home') ++ '/logs/mule_ee.log')]" doc:name="read mule_ee.log" doc:id="7c58d967-5f54-4108-b800-79cde048c6fb" />
+				<choice doc:name="Choice" doc:id="e84c214f-af8a-418b-a200-f8dfe0bf442e" >
+					<when expression="#[null == payload]">
+						<set-payload value="#[output text/plain encoding='UTF-8' --- java!mydebug::MyDebugFunctions::readFileOrNull(Mule::p('mule.home') ++ '/logs/mule-0.log')]" doc:name="read mule-0.log" doc:id="04ad1b26-a1b8-49d0-8dcc-86b242e20825" />
+					</when>
+				</choice>
 			</when>
 			<when expression="#['/aws-sdk-log' == attributes.maskedRequestPath]">
 				<file:read doc:name="Read" doc:id="fcdb3a26-424e-4db7-b50a-552dbff6ca05" path="/tmp/my-aws-sdk.log" outputMimeType="text/plain" outputEncoding="UTF-8"/>
 			</when>
 			<when expression="#['/put-log' == attributes.maskedRequestPath]">
-				<set-payload value="#[java!myapp::MyDebugFunctions::putCloudWatchLogs]" doc:name="Set Payload" doc:id="6b4fffb6-cc07-469f-9313-1138aab4b32c" />
+				<set-payload value='#[output text/plain encoding="UTF-8"&#10;---&#10;java!myapp::MyDebugFunctions::putCloudWatchLogs(payload)]' doc:name="Set Payload" doc:id="6b4fffb6-cc07-469f-9313-1138aab4b32c" />
+			</when>
+			<when expression="#['/jvm-info' == attributes.maskedRequestPath]">
+				<set-payload value='#[fun orderByKey(payload) = entriesOf(payload) &#10;    orderBy $.key &#10;    reduce ((item, acc={}) -&gt; acc ++ {(item.key):item.value})&#10;output applicaion/json&#10;---&#10;{&#10;	"システムプロパティ": orderByKey(dw::Runtime::props()),&#10;	"環境変数": orderByKey(dw::System::envVars()),&#10;	"JVMのコマンドライン引数": java!myapp::MyDebugFunctions::getJvmCommandLineArgs(),&#10;}]' doc:name="Set Payload" doc:id="bc2ad912-000b-4768-8b18-b88596df4230" />
 			</when>
 		</choice>
 	</flow>
